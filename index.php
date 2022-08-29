@@ -1,7 +1,8 @@
 <?php
     // This project is not in the root folder, so we have to remove the base folder,
     // which is '/personal_website'.
-    $endpoint = str_replace('/personal_website', '', $_SERVER['REQUEST_URI']);
+    $base_url_directory = '/personal_website';
+    $endpoint = str_replace($base_url_directory, '', $_SERVER['REQUEST_URI']);
 
     switch ($endpoint) {
         case '':
@@ -47,6 +48,7 @@
         <title><?= $title ?></title>
     </head>
     <body>
+        <?php require __DIR__ . '/navbar.php'; ?>
 
         <?php require $router_path; ?>
 
