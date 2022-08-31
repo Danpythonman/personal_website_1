@@ -1,3 +1,41 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+}
+
+.navbar-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navitem {
+    float: left;
+}
+
+.navlink {
+    padding: 20px 20px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.navlink:hover {
+    background-color: blue;
+}
+
+.page-title {
+    padding-top: 5%;
+}

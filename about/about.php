@@ -1,6 +1,6 @@
-<h1>About Me</h1>
+<h1 class="page-title">About Me</h1>
 
-<p>
+<p class="paragraph">
     I am Daniel Di Giovanni, and I am a 3rd year software engineering student at York University.
     I've always been fascinated by computers and engineering, especially how complex technical problems can be solved so elegantly.
     This curiosity motivates me not only in school, but also in studying on my own time.
