@@ -10,6 +10,9 @@ body {
 
 .navbar {
     position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
     top: 0;
     left: 0;
     width: 100%;
@@ -17,21 +20,46 @@ body {
 }
 
 .navbar-links {
+    display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    align-items: stretch;
+}
+
+.navtitle {
+    float: left;
+    padding-left: 5px;
+    color: white;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 2em;
+}
+
+.navtitle-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
 }
 
 .navitem {
+    display: flex;
+    align-items: stretch;
     float: left;
 }
 
 .navlink {
-    padding: 20px 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     background-color: black;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
-    display: block;
     font-family: "Open Sans", sans-serif;
     font-size: 1.25em;
 }

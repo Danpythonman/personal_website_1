@@ -1,8 +1,8 @@
 <div class="navbar">
+    <div class="navtitle">
+        <a class="navtitle-link" href="<?= $request_info['base_url_directory'] . '/' ?>">Daniel Di Giovanni</a>
+    </div>
     <ul class="navbar-links">
-        <li class="navitem">
-            <a class="navlink<?= $request_info['site_area'] == 'home' ? ' bold-navlink' : '' ?>" href="<?= $request_info['base_url_directory'] . '/' ?>">Home</a>
-        </li>
         <li class="navitem">
             <a class="navlink<?= $request_info['site_area'] == 'about' ? ' bold-navlink' : '' ?>" href="<?= $request_info['base_url_directory'] . '/about/' ?>">About Me</a>
         </li>
