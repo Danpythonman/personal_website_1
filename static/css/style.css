@@ -152,6 +152,22 @@ body {
     margin: auto;
 }
 
+.project-card {
+    margin-bottom: 100px;
+}
+
+.project-card-title {
+    margin-top: 0;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 2em;
+}
+
+.project-card-description {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    margin: auto;
+}
+
 /*
  * Screen width guide
  *
@@ -180,6 +196,23 @@ body {
     #nav-icon {
         display: flex;
     }
+
+    .project-card-image {
+        display: block;
+        margin: auto;
+        width: 90%;
+        padding-bottom: 25px;
+    }
+
+    .project-card-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .project-card-description {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 /* Desktop only */
@@ -199,5 +232,44 @@ body {
 
     #nav-icon {
         display: none;
+    }
+
+    .project-card {
+        display: flex;
+    }
+
+    .project-card-text {
+        flex-grow: 3;
+    }
+
+    .project-card-image {
+        flex-grow: 1;
+    }
+
+    .project-card-text {
+        flex-grow: 3;
+    }
+    
+    .project-card-image {
+        flex-grow: 1;
+    }
+    
+    .project-card:nth-child(odd) {
+        flex-direction: row;
+    }
+    
+    .project-card:nth-child(odd) .project-card-text {
+        flex-direction: row;
+        padding-left: 25px;
+        text-align: left;
+    }
+    
+    .project-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    
+    .project-card:nth-child(even) .project-card-text {
+        flex-direction: row;
+        padding-right: 25px;
     }
 }
