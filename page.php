@@ -9,7 +9,9 @@
     <body>
         <?php require __DIR__ . '/navbar.php'; ?>
 
-        <?php require $request_info['router_path']; ?>
+        <div id="main-content">
+            <?php require $request_info['router_path']; ?>
+        </div>
 
         <script src="<?= $request_info['base_url_directory'] ?>/static/js/open_menu.js"></script>
     </body>
