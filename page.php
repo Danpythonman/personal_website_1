@@ -11,5 +11,6 @@
 
         <?php require $request_info['router_path']; ?>
 
+        <script src="<?= $request_info['base_url_directory'] ?>/static/js/open_menu.js"></script>
     </body>
 </html>
