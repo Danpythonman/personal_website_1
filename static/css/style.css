@@ -6,8 +6,6 @@ body {
     margin: 0;
 }
 
-/* * * * * * * * * * Navigation header * * * * * * * * * */
-
 #navbar {
     position: fixed;
     display: flex;
@@ -129,8 +127,6 @@ body {
     align-items: center;
 }
 
-/* * * * * * * * * * Main Content * * * * * * * * * */
-
 #main-content {
     margin: 10px;
 }
@@ -166,6 +162,31 @@ body {
     font-family: "Open Sans", sans-serif;
     font-size: 1em;
     margin: auto;
+}
+
+#contact-info {
+    margin-top: 125px;
+}
+
+.contact-icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    width: 40px;
+}
+
+.contact-link-text {
+    font-family: "Open Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.15em;
 }
 
 /*
@@ -212,6 +233,15 @@ body {
     .project-card-description {
         display: flex;
         justify-content: center;
+    }
+
+    #contact-info {
+        display: block;
+        justify-content: space-around;
+    }
+
+    .contact-info-section {
+        margin-bottom: 150px;
     }
 }
 
@@ -271,5 +301,14 @@ body {
     .project-card:nth-child(even) .project-card-text {
         flex-direction: row;
         padding-right: 25px;
+    }
+
+    #contact-info {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .contact-info-section {
+        width: 300px;
     }
 }
