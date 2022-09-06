@@ -6,6 +6,22 @@
     $request_info['base_url_directory'] = '/personal_website';
     $request_info['endpoint'] = str_replace($request_info['base_url_directory'], '', $_SERVER['REQUEST_URI']);
 
+    // Load environment variables
+    require __DIR__ . '/env.php';
+
+    // Connect to MySQL database
+    $db = mysqli_connect(getenv('DB_SERVER'), getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'));
+
+    // Make sure database connection was successful
+    if (mysqli_connect_errno()) {
+        $message = 'Database connection failed: ';
+        $message .= mysqli_connect_error();
+        $message .= ' (' . mysqli_connect_errno() . ')';
+
+        exit($message);
+    }
+
+    // Router
     switch ($request_info['endpoint']) {
         case '':
         case '/':
@@ -50,5 +66,11 @@
             $request_info['site_area'] = '404';
     }
 
+    // Create page
     require __DIR__ . '/page.php';
+
+    // Close MySQL database connection
+    if (isset($db)) {
+        mysqli_close($db);
+    }
 ?>
