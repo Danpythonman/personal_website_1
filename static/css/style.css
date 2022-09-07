@@ -161,7 +161,25 @@ body {
 .project-card-description {
     font-family: "Open Sans", sans-serif;
     font-size: 1em;
-    margin: auto;
+}
+
+.project-card-link {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    text-decoration-line: underline;
+    text-decoration-color: #fd9568;
+    text-decoration-thickness: 3px;
+    background-image:linear-gradient(to bottom, #fdcab4 50%, white 0);
+    background-size: 200% 200%;
+    background-position:bottom;
+    transition: 0.5s;
+}
+
+.project-card-link:hover {
+    background-position: top;
+    transition: 0.5s;
 }
 
 #contact-info {
@@ -264,6 +282,12 @@ body {
         display: none;
     }
 
+    #project-gallery {
+        display: block;
+        width: 950px;
+        margin: auto;
+    }
+
     .project-card {
         display: flex;
     }
@@ -291,7 +315,6 @@ body {
     .project-card:nth-child(odd) .project-card-text {
         flex-direction: row;
         padding-left: 25px;
-        text-align: left;
     }
     
     .project-card:nth-child(even) {

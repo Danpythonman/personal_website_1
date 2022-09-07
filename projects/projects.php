@@ -17,6 +17,7 @@
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
                 <p class="project-card-description"><?= $project['description'] ?></p>
+                <a href="" class="project-card-link">Read More</a>
             </div>
         </div>
     <?php
