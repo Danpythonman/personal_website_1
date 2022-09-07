@@ -1,11 +1,4 @@
 <?php
-    $request_info = [];
-
-    // This project is not in the root folder, so we have to remove the base folder,
-    // which is '/personal_website'.
-    $request_info['base_url_directory'] = '/personal_website';
-    $request_info['endpoint'] = str_replace($request_info['base_url_directory'], '', $_SERVER['REQUEST_URI']);
-
     // Load environment variables
     require __DIR__ . '/env.php';
 
@@ -21,50 +14,42 @@
         exit($message);
     }
 
+    /**
+     * The URI path is the path of the request URL without the initial and final slashes.
+     * This variable is given a value by router.php.
+     *
+     * Example URL:
+     * 'localhost:/personal_website/about/'
+     * Corresponding URI path:
+     * 'personal_website/about'
+     */
+    $uri_path = '';
+
+    /**
+     * The URI path array is an array of the URI path parts separated by slashes.
+     * If there is a base URL directory defined, it will be ignored.
+     * This variable is given a value by router.php.
+     *
+     * Example URL:                  'localhost:/personal_website/about/test'
+     * Corresponding URI path:       'personal_website/about/test'
+     * Corresponding URI path array: ['about', 'test']
+     *
+     * Example URL:                  'localhost:/about/test'
+     * Corresponding URI path:       'about/test'
+     * Corresponding URI path array: ['about', 'test']
+     */
+    $uri_path_array = [];
+
+    /**
+     * Contains information about the page, like the title of the page and the
+     * path of the PHP file to execute to render the page.
+     *
+     * This variable will be given a value by router.php and used by page.php.
+     */
+    $page_info = [];
+
     // Router
-    switch ($request_info['endpoint']) {
-        case '':
-        case '/':
-            $title = 'Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/home/home.php';
-            $request_info['site_area'] = 'home';
-            break;
-        case '/about':
-        case '/about/':
-            $title = 'About Me | Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/about/about.php';
-            $request_info['site_area'] = 'about';
-            break;
-        case '/education':
-        case '/education/':
-            $title = 'Education | Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/education/education.php';
-            $request_info['site_area'] = 'education';
-            break;
-        case '/resume':
-        case '/resume/':
-            $title = 'Resume | Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/resume/resume.php';
-            $request_info['site_area'] = 'resume';
-            break;
-        case '/projects':
-        case '/projects/':
-            $title = 'Projects | Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/projects/projects.php';
-            $request_info['site_area'] = 'projects';
-            break;
-        case '/contact':
-        case '/contact/':
-            $title = 'Contact Me | Daniel Di Giovanni';
-            $request_info['router_path'] = __DIR__ . '/contact/contact.php';
-            $request_info['site_area'] = 'contact';
-            break;
-        default:
-            http_response_code(404);
-            $title = 'Error 404';
-            $request_info['router_path'] = __DIR__ . '/error404.php';
-            $request_info['site_area'] = '404';
-    }
+    require __DIR__ . '/router.php';
 
     // Create page
     require __DIR__ . '/page.php';

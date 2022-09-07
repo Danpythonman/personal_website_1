@@ -13,7 +13,7 @@
 
     <?php while ($project = mysqli_fetch_assoc($projects)) { ?>
         <div class="project-card">
-            <img class="project-card-image" src="<?= $request_info['base_url_directory'] ?>/static/images/<?= $project['display_image'] ?>">
+            <img class="project-card-image" src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/images/<?= $project['display_image'] ?>">
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
                 <p class="project-card-description"><?= $project['description'] ?></p>
