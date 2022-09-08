@@ -27,35 +27,88 @@
         $uri_path_array[] = '';
     }
 
+    $page_info['error_404'] = false;
+
     // Router
     switch ($uri_path_array[0]) {
         case '':
-            $page_info['title'] = 'Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/home/home.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/home/home.php';
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         case 'about':
-            $page_info['title'] = 'About Me | Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/about/about.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'About Me | Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/about/about.php';
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         case 'education':
-            $page_info['title'] = 'Education | Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/education/education.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'Education | Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/education/education.php';
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         case 'resume':
-            $page_info['title'] = 'Resume | Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/resume/resume.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'Resume | Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/resume/resume.php';
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         case 'projects':
-            $page_info['title'] = 'Projects | Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/projects/projects.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'Projects | Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/projects/projects.php';
+            } else if (count($uri_path_array) === 2) {
+                $query = 'SELECT title, path_ending FROM projects';
+
+                $result = mysqli_query($db, $query);
+
+                if (!$result) {
+                    exit('Database query failed');
+                }
+
+                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+                mysqli_free_result($result);
+
+                $page_info['error_404'] = true;
+
+                foreach ($rows as $row) {
+                    if ($uri_path_array[1] == $row['path_ending']) {
+                        $page_info['error_404'] = false;
+
+                        $page_info['title'] = $row['title'] . ' | Daniel Di Giovanni';
+                        $page_info['path_to_php_file'] = __DIR__ . '/projects/project_template.php';
+                    }
+                }
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         case 'contact':
-            $page_info['title'] = 'Contact Me | Daniel Di Giovanni';
-            $page_info['path_to_php_file'] = __DIR__ . '/contact/contact.php';
+            if (count($uri_path_array) === 1) {
+                $page_info['title'] = 'Contact Me | Daniel Di Giovanni';
+                $page_info['path_to_php_file'] = __DIR__ . '/contact/contact.php';
+            } else {
+                $page_info['error_404'] = true;
+            }
             break;
         default:
-            http_response_code(404);
-            $page_info['title'] = 'Error 404';
-            $request_info['path_to_php_file'] = __DIR__ . '/error404.php';
+            $page_info['error_404'] = true;
+    }
+
+    if ($page_info['error_404']) {
+        http_response_code(404);
+        $page_info['path_to_php_file'] = __DIR__ . '/error404.php';
+        $page_info['title'] = 'Error 404';
     }
 ?>
