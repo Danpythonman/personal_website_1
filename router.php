@@ -34,7 +34,7 @@
         case '':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/home/home.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/home/home.php';
             } else {
                 $page_info['error_404'] = true;
             }
@@ -42,7 +42,7 @@
         case 'about':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'About Me | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/about/about.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/about/about.php';
             } else {
                 $page_info['error_404'] = true;
             }
@@ -50,7 +50,7 @@
         case 'education':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Education | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/education/education.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/education/education.php';
             } else {
                 $page_info['error_404'] = true;
             }
@@ -58,7 +58,7 @@
         case 'resume':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Resume | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/resume/resume.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/resume/resume.php';
             } else {
                 $page_info['error_404'] = true;
             }
@@ -66,7 +66,7 @@
         case 'projects':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Projects | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/projects/projects.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/projects.php';
             } else if (count($uri_path_array) === 2) {
                 $query = 'SELECT title, path_ending FROM projects';
 
@@ -87,7 +87,7 @@
                         $page_info['error_404'] = false;
 
                         $page_info['title'] = $row['title'] . ' | Daniel Di Giovanni';
-                        $page_info['path_to_php_file'] = __DIR__ . '/projects/project_template.php';
+                        $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/project_template.php';
                     }
                 }
             } else {
@@ -97,7 +97,7 @@
         case 'contact':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Contact Me | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/contact/contact.php';
+                $page_info['path_to_php_file'] = __DIR__ . '/pages/contact/contact.php';
             } else {
                 $page_info['error_404'] = true;
             }
@@ -108,7 +108,7 @@
 
     if ($page_info['error_404']) {
         http_response_code(404);
-        $page_info['path_to_php_file'] = __DIR__ . '/error404.php';
+        $page_info['path_to_php_file'] = __DIR__ . '/pages/errors/error404.php';
         $page_info['title'] = 'Error 404';
     }
 ?>
