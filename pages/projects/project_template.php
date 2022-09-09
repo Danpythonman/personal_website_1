@@ -28,9 +28,9 @@
     $project_section_array = ['', '', ''];
     while ($project_page_section = mysqli_fetch_assoc($result)) {
         if ($project_page_section['section_type'] == 'subheading') {
-            echo '<h2>' . $project_page_section['section_content'] . '</h2>';
+            echo '<h2 class="project-subheading">' . $project_page_section['section_content'] . '</h2>';
         } else if ($project_page_section['section_type'] == 'paragraph') {
-            echo '<p>' . $project_page_section['section_content'] . '</p>';
+            echo '<p class="project-paragraph">' . $project_page_section['section_content'] . '</p>';
         }
     }
 

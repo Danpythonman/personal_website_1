@@ -182,6 +182,17 @@ body {
     transition: 0.5s;
 }
 
+.project-subheading {
+    font-family: "Fjalla One", sans-serif;
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+.project-paragraph {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+}
+
 #contact-info {
     margin-top: 125px;
 }
