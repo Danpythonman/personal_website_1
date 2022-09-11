@@ -68,7 +68,7 @@
                 $page_info['title'] = 'Projects | Daniel Di Giovanni';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/projects.php';
             } else if (count($uri_path_array) === 2) {
-                $query = 'SELECT title, path_ending FROM projects';
+                $query = 'SELECT title, url_endpoint FROM projects';
 
                 $result = mysqli_query($db, $query);
 
@@ -83,7 +83,7 @@
                 $page_info['error_404'] = true;
 
                 foreach ($rows as $row) {
-                    if ($uri_path_array[1] == $row['path_ending']) {
+                    if ($uri_path_array[1] == $row['url_endpoint']) {
                         $page_info['error_404'] = false;
 
                         $page_info['title'] = $row['title'] . ' | Daniel Di Giovanni';

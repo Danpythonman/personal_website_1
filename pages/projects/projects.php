@@ -17,7 +17,7 @@
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
                 <p class="project-card-description"><?= $project['description'] ?></p>
-                <a href="/<?=getenv('BASE_URL_DIRECTORY') . '/projects/' . $project['path_ending'] ?>" class="project-card-link">Read More</a>
+                <a href="/<?=getenv('BASE_URL_DIRECTORY') . '/projects/' . $project['url_endpoint'] ?>" class="project-card-link">Read More</a>
             </div>
         </div>
     <?php

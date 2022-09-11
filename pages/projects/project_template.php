@@ -1,5 +1,5 @@
 <?php
-    $query = 'SELECT * FROM projects WHERE path_ending = \'' . end($uri_path_array) . '\'';
+    $query = 'SELECT * FROM projects WHERE url_endpoint = \'' . end($uri_path_array) . '\'';
 
     $result = mysqli_query($db, $query);
 
@@ -19,7 +19,7 @@
     <div id="project-images">
 
         <?php
-            $query = 'SELECT * FROM project_images WHERE project_id=\'' . $project['id'] . '\' ORDER BY image_number';
+            $query = 'SELECT * FROM project_images WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY image_number';
 
             $result = mysqli_query($db, $query);
 
@@ -47,7 +47,7 @@
 <div class="project-page-sections">
 
 <?php
-    $query = 'SELECT * FROM project_page_sections WHERE project_id=\'' . $project['id'] . '\' ORDER BY section_number';
+    $query = 'SELECT * FROM project_page_sections WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY section_number';
 
     $result = mysqli_query($db, $query);
 
