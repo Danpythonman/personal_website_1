@@ -234,9 +234,94 @@ body {
     scroll-behavior: smooth;
 }
 
-.project-image {
+.project-container {
     width: 850;
+}
+
+.project-image {
+    height: 100%;
+    padding: 10px
+}
+
+.project-image:hover {
+    opacity: 75%;
+    transition-duration: 0.4s;
+}
+
+.project-image-title {
+    display: none;
+}
+
+.project-image-description {
+    display: none;
+}
+
+#project-image-modal {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#project-image-modal-content {
+    height: 60%;
     padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* #project-image-modal-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+} */
+
+#project-image-modal-text {
+    padding-left: 20px;
+    width: 400px
+}
+
+#project-image-modal-title {
+    font-family: "Fjalla One", sans-serif;
+    font-size: 3em;
+    color: white;
+    margin-bottom: 0;
+}
+
+#project-image-modal-description {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5em;
+    color: white;
+}
+
+.project-image-modal-spacer {
+    height: 20%;
+}
+
+#project-image-modal-close-button {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 75px;
+    width: 75px;
+    height: 75px;
+    font-weight: 900;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#project-image-modal-close-button:hover {
+    background-color: #777777;
+    transition-duration: 0.5s;
 }
 
 .project-subheading {

@@ -28,7 +28,13 @@
             }
 
             while ($project_image = mysqli_fetch_assoc($result)) {
-                echo '<img class="project-image" src="/' . getenv('BASE_URL_DIRECTORY') . '/static/images/' . $project_image['image_filename'] . '">';
+                echo '
+                    <div class="project-image-container">
+                        <img class="project-image" onclick="openModal(this)" src="/' . getenv('BASE_URL_DIRECTORY') . '/static/images/' . $project_image['image_filename'] . '">
+                        <h4 class="project-image-title">' . $project_image['image_title'] . '</h4>
+                        <p class="project-image-description">' . $project_image['image_description'] . '</p>
+                    </div>
+                    ';
             }
 
             mysqli_free_result($result);
@@ -61,4 +67,20 @@
 ?>
 
 </div>
+<div id="project-image-modal">
+    <div class="project-image-modal-spacer" onclick="event.stopPropagation(); closeModal(this)">
+        <div id="project-image-modal-close-button" onclick="closeModal(this)">&times;</div>
+    </div>
+    <div id="project-image-modal-content" onclick="event.stopPropagation(); closeModal(this)">
+        <img id="project-image-modal-image" onclick="event.stopPropagation(); closeModal(this)">
+        <div id="project-image-modal-text" onclick="event.stopPropagation(); closeModal(this)">
+            <h4 id="project-image-modal-title" onclick="event.stopPropagation(); closeModal(this)"></h4>
+            <p id="project-image-modal-description" onclick="event.stopPropagation(); closeModal(this)"></p>
+        </div>
+    </div>
+    <div class="project-image-modal-spacer" onclick="event.stopPropagation(); closeModal(this)">
+    </div>
+</div>
+
 <script src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/js/scroll_project_image_gallery.js"></script>
+<script src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/js/open_project_image_modal.js"></script>
