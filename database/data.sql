@@ -46,6 +46,42 @@ INSERT INTO project_page_sections (id, project_id, section_number, section_type,
     'The quotes come from the database, which is populated by users who submit quotes to the website. The background image comes from NASA''s Astronomy Picture of the Day API.'
 );
 
+INSERT INTO project_images (id, project_id, image_filename, image_number, image_title, image_description) VALUES (
+    1,
+    1,
+    'inspirational_website_preview.gif',
+    1,
+    'Inspirational Website Use',
+    'Here is a standard use of the website (apologies for the low quality). We can see the inspirational quote, background image, and the to-do list.'
+);
+
+INSERT INTO project_images (id, project_id, image_filename, image_number, image_title, image_description) VALUES (
+    2,
+    1,
+    'inspiration_website_signup.jpg',
+    2,
+    'Entering Inspirational Website 2.0',
+    'The three options to enter the website are to log in, sign up (as is show in the expanded view), and continue as a guest.'
+);
+
+INSERT INTO project_images (id, project_id, image_filename, image_number, image_title, image_description) VALUES (
+    3,
+    1,
+    'inspiration_website_login.jpg',
+    3,
+    'Login Section',
+    'This the expanded login view. No password is required, just your email and the verification code that we send to it upon any login request.'
+);
+
+INSERT INTO project_images (id, project_id, image_filename, image_number, image_title, image_description) VALUES (
+    4,
+    1,
+    'inspiration_website_todo_list.jpg',
+    4,
+    'The To-Do List',
+    'Each user''s to-do list is stored on a MongoDB Atlas database. This also keeps track of which tasks are completed.'
+);
+
 INSERT INTO projects (id, title, description, display_image, path_ending) VALUES (
     2,
     'TAB2XML',
