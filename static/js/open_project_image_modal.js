@@ -30,7 +30,6 @@ function closeModal(eventNode) {
     // If the modal's image, title, or description was clicked, then do not close the modal.
     // If the modal was clicked anywhere else, then close the modal.
     if (eventNode.id != "project-image-modal-image"
-        && eventNode.id != "project-image-modal-text"
         && eventNode.id != "project-image-modal-title"
         && eventNode.id != "project-image-modal-description"
     ) {
