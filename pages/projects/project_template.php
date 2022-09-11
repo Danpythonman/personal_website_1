@@ -47,7 +47,7 @@
 <div class="project-page-sections">
 
 <?php
-    $query = 'SELECT * FROM project_page_sections WHERE project_id=\'' . $project['id'] . '\'';
+    $query = 'SELECT * FROM project_page_sections WHERE project_id=\'' . $project['id'] . '\' ORDER BY section_number';
 
     $result = mysqli_query($db, $query);
 
