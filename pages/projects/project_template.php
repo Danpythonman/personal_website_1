@@ -13,7 +13,11 @@
 ?>
 
 <h1 class="page-title"><?= $project['title'] ?></h1>
-
+<p class="page-description"><?= $project['description'] ?></p>
+<div class="project-page-sections">
+    <h2 class="project-subheading">Image Gallery</h2>
+    <p class="project-paragraph">Click on an image to read more about it.</p>
+</div>
 <div id="project-image-gallery">
     <div class="project-image-gallery-arrow-button" id="project-image-gallery-previous-arrow-button">&#10094;</div>
     <div id="project-images">
