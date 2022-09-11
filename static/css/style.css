@@ -182,6 +182,54 @@ body {
     transition: 0.5s;
 }
 
+.project-page-sections {
+    max-width: 992px;
+    margin: auto;
+}
+
+#project-image-gallery {
+    position: relative;
+    display: block;
+    height: 500px;
+    max-width: 992px;
+    margin: auto;
+}
+
+.project-image-gallery-arrow-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: #333333;
+    font-size: 20px;
+}
+
+#project-image-gallery-previous-arrow-button {
+    display: none;
+    left: 10px;
+}
+
+#project-image-gallery-next-arrow-button {
+    right: 0;
+}
+
+#project-images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.project-image {
+    width: 850;
+    padding: 10px;
+}
+
 .project-subheading {
     font-family: "Fjalla One", sans-serif;
     font-size: 1.5em;
