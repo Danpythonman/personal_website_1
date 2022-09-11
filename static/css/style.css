@@ -192,6 +192,7 @@ body {
     display: block;
     height: 500px;
     margin: auto;
+    z-index: -1;
 }
 
 .project-image-gallery-arrow-button {
