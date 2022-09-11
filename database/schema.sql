@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS projects;
 
 CREATE TABLE projects (
-    id INTEGER,
+    id INTEGER NOT NULL AUTO_INCREMENT,
     title TEXT,
     description TEXT,
     display_image TEXT,
@@ -12,7 +12,7 @@ CREATE TABLE projects (
 DROP TABLE IF EXISTS project_page_sections;
 
 CREATE TABLE project_page_sections (
-    id INTEGER,
+    id INTEGER NOT NULL AUTO_INCREMENT,
     project_id INTEGER,
     section_number INTEGER,
     section_type TEXT,
@@ -24,7 +24,7 @@ CREATE TABLE project_page_sections (
 DROP TABLE IF EXISTS project_images;
 
 CREATE TABLE project_images (
-    id INTEGER,
+    id INTEGER NOT NULL AUTO_INCREMENT,
     project_id INTEGER,
     image_filename TEXT,
     image_number INTEGER,
