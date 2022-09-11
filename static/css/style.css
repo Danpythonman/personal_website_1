@@ -15,6 +15,7 @@ body {
     left: 0;
     width: 100%;
     background-color: black;
+    z-index: 1;
 }
 
 #mobile-nav-menu {
@@ -22,6 +23,7 @@ body {
     top: 50px;
     left: 0;
     width: 100%;
+    z-index: 1;
 }
 
 #navbar-links-mobile {
@@ -192,7 +194,6 @@ body {
     display: block;
     height: 500px;
     margin: auto;
-    z-index: -1;
 }
 
 .project-image-gallery-arrow-button {
