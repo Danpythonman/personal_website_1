@@ -403,6 +403,36 @@ body {
 
     #nav-icon {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hamburger-menu-bar {
+        width: 35px;
+        height: 5px;
+        background-color: white;
+    }
+
+    #top-hamburger-menu-bar, #middle-hamburger-menu-bar {
+        margin-bottom: 6px;
+        transition: 0.4s;
+    }
+
+    #bottom-hamburger-menu-bar {
+        transition: 0.4s;
+    }
+
+    .open-menu #top-hamburger-menu-bar {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+
+    .open-menu #middle-hamburger-menu-bar {
+        opacity: 0;
+    }
+
+    .open-menu #bottom-hamburger-menu-bar {
+        transform: translate(0, -11px) rotate(45deg);
     }
 
     .project-card-image {

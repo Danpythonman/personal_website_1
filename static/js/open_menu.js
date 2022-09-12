@@ -1,24 +1,30 @@
 // User clicks on icon in navigation header
 document.getElementById("nav-icon").addEventListener("click", () => {
-    // If open icon is not displayed (meaning close icon is displayed,
-    // so the user clicked on the close icon)
-    if (window.getComputedStyle(document.getElementById("open-nav-icon")).display == "none") {
-        // Close the menu
-        document.getElementById("open-nav-icon").style.display = "flex";
-        document.getElementById("close-nav-icon").style.display = "none";
-        document.getElementById("navbar-links-mobile").style.display = "none";
+    const navigationIcon = document.getElementById("nav-icon");
+    const mobileNavigationMenu = document.getElementById("navbar-links-mobile");
+
+    // Toggle the "open-menu" class for the navigation icon. This will add "open-menu"
+    // as a class if it is not in the icon's class list, or it will remove it from the
+    // class list if it is there already.
+    navigationIcon.classList.toggle("open-menu");
+
+    // If the navigation icon contains "open-menu" as a class, then open the menu.
+    // Otherwise, close the menu.
+    if (navigationIcon.classList.contains("open-menu")) {
+        // Open the menu
+        mobileNavigationMenu.style.display = "flex";
     } else {
-        // Otherwise, open the menu
-        document.getElementById("open-nav-icon").style.display = "none";
-        document.getElementById("close-nav-icon").style.display = "flex";
-        document.getElementById("navbar-links-mobile").style.display = "flex";
+        // Close the menu
+        mobileNavigationMenu.style.display = "none";
     }
 });
 
 // User clicks on the main content of the page (not on the navigation header)
 document.getElementById("main-content").addEventListener("click", () => {
+    const navigationIcon = document.getElementById("nav-icon");
+    const mobileNavigationMenu = document.getElementById("navbar-links-mobile");
+
     // Close the menu
-    document.getElementById("open-nav-icon").style.display = "flex";
-    document.getElementById("close-nav-icon").style.display = "none";
-    document.getElementById("navbar-links-mobile").style.display = "none";
+    navigationIcon.classList.remove("open-menu");
+    mobileNavigationMenu.style.display = "none";
 });
