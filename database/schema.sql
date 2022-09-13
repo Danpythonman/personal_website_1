@@ -40,6 +40,7 @@ CREATE TABLE resume_sections (
     section_number INT,
     title VARCHAR(50),
     company VARCHAR(50),
+    company_url VARCHAR(50),
     duration_and_work_type VARCHAR(50),
     description TEXT,
     PRIMARY KEY (id)

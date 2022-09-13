@@ -1,10 +1,11 @@
-INSERT INTO resume_sections (id, section_number, title, company, duration_and_work_type, description) VALUES (
+INSERT INTO resume_sections (id, section_number, title, company, company_url, duration_and_work_type, description) VALUES (
     1,
     1,
     'Full Stack Developer',
     'Dwella Investing',
+    'https://dwellainvesting.com/#/',
     'June 2021 - December 2021 <i>(Part Time)</i>',
-    'Dwella Investing is a startup based in Toronto, Ontario, Canada whose goal is to use the blockchain to tokenize real estate investments. As a full-stack developer, I worked extensively on the frontend and backend of Dwella''s platform. I also had the opportunity to interact with the Ethereum blockchain through working on the frontend.'
+    '<a class="link" href="https://dwellainvesting.com/#/" target="_blank">Dwella Investing</a> is a startup based in Toronto, Ontario, Canada whose goal is to use the blockchain to tokenize real estate investments. As a full-stack developer, I worked extensively on the frontend and backend of Dwella''s platform. I also had the opportunity to interact with the Ethereum blockchain through working on the frontend.'
 );
 
 INSERT INTO resume_section_accomplishments (resume_section_id, accomplishment_number, content) VALUES (
@@ -43,13 +44,14 @@ INSERT INTO resume_section_accomplishments (resume_section_id, accomplishment_nu
     'Continually adapted frontend and backend to changing specifications.'
 );
 
-INSERT INTO resume_sections (id, section_number, title, company, duration_and_work_type, description) VALUES (
+INSERT INTO resume_sections (id, section_number, title, company, company_url, duration_and_work_type, description) VALUES (
     2,
     2,
     'E-Commerce Advisor',
     'Digital Main Street',
+    'https://digitalmainstreet.ca/',
     'June 2022 - Present <i>(Full Time)</i>',
-    'In this position I worked as an e-commerce advisor the government-funded Canada Digital Adoption Program (CDAP). The program essentially helps small businesses who have not made significant progress in bringing their business online. My job was to advise small businesses and give personalized help on digitizing their operations.'
+    'In this position I worked as an e-commerce advisor the government-funded <a class="link" href="https://ised-isde.canada.ca/site/canada-digital-adoption-program/en" target="_blank">Canada Digital Adoption Program (CDAP)</a>. The program essentially helps small businesses who have not made significant progress in bringing their business online. My job was to advise small businesses and give personalized help on digitizing their operations.'
 );
 
 INSERT INTO resume_section_accomplishments (resume_section_id, accomplishment_number, content) VALUES (
