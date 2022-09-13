@@ -16,7 +16,7 @@
             <div class="job-header">
                 <div class="job-information">
                     <h3 class="job-title"><?= $resume_section['title'] ?></h3>
-                    <p class="company"><?= $resume_section['company'] ?></p>
+                    <p class="company"><a class="link" href="<?= $resume_section['company_url'] ?>" target="_blank"><?= $resume_section['company'] ?></a></p>
                     <p class="duration-and-work-type"><?= $resume_section['duration_and_work_type'] ?></p>
                 </div>
                 <p class="job-description"><?= $resume_section['description'] ?></p>
@@ -33,7 +33,7 @@
                     }
 
                     while ($accomplishment = mysqli_fetch_assoc($accomplishments)) {
-                        echo '<li>' . $accomplishment['content'] . '</li>' . PHP_EOL;
+                        echo '<li><span>' . $accomplishment['content'] . '</span></li>' . PHP_EOL;
                     }
 
                     mysqli_free_result($accomplishments);
@@ -50,7 +50,7 @@
 <div class="page-description">
     <p>
         If the resume is not loading, please try refreshing the page.
-        You can also download my resume PDF by <a href="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/documents/daniel_di_giovanni_resume_2022-09-11.pdf" download>clicking here</a>.
+        You can also download my resume PDF by <a class="link" href="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/documents/daniel_di_giovanni_resume_2022-09-11.pdf" download>clicking here</a>.
     </p>
 </div>
 <iframe id="resume-pdf" src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/documents/daniel_di_giovanni_resume_2022-09-11.pdf"></iframe>

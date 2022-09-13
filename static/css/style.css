@@ -168,6 +168,7 @@ body {
     margin-top: 0;
     font-family: "Fjalla One", sans-serif;
     font-size: 2em;
+    color: #fd9568;
 }
 
 .project-card-description {
@@ -175,7 +176,7 @@ body {
     font-size: 1em;
 }
 
-a {
+.link {
     font-family: "Open Sans", sans-serif;
     font-size: 1em;
     color: white;
@@ -185,28 +186,9 @@ a {
     transition: 0.4s;
 }
 
-a:hover {
+.link:hover {
     text-decoration-thickness: 4px;
     text-decoration-color: #fd9568;
-}
-
-.project-card-link {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    color: white;
-    text-decoration-line: underline;
-    text-decoration-color: #fd9568;
-    text-decoration-thickness: 3px;
-    background-image:linear-gradient(to bottom, rgba(248, 125, 73, 25%) 50%, black 0);
-    background-size: 200% 200%;
-    background-position:bottom;
-    transition: 0.3s;
-}
-
-.project-card-link:hover {
-    background-position: top;
-    transition: 0.5s;
 }
 
 .project-page-sections {
@@ -412,6 +394,14 @@ a:hover {
     font-size: 1em;
     line-height: 1.75em;
     margin-top: 0;
+}
+
+.job-accomplishments li {
+    color: #fd9568;
+}
+
+.job-accomplishments li span {
+    color: white;
 }
 
 #resume-pdf {
