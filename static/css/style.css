@@ -1,10 +1,35 @@
+:root {
+    /* --main-color: #fd9568; */
+    /* --main-color: #af3800; */
+    --main-color: #8EC7D2;
+    /* --accent-color: #68dffd; */
+    /* --accent-color: #59114d; */
+    --accent-color: #DBA507;
+    /* --text-color: white; */
+    /* --text-color: #012622; */
+    --text-color: #ece5f0;
+    /* --background-color: black; */
+    /* --background-color: #ece5f0; */
+    --background-color: #59114d;
+    --button-hover-color: rgba(255, 255, 255, 0.3);
+    --nav-menu-backdrop-filter: blur(10px) brightness(80%);
+    --heading-font: "Fjalla One";
+    --paragraph-font: "Didact Gothic";
+    --title-font-size: 5em;
+    --heading-font-size: 3em;
+    --subheading-font-size: 2em;
+    --paragraph-font-size: 1.25em;
+    --big-link-font-size: 1.5em;
+    --paragraph-line-height: 1.75em;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    background-color: black;
+    background-color: var(--background-color);
 }
 
 #navbar {
@@ -15,9 +40,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    /* background-color: black; */
     z-index: 1;
-    backdrop-filter: blur(20px) brightness(20%);
+    backdrop-filter: var(--nav-menu-backdrop-filter);
 }
 
 #mobile-nav-menu {
@@ -51,8 +75,8 @@ body {
 #navtitle {
     float: left;
     padding-left: 5px;
-    color: white;
-    font-family: "Fjalla One", sans-serif;
+    color: var(--text-color);
+    font-family: var(--heading-font), sans-serif;
     font-size: 2em;
 }
 
@@ -61,8 +85,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 15px;
-    /* background-color: black; */
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -80,38 +103,35 @@ body {
     border-bottom-color: white;
     padding-top: 10px;
     padding-bottom: 10px;
-    /* background-color: black; */
-    backdrop-filter: blur(20px) brightness(20%);
+    backdrop-filter: var(--nav-menu-backdrop-filter);
     width: 100%;
 }
 
 .navlink {
     padding-left: 15px;
     padding-right: 15px;
-    /* background-color: black; */
-    color: white;
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--paragraph-font), sans-serif;
     font-size: 1.25em;
 }
 
 .navlink:hover, .navlink-mobile:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--button-hover-color);
     transition: 0.4s;
 }
 
 .bold-navlink {
-    font-weight: bold;
+    /* font-weight: bold; */
     text-decoration: underline;
     text-decoration-thickness: 3px;
 }
 
 #nav-icon {
     display: flex;
-    fill: white;
     justify-content: center;
     align-items: center;
     padding-right: 20px;
@@ -119,7 +139,7 @@ body {
 
 #main-content {
     margin: 10px;
-    color: white;
+    color: var(--text-color);
 }
 
 .page-title {
@@ -127,18 +147,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Fjalla One", sans-serif;
-    font-size: 5em;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--title-font-size);
     text-align: center;
 }
 
 .page-heading {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Fjalla One", sans-serif;
-    font-size: 3em;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--heading-font-size);
     text-align: center;
 }
 
@@ -146,17 +166,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
 }
 
 .paragraph {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--paragraph-font), sans-serif;
     text-align: justify;
-    font-size: 1.5em;
-    line-height: 1.7em;
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
     margin: auto;
 }
 
@@ -166,29 +186,39 @@ body {
 
 .project-card-title {
     margin-top: 0;
-    font-family: "Fjalla One", sans-serif;
-    font-size: 2em;
-    color: #fd9568;
+    margin-bottom: 0;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--subheading-font-size);
+    color: var(--main-color);
 }
 
 .project-card-description {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+}
+
+.project-card-text .link {
+    font-size: var(--big-link-font-size);
+}
+
+.project-card-image:hover {
+    opacity: 75%;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 .link {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
-    color: white;
+    font-family: var(--paragraph-font), sans-serif;
+    color: var(--text-color);
     text-decoration-line: underline;
-    text-decoration-color: #68dffd;
+    text-decoration-color: var(--accent-color);
     text-decoration-thickness: 3px;
     transition: 0.4s;
 }
 
 .link:hover {
     text-decoration-thickness: 4px;
-    text-decoration-color: #fd9568;
+    text-decoration-color: var(--main-color);
 }
 
 .project-page-sections {
@@ -214,6 +244,7 @@ body {
     color: white;
     background-color: #333333;
     font-size: 30px;
+    user-select: none;
 }
 
 .project-image-gallery-arrow-button:hover {
@@ -291,14 +322,14 @@ body {
 }
 
 #project-image-modal-title {
-    font-family: "Fjalla One", sans-serif;
+    font-family: var(--heading-font), sans-serif;
     font-size: 3em;
     color: white;
     margin-bottom: 0;
 }
 
 #project-image-modal-description {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--paragraph-font), sans-serif;
     font-size: 1.5em;
     color: white;
 }
@@ -320,6 +351,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 #project-image-modal-close-button:hover {
@@ -328,15 +360,15 @@ body {
 }
 
 .project-subheading {
-    font-family: "Fjalla One", sans-serif;
-    font-size: 3em;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--subheading-font-size);
     margin-top: 75px;
 }
 
 .project-paragraph {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.25em;
-    line-height: 1.5em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
 }
 
 #resume-html {
@@ -346,7 +378,7 @@ body {
 }
 
 .resume-section {
-    margin-top: 100px;
+    padding-bottom: 100px;
 }
 
 .job-header {
@@ -360,48 +392,52 @@ body {
 }
 
 .job-title {
-    font-family: "Fjalla One", sans-serif;
-    font-size: 2em;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--subheading-font-size);
     margin-top: 0;
-    color: #fd9568;
+    color: var(--main-color);
 }
 
 .company {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+}
+
+.company .link {
+    font-size: var(--big-link-font-size);
 }
 
 .duration-and-work-type {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
 }
 
 .job-description {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
-    line-height: 1.75em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
     margin-top: 0;
 }
 
 .job-accomplishments-title {
-    font-family: "Fjalla One", sans-serif;
-    font-size: 1.25em;
-    color: #fd9568;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--subheading-font-size);
+    color: var(--main-color);
 }
 
 .job-accomplishments {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
-    line-height: 1.75em;
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
     margin-top: 0;
 }
 
 .job-accomplishments li {
-    color: #fd9568;
+    color: var(--main-color);
 }
 
 .job-accomplishments li span {
-    color: white;
+    color: var(--text-color);
 }
 
 #resume-pdf {
@@ -418,20 +454,21 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
+    fill: var(--text-color);
     width: 40px;
 }
 
 .contact-link-text {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--paragraph-font), sans-serif;
     display: flex;
     justify-content: center;
 }
 
 .contact-link {
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
     font-weight: bold;
-    font-size: 1.15em;
+    font-size: var(--paragraph-font-size);
 }
 
 /*
@@ -469,7 +506,7 @@ body {
     .hamburger-menu-bar {
         width: 35px;
         height: 5px;
-        background-color: white;
+        background-color: var(--text-color);
     }
 
     #top-hamburger-menu-bar, #middle-hamburger-menu-bar {
@@ -498,6 +535,12 @@ body {
         margin: auto;
         width: 90%;
         padding-bottom: 25px;
+    }
+
+    .project-card-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .project-card-title {
@@ -568,22 +611,19 @@ body {
 
     .project-card {
         display: flex;
+        justify-content: space-between;
     }
 
     .project-card-text {
-        flex-grow: 3;
+        width: 510px;
+    }
+
+    .project-card-image-link {
+        width: 410px;
     }
 
     .project-card-image {
-        flex-grow: 1;
-    }
-
-    .project-card-text {
-        flex-grow: 3;
-    }
-
-    .project-card-image {
-        flex-grow: 1;
+        width: 100%;
     }
 
     .project-card:nth-child(odd) {
@@ -592,7 +632,6 @@ body {
 
     .project-card:nth-child(odd) .project-card-text {
         flex-direction: row;
-        padding-left: 25px;
     }
 
     .project-card:nth-child(even) {
@@ -601,7 +640,6 @@ body {
 
     .project-card:nth-child(even) .project-card-text {
         flex-direction: row;
-        padding-right: 25px;
     }
 
     #project-image-gallery {

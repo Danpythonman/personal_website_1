@@ -4,7 +4,7 @@
         <title><?= $page_info['title'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/css/style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Fjalla+One">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Fjalla+One|Didact+Gothic">
     </head>
     <body>
         <?php require __DIR__ . '/navbar.php'; ?>
