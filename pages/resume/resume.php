@@ -1,6 +1,9 @@
-<h1 class="page-title">My Work Experience</h1>
-<p class="page-description">Take a look at my professional experience, as well as my resume in PDF format.</p>
-<h2 class="page-heading">My Professional History</h2>
+<div class="page-header">
+    <div class="section">
+        <h1 class="page-title">My Work Experience</h1>
+        <p class="paragraph">Take a look at my professional experience, as well as my resume in PDF format.</p>
+    </div>
+</div>
 <?php
     $query = 'SELECT * FROM resume_sections ORDER BY section_number DESC';
 
@@ -10,9 +13,10 @@
         exit('Database query failed');
     }
 ?>
+<h2 class="heading">My Professional History</h2>
 <div id="resume-html">
     <?php while ($resume_section = mysqli_fetch_assoc($resume_sections)) { ?>
-        <div class="resume-section">
+        <div class="resume-section section">
             <div class="job-header">
                 <div class="job-information">
                     <h3 class="job-title"><?= $resume_section['title'] ?></h3>
@@ -46,9 +50,9 @@
         mysqli_free_result($resume_sections);
     ?>
 </div>
-<h2 class="page-heading">My Resume</h2>
-<div class="page-description">
-    <p>
+<div class="section">
+    <h2 class="heading">My Resume</h2>
+    <p class="paragraph">
         If the resume is not loading, please try refreshing the page.
         You can also download my resume PDF by <a class="link" href="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/documents/daniel_di_giovanni_resume_2022-09-11.pdf" download>clicking here</a>.
     </p>
