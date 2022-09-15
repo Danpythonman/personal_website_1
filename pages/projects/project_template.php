@@ -12,11 +12,15 @@
     mysqli_free_result($result);
 ?>
 
-<h1 class="page-title"><?= $project['title'] ?></h1>
-<p class="page-description"><?= $project['description'] ?></p>
-<div class="project-page-sections">
-    <h2 class="project-subheading">Image Gallery</h2>
-    <p class="project-paragraph">Click on an image to read more about it.</p>
+<div class="page-header">
+    <div class="section">
+        <h1 class="page-title"><?= $project['title'] ?></h1>
+        <p class="paragraph"><?= $project['description'] ?></p>
+    </div>
+</div>
+<div class="section">
+    <h2 class="subheading">Image Gallery</h2>
+    <p class="paragraph">Click on an image to read more about it.</p>
 </div>
 <div id="project-image-gallery">
     <div class="project-image-gallery-arrow-button" id="project-image-gallery-previous-arrow-button">&#10094;</div>
@@ -48,8 +52,6 @@
     <div class="project-image-gallery-arrow-button" id="project-image-gallery-next-arrow-button">&#10095;</div>
 </div>
 
-<div class="project-page-sections">
-
 <?php
     $query = 'SELECT * FROM project_page_sections WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY section_number';
 
@@ -60,17 +62,19 @@
     }
 
     while ($project_page_section = mysqli_fetch_assoc($result)) {
+        echo '<div class="section">' . PHP_EOL;
+
         if ($project_page_section['section_type'] == 'subheading') {
-            echo '<h2 class="project-subheading">' . $project_page_section['section_content'] . '</h2>';
+            echo '<h2 class="subheading">' . $project_page_section['section_content'] . '</h2>' . PHP_EOL;
         } else if ($project_page_section['section_type'] == 'paragraph') {
-            echo '<p class="project-paragraph">' . $project_page_section['section_content'] . '</p>';
+            echo '<p class="paragraph">' . $project_page_section['section_content'] . '</p>' . PHP_EOL;
         }
+
+        echo '</div>' . PHP_EOL;
     }
 
     mysqli_free_result($result);
 ?>
-
-</div>
 <div id="project-image-modal">
     <div class="project-image-modal-spacer" onclick="event.stopPropagation(); closeModal(this)">
         <div id="project-image-modal-close-button" onclick="closeModal(this)">&times;</div>
