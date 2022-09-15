@@ -20,6 +20,20 @@ CREATE TABLE project_page_sections (
     FOREIGN KEY (project_url_endpoint) REFERENCES projects(url_endpoint)
 );
 
+DROP TABLE IF EXISTS project_links;
+
+CREATE TABLE project_links (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    project_url_endpoint VARCHAR(50),
+    link_number INTEGER,
+    link_text VARCHAR(50),
+    link_url VARCHAR(250),
+    link_alt_text VARCHAR(250),
+    is_source_code BOOLEAN,
+    PRIMARY KEY (id),
+    FOREIGN KEY (project_url_endpoint) REFERENCES projects(url_endpoint)
+);
+
 DROP TABLE IF EXISTS project_images;
 
 CREATE TABLE project_images (

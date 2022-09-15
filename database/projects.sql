@@ -5,6 +5,33 @@ INSERT INTO projects (url_endpoint, title, description, display_image) VALUES (
     'inspirational_website_preview.gif'
 );
 
+INSERT INTO project_links (project_url_endpoint, link_number, link_text, link_url, link_alt_text, is_source_code) VALUES (
+    'inspirational-website-2',
+    1,
+    'View Site',
+    'https://danpythonman.github.io/inspiration_v2_frontend/',
+    'Inspirational Website 2.0 live website',
+    FALSE
+);
+
+INSERT INTO project_links (project_url_endpoint, link_number, link_text, link_url, link_alt_text, is_source_code) VALUES (
+    'inspirational-website-2',
+    2,
+    'Backend Source Code',
+    'https://github.com/Danpythonman/inspiration_v2_backend',
+    'Inspirational Website 2.0 backend GitHub repository',
+    TRUE
+);
+
+INSERT INTO project_links (project_url_endpoint, link_number, link_text, link_url, link_alt_text, is_source_code) VALUES (
+    'inspirational-website-2',
+    3,
+    'Frontend Source Code',
+    'https://github.com/Danpythonman/inspiration_v2_frontend',
+    'Inspirational Website 2.0 frontend GitHub repository',
+    TRUE
+);
+
 INSERT INTO project_page_sections (project_url_endpoint, section_number, section_type, section_content) VALUES (
     'inspirational-website-2',
     1,
@@ -100,6 +127,15 @@ INSERT INTO projects (url_endpoint, title, description, display_image) VALUES (
     'tab2xml_preview.gif'
 );
 
+INSERT INTO project_links (project_url_endpoint, link_number, link_text, link_url, link_alt_text, is_source_code) VALUES (
+    'tab2xml',
+    1,
+    'Source Code',
+    'https://github.com/ElmiraOn/EECS2311_group6',
+    'TAB2XML GitHub repository',
+    TRUE
+);
+
 INSERT INTO project_page_sections (project_url_endpoint, section_number, section_type, section_content) VALUES (
     'tab2xml',
     1,
@@ -187,6 +223,15 @@ INSERT INTO projects (url_endpoint, title, description, display_image) VALUES (
     'Sorting Algorithm Visualizer',
     'Visualizes sorting algorithms in real time.',
     'selection_sort_visualization.gif'
+);
+
+INSERT INTO project_links (project_url_endpoint, link_number, link_text, link_url, link_alt_text, is_source_code) VALUES (
+    'sorting-algorithm-visualizer',
+    1,
+    'Source Code',
+    'https://github.com/ElmiraOn/EECS2311_group6',
+    'Sorting Algorithm Visualizer GitHub repository',
+    TRUE
 );
 
 INSERT INTO project_page_sections (project_url_endpoint, section_number, section_type, section_content) VALUES (
