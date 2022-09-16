@@ -43,6 +43,7 @@ CREATE TABLE project_images (
     image_number INTEGER,
     image_title VARCHAR(50),
     image_description TEXT,
+    image_alt_text VARCHAR(250),
     PRIMARY KEY (id),
     FOREIGN KEY (project_url_endpoint) REFERENCES projects(url_endpoint)
 );

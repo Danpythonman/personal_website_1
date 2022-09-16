@@ -88,36 +88,40 @@ INSERT INTO project_page_sections (project_url_endpoint, section_number, section
     'The authentication token lasts for a few minutes and the refresh token lasts for about a month. When the authentication token expires, the refresh token is sent to get e new one. When the refresh token expires, the user must log in again. The use of tokens is hidden to the user; sending and refreshing tokens is handled by the code in the frontend.'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'inspirational-website-2',
     'inspirational_website_preview.gif',
     1,
     'Inspirational Website Use',
-    'Here is a standard use of the website (apologies for the low quality). We can see the inspirational quote, background image, and the to-do list.'
+    'Here is a standard use of the website (apologies for the low quality). We can see the inspirational quote, background image, and the to-do list.',
+    'Inspirational Website 2.0 being used'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'inspirational-website-2',
     'inspiration_website_signup.jpg',
     2,
     'Entering Inspirational Website 2.0',
-    'The three options to enter the website are to log in, sign up (as is show in the expanded view), and continue as a guest.'
+    'The three options to enter the website are to log in, sign up (as is show in the expanded view), and continue as a guest.',
+    'The log in and sign up page for Inspirational Website 2.0'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'inspirational-website-2',
     'inspiration_website_login.jpg',
     3,
     'Login Section',
-    'This the expanded login view. No password is required, just your email and the verification code that we send to it upon any login request.'
+    'This the expanded login view. No password is required, just your email and the verification code that we send to it upon any login request.',
+    'The log in section for Inspirational Website 2.0, including the verification code input'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'inspirational-website-2',
     'inspiration_website_todo_list.jpg',
     4,
     'The To-Do List',
-    'Each user''s to-do list is stored on a MongoDB Atlas database. This also keeps track of which tasks are completed.'
+    'Each user''s to-do list is stored on a MongoDB Atlas database. This also keeps track of which tasks are completed.',
+    'The to-do list for Inspirational Website 2.0'
 );
 
 INSERT INTO projects (url_endpoint, title, description, display_image) VALUES (
@@ -178,44 +182,49 @@ INSERT INTO project_page_sections (project_url_endpoint, section_number, section
     'We were also able to add playing functionality for all the instruments. Whenever the sheet music is generated, it can play it too. It is lacking more complex control over the playing however, like starting at a certain location in the score, and it has some bugs with the separate threads for playing and viewing.'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'tab2xml',
     'tab2xml_preview.gif',
     1,
     'Converting Tablature with TAB2XML',
-    'This shows how a user would input music tablature (by copying and pasting plain text) and viewing the output sheet music.'
+    'This shows how a user would input music tablature (by copying and pasting plain text) and viewing the output sheet music.',
+    'TAB2XML being used by inputting tablature and seeing the sheet music output'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'tab2xml',
     'tab2xml_input_preview.jpg',
     2,
     'TAB2XML Tablature Input',
-    'This is the window where the text-based tablature is entered. Clicking the "Preview Sheet Music" button in the bottom-right will open the sheet music preview window. The specific tablature in this image produces the guitar sheet music that is shown earlier in this image gallery.'
+    'This is the window where the text-based tablature is entered. Clicking the "Preview Sheet Music" button in the bottom-right will open the sheet music preview window. The specific tablature in this image produces the guitar sheet music that is shown earlier in this image gallery.',
+    'The text-based music tablature input for TAB2XML'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'tab2xml',
     'tab2xml_guitar_preview.jpg',
     3,
     'Previewing Guitar Sheet Music',
-    'This is a complex example of the type of guitar tablature than can be parsed and previewed by TAB2XML.'
+    'This is a complex example of the type of guitar tablature than can be parsed and previewed by TAB2XML.',
+    'TAB2XML sheet music output for guitar'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'tab2xml',
     'tab2xml_drums_preview.jpg',
     4,
     'Previewing Drums Sheet Music',
-    'This is a complex example of the type of drum tablature than can be parsed and previewed by TAB2XML.'
+    'This is a complex example of the type of drum tablature than can be parsed and previewed by TAB2XML.',
+    'TAB2XML sheet music output for drums'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'tab2xml',
     'tab2xml_bass_preview.jpg',
     5,
     'Previewing Bass Sheet Music',
-    'This is an example of the type of bass tablature than can be parsed and previewed by TAB2XML.'
+    'This is an example of the type of bass tablature than can be parsed and previewed by TAB2XML.',
+    'TAB2XML sheet music output for bass'
 );
 
 INSERT INTO projects (url_endpoint, title, description, display_image) VALUES (
@@ -269,34 +278,38 @@ INSERT INTO project_page_sections (project_url_endpoint, section_number, section
     'I would also like to add a speed option, where a user can speed up or slow down the sorting. This might be as simple as adding or subtracting space between each iteration of the algorithm. This would be useful for slowing down algorithms to inspect them closer, or speeding up the more slow algorithms (I''m looking at you, bubble sort).'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'sorting-algorithm-visualizer',
     'selection_sort_visualization.gif',
     1,
     'Selection Sort Visualized',
-    'This is the real-time visualization of the selection sort algorithm, shown by rectangles being sorted from smallest to largest.'
+    'This is the real-time visualization of the selection sort algorithm, shown by rectangles being sorted from smallest to largest.',
+    'Animation of selection sort by sorting blue rectangles from smallest to largest'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'sorting-algorithm-visualizer',
     'merge_sort_visualization.gif',
     2,
     'Merge Sort Visualized',
-    'This is the real-time visualization of the merge sort algorithm, shown by rectangles being sorted from smallest to largest.'
+    'This is the real-time visualization of the merge sort algorithm, shown by rectangles being sorted from smallest to largest.',
+    'Animation of merge sort by sorting blue rectangles from smallest to largest'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'sorting-algorithm-visualizer',
     'insertion_sort_visualization.gif',
     3,
     'Insertion Sort Visualized',
-    'This is the real-time visualization of the insertion sort algorithm, shown by rectangles being sorted from smallest to largest.'
+    'This is the real-time visualization of the insertion sort algorithm, shown by rectangles being sorted from smallest to largest.',
+    'Animation of insertion sort by sorting blue rectangles from smallest to largest'
 );
 
-INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description) VALUES (
+INSERT INTO project_images (project_url_endpoint, image_filename, image_number, image_title, image_description, image_alt_text) VALUES (
     'sorting-algorithm-visualizer',
     'bubble_sort_visualization.gif',
     3,
     'Bubble Sort Visualized',
-    'This is the real-time visualization of the bubble sort algorithm, shown by rectangles being sorted from smallest to largest.'
+    'This is the real-time visualization of the bubble sort algorithm, shown by rectangles being sorted from smallest to largest.',
+    'Animation of bubble sort by sorting blue rectangles from smallest to largest'
 );

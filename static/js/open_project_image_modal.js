@@ -5,6 +5,7 @@ function openModal(eventNode) {
     const modalDescription = document.getElementById("project-image-modal-description");
 
     modalImage.src = eventNode.src;
+    modalImage.alt = eventNode.alt;
 
     // Get the parent node of the image that was clicked
     let currentNode = eventNode.parentNode.firstChild;
