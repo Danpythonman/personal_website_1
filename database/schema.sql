@@ -70,3 +70,13 @@ CREATE TABLE resume_section_accomplishments (
     PRIMARY KEY (id),
     FOREIGN KEY (resume_section_id) REFERENCES resume_sections(id)
 );
+
+DROP TABLE IF EXISTS books;
+
+CREATE TABLE books (
+    title VARCHAR(250),
+    author VARCHAR(250),
+    image_url VARCHAR(250),
+    book_url VARCHAR(250),
+    currently_reading BOOLEAN
+);
