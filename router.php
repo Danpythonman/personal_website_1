@@ -47,14 +47,6 @@
                 $page_info['error_404'] = true;
             }
             break;
-        case 'education':
-            if (count($uri_path_array) === 1) {
-                $page_info['title'] = 'Education | Daniel Di Giovanni';
-                $page_info['path_to_php_file'] = __DIR__ . '/pages/education/education.php';
-            } else {
-                $page_info['error_404'] = true;
-            }
-            break;
         case 'resume':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Resume | Daniel Di Giovanni';

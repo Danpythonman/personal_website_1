@@ -13,9 +13,6 @@
                 <a class="navlink<?= $uri_path_array[0] == 'about' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">About Me</a>
             </li>
             <li class="navitem">
-                <a class="navlink<?= $uri_path_array[0] == 'education' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/education' ?>">Education</a>
-            </li>
-            <li class="navitem">
                 <a class="navlink<?= $uri_path_array[0] == 'resume' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Resume</a>
             </li>
             <li class="navitem">
@@ -30,9 +27,6 @@
         <ul id="navbar-links-mobile">
             <li class="navitem-mobile">
                 <a class="navlink<?= $uri_path_array[0] == 'about' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">About Me</a>
-            </li>
-            <li class="navitem-mobile">
-                <a class="navlink<?= $uri_path_array[0] == 'education' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/education' ?>">Education</a>
             </li>
             <li class="navitem-mobile">
                 <a class="navlink<?= $uri_path_array[0] == 'resume' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Resume</a>
