@@ -65,12 +65,33 @@ body {
     font-size: var(--subheading-font-size);
 }
 
+.subsubheading {
+    margin-top: 50px;
+    font-family: var(--heading-font), sans-serif;
+    font-size: var(--big-link-font-size);
+}
+
 .paragraph {
     font-family: var(--paragraph-font), sans-serif;
     text-align: justify;
     font-size: var(--paragraph-font-size);
     line-height: var(--paragraph-line-height);
     margin: auto;
+}
+
+.list {
+    font-family: var(--paragraph-font), sans-serif;
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
+    margin-top: 0;
+}
+
+.list li {
+    color: var(--main-color);
+}
+
+.list li span {
+    color: var(--text-color);
 }
 
 .link {
@@ -87,12 +108,20 @@ body {
     text-decoration-color: var(--main-color);
 }
 
+.image-link:hover {
+    opacity: 75%;
+}
+
 .horizontal-line {
     padding-top: 20px;
     margin-bottom: 20px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #777777;
+}
+
+.newline {
+    padding-bottom: 25px;
 }
 
 .page-header {
@@ -125,6 +154,10 @@ body {
 
 #main-content {
     color: var(--text-color);
+}
+
+#first-element {
+    margin-top: 50px;
 }
 
 /* * * * * Navigation header * * * * */
@@ -544,6 +577,24 @@ body {
 #resume-pdf {
     display: block;
     margin: auto;
+}
+
+/* * * * * About * * * * */
+
+#currently-reading {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#currently-reading > div > a > h3 {
+    margin-top: 0;
+}
+
+#favorite-books {
+    display: flex;
+    justify-content: space-around;
 }
 
 /* * * * * Contact * * * * */
