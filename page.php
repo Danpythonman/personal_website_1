@@ -13,6 +13,8 @@
             <?php require $page_info['path_to_php_file']; ?>
         </div>
 
+        <?php require __DIR__ . '/footer.php'; ?>
+
         <script src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/js/open_menu.js"></script>
     </body>
 </html>
