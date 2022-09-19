@@ -330,6 +330,48 @@ body {
     padding-right: 20px;
 }
 
+/* * * * * Home Page * * * * */
+
+#welcome-section {
+    margin-top: 150px;
+}
+
+#welcome-section > h1 {
+    font-family: var(--heading-font);
+    font-size: var(--heading-font-size);
+    text-align: center;
+}
+
+#welcome-section > p {
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    line-height: var(--paragraph-line-height);
+    text-align: center;
+}
+
+#welcome-section > a {
+    display: block;
+    width: 400px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: -10px -10px var(--main-color);
+    transition: 0.3s;
+}
+
+#welcome-section > a:hover {
+    transition: box-shadow 0.3s ease-in, background-color 0.3s ease-out 0.15s;
+    box-shadow: 0px 0px;
+    background-color: var(--main-color);
+}
+
 /* * * * * Projects * * * * */
 
 .project-page-header {
