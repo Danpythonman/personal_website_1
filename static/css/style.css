@@ -112,6 +112,28 @@ body {
     opacity: 75%;
 }
 
+.link-button {
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: -10px -10px var(--main-color);
+    transition: 0.3s;
+}
+
+.link-button:hover {
+    transition: box-shadow 0.3s ease-in, background-color 0.3s ease-out 0.15s;
+    box-shadow: 0px 0px;
+    background-color: var(--main-color);
+}
+
 .horizontal-line {
     padding-top: 20px;
     margin-bottom: 20px;
@@ -350,26 +372,60 @@ body {
 }
 
 #welcome-section > a {
-    display: block;
     width: 400px;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px;
-    font-family: var(--paragraph-font);
-    font-size: var(--paragraph-font-size);
-    text-align: center;
-    text-decoration: none;
-    background-color: var(--accent-color);
-    color: white;
-    box-shadow: -10px -10px var(--main-color);
-    transition: 0.3s;
 }
 
-#welcome-section > a:hover {
-    transition: box-shadow 0.3s ease-in, background-color 0.3s ease-out 0.15s;
-    box-shadow: 0px 0px;
-    background-color: var(--main-color);
+#homepage-projects-section > div {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#homepage-projects-section > div > div {
+    width: 550px;
+}
+
+#homepage-projects-section > div > div > h2 {
+    margin-top: 0;
+}
+
+#homepage-projects-section > .link-button {
+    margin-top: 50px;
+    width: 250px;
+}
+
+#homepage-resume-section {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#homepage-resume-section > div {
+    width: 550px;
+}
+
+#homepage-resume-section > div > h2 {
+    margin-top: 0;
+}
+
+#homepage-resume-section > .link-button {
+    width: 300px;
+}
+
+#homepage-contact-section {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#homepage-contact-section > h2, #homepage-contact-section > p {
+    text-align: center;
+}
+
+#homepage-contact-section > .link-button {
+    margin-top: 50px;
+    width: 400px;
 }
 
 /* * * * * Projects * * * * */

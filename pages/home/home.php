@@ -4,5 +4,38 @@
         I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
         I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
     </p>
-    <a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">Learn more about myself and my education</a>
+    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">Learn more about myself and my education</a>
+</div>
+<div id="homepage-projects-section" class="section">
+    <div>
+        <div>
+            <h2 class="subheading">My Projects</h2>
+            <p class="paragraph">
+                I mentioned that I've been programming for about five years.
+                Most of that has been my own personal projects that I made for fun or for learning.
+                I'm always trying to learn more and I feel very rewarded seeing the progress of my personal projects.
+            </p>
+        </div>
+        <img src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/images/selection_sort_visualization.gif">
+    </div>
+    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/projects' ?>">View my projects</a>
+</div>
+<div id="homepage-resume-section" class="section">
+    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Read my resume</a>
+    <div>
+        <h2 class="subheading">My Professional Experience</h2>
+        <p class="paragraph">
+            Working as a professional programmer is the newest programming experience for me, and is also what I'm currently looking for.
+            My goal is to gain experience with working in software development teams and to program more substantial systems.
+        </p>
+    </div>
+</div>
+<div id="homepage-contact-section" class="section">
+    <h2 class="subheading">Let's Get in Touch</h2>
+    <p class="paragraph">
+        Have any questions or feedback?
+        Feel free to get in touch with me!
+        Connect with me on <a class="link" href="https://www.linkedin.com/in/daniel-di-giovanni/">LinkedIn</a>, or send me an message directly on the <a class="link" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">contact page</a>.
+    </p>
+    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">Contact Me</a>
 </div>
