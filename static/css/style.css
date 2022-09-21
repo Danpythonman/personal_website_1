@@ -1,26 +1,12 @@
 /* * * * * Variable declarations * * * * */
 
 :root {
-    /* --main-color: #fd9568; */
-    /* --main-color: #af3800; */
     --main-color: #8EC7D2;
-    /* --accent-color: #68dffd; */
-    /* --accent-color: #59114d; */
-    /* --accent-color: #DBA507; */
     --accent-color: #D36B00;
-    /* --text-color: white; */
-    /* --text-color: #012622; */
-    /* --text-color: #59114d; */
-    /* --text-color: #F1EFDC; */
     --text-color: #111111;
-    /* --background-color: black; */
-    /* --background-color: #ece5f0; */
-    /* --background-color: #42032C; */
-    /* --background-color: #E6D2AA; */
     --background-color: #F1EFDC;
     --button-hover-color: rgba(255, 255, 255, 0.3);
     --nav-menu-backdrop-filter: blur(10px) brightness(80%);
-    /* --heading-font: "Fjalla One"; */
     --heading-font: "Didact Gothic";
     --paragraph-font: "Didact Gothic";
     --title-font-size: 3em;
@@ -148,29 +134,19 @@ body {
 
 .page-header {
     width: 100%;
-    /* height: 300px; */
     padding-top: 100px;
     padding-bottom: 100px;
     background-color: var(--accent-color);
 }
 
 .page-title {
-    /* margin-top: 200px; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
     font-family: var(--heading-font), sans-serif;
     font-size: var(--title-font-size);
-    /* text-align: center; */
 }
 
 .page-description {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
     font-family: var(--paragraph-font), sans-serif;
     font-size: var(--paragraph-font-size);
-    /* text-align: center; */
     margin-bottom: 150px;
 }
 
@@ -340,7 +316,6 @@ body {
 }
 
 .bold-navlink {
-    /* font-weight: bold; */
     text-decoration: underline;
     text-decoration-thickness: 3px;
 }
@@ -430,23 +405,6 @@ body {
 
 /* * * * * Projects * * * * */
 
-.project-page-header {
-    width: 100%;
-    height: 400px;
-    padding-top: 100px;
-    background-color: var(--accent-color);
-    display: block;
-    margin: auto;
-}
-
-.project-page-header-content {
-    display: flex;
-    margin: auto;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 992px;
-}
-
 .project-card {
     margin-bottom: 150px;
 }
@@ -510,11 +468,6 @@ body {
     cursor: pointer;
 }
 
-.project-page-sections {
-    max-width: 992px;
-    margin: auto;
-}
-
 #project-image-gallery {
     position: relative;
     display: block;
@@ -560,10 +513,6 @@ body {
     height: 100%;
     overflow: hidden;
     scroll-behavior: smooth;
-}
-
-.project-container {
-    width: 850;
 }
 
 .project-image {
@@ -646,18 +595,6 @@ body {
 #project-image-modal-close-button:hover {
     background-color: #777777;
     transition-duration: 0.5s;
-}
-
-.project-subheading {
-    font-family: var(--heading-font), sans-serif;
-    font-size: var(--subheading-font-size);
-    margin-top: 75px;
-}
-
-.project-paragraph {
-    font-family: var(--paragraph-font), sans-serif;
-    font-size: var(--paragraph-font-size);
-    line-height: var(--paragraph-line-height);
 }
 
 /* * * * * Resume * * * * */
