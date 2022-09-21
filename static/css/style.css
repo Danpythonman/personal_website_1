@@ -171,6 +171,7 @@ body {
 }
 
 .horizontal-line {
+    width: 100%;
     padding-top: 20px;
     margin-bottom: 20px;
     border-bottom-style: solid;
@@ -213,6 +214,8 @@ body {
     background-color: #E6D2AA;
     padding-top: 50px;
     padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #footer-links {
@@ -380,7 +383,7 @@ body {
 /* * * * * Home Page * * * * */
 
 #welcome-section {
-    margin-top: 150px;
+    margin-top: 200px;
 }
 
 #welcome-section > h1 {
@@ -396,19 +399,13 @@ body {
     text-align: center;
 }
 
-#welcome-section > a {
+#welcome-section > .link-button {
     width: 400px;
+    margin-top: 50px;
 }
 
-#homepage-projects-section > div {
-    margin-top: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#homepage-projects-section > div > div {
-    width: 550px;
+#homepage-projects-section {
+    margin-top: 150px;
 }
 
 #homepage-projects-section > div > div > h2 {
@@ -417,34 +414,27 @@ body {
 
 #homepage-projects-section > .link-button {
     margin-top: 50px;
-    width: 250px;
 }
 
 #homepage-resume-section {
-    margin-top: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#homepage-resume-section > div {
-    width: 550px;
+    margin-top: 150px;
 }
 
 #homepage-resume-section > div > h2 {
     margin-top: 0;
 }
 
-#homepage-resume-section > .link-button {
-    width: 300px;
-}
-
 #homepage-contact-section {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 150px;
+    margin-bottom: 150px;
 }
 
-#homepage-contact-section > h2, #homepage-contact-section > p {
+#homepage-contact-section > h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#homepage-contact-section > p {
     text-align: center;
 }
 
@@ -460,11 +450,7 @@ body {
 }
 
 .project-card:first-child {
-    margin-top: 50px;
-}
-
-.project-card:last-child {
-    margin-bottom: 0;
+    margin-top: 100px;
 }
 
 .project-card-title {
@@ -475,9 +461,9 @@ body {
     color: var(--accent-color);
 }
 
-.project-card-description {
-    font-family: var(--paragraph-font), sans-serif;
-    font-size: var(--paragraph-font-size);
+.project-card-text > .paragraph {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .project-card-text > .link {
@@ -736,6 +722,10 @@ body {
     margin-bottom: 25px;
 }
 
+#currently-reading > div {
+    margin-left: 15px;
+}
+
 #currently-reading > div > a > h3 {
     margin-top: 0;
 }
@@ -743,6 +733,11 @@ body {
 #favorite-books {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#favorite-books > a {
+    margin-bottom: 15px;
 }
 
 /* * * * * Contact * * * * */
@@ -837,29 +832,54 @@ body {
         transform: translate(0, -11px) rotate(45deg);
     }
 
+    /* * * * * Home Page * * * * */
+
+    #homepage-projects-section > div > img {
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+    }
+
+    #homepage-projects-section > .link-button {
+        width: 50%;
+    }
+
+    #homepage-resume-section {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #homepage-resume-section > .link-button {
+        margin-top: 25px;
+        width: 50%;
+    }
+
     /* * * * * Projects * * * * */
 
-    .project-card-image {
+    .project-card-image-link {
         display: block;
         margin: auto;
         width: 90%;
         padding-bottom: 25px;
     }
 
+    .project-card-image-link > img {
+        width: 100%;
+    }
+
     .project-card-text {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        width: 90%;
+        margin: auto;
     }
 
-    .project-card-title {
-        display: flex;
-        justify-content: center;
-    }
-
-    .project-card-description {
-        display: flex;
-        justify-content: center;
+    .project-card-text > .paragraph {
+        text-align: center;
     }
 
     #project-image-gallery {
@@ -881,7 +901,7 @@ body {
     }
 
     #resume-pdf {
-        width: 100%;
+        width: 90%;
         height: 1000px;
     }
 
@@ -913,6 +933,37 @@ body {
 
     #nav-icon {
         display: none;
+    }
+
+    /* * * * * Home Page * * * * */
+
+    #homepage-projects-section > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #homepage-projects-section > div > div {
+        width: 550px;
+    }
+
+    #homepage-projects-section > .link-button {
+        width: 400px;
+    }
+
+    #homepage-resume-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #homepage-resume-section > div {
+        width: 70%;
+        margin-left: 50px;
+    }
+
+    #homepage-resume-section > .link-button {
+        width: 300px;
     }
 
     /* * * * * Projects * * * * */

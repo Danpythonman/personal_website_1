@@ -23,7 +23,7 @@
             </a>
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
-                <p class="project-card-description"><?= $project['description'] ?></p>
+                <p class="paragraph"><?= $project['description'] ?></p>
                 <a class="link" href="/<?=getenv('BASE_URL_DIRECTORY') . '/projects/' . $project['url_endpoint'] ?>" class="project-card-link" alt="<?= $project['title'] ?> project">Read More</a>
                 <div class="horizontal-line"></div>
                 <div class="project-card-links">
