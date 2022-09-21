@@ -3,6 +3,7 @@
 :root {
     --main-color: #8EC7D2;
     --accent-color: #D36B00;
+    --attention-color: #59114d;
     --text-color: #111111;
     --background-color: #F1EFDC;
     --button-hover-color: rgba(255, 255, 255, 0.3);
@@ -108,16 +109,65 @@ body {
     font-size: var(--paragraph-font-size);
     text-align: center;
     text-decoration: none;
-    background-color: var(--accent-color);
     color: white;
+}
+
+.button-1 {
+    background-color: var(--accent-color);
     box-shadow: -10px -10px var(--main-color);
     transition: 0.3s;
 }
 
-.link-button:hover {
+.button-1:hover {
     transition: box-shadow 0.3s ease-in, background-color 0.3s ease-out 0.15s;
     box-shadow: 0px 0px;
     background-color: var(--main-color);
+}
+
+.button-2 {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: -10px 10px var(--main-color), 10px -10px var(--main-color);
+    transition: 0.3s;
+}
+
+.button-2:hover {
+    transition: box-shadow 0.3s ease-in, background-color 0.3s ease-out 0.15s;
+    box-shadow: 0px 0px;
+    background-color: var(--main-color);
+}
+
+.button-3 {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: -10px -10px var(--accent-color), 10px 10px var(--accent-color)/*, -10px 10px var(--main-color), 10px -10px var(--main-color)*/;
+    padding-top: 25px;
+    border-top: 10px solid var(--main-color);
+    border-left: 10px solid var(--main-color);
+    transition: 0.3s;
+}
+
+.button-3:hover {
+    transition: box-shadow 0.3s ease-in, border-width 0.15s ease-in, padding-top 0.15s ease-in, background-color 0.3s ease-out 0.15s;
+    box-shadow: 0px 0px;
+    border-width: 0px;
+    padding-top: 15px;
+    background-color: var(--main-color);
+}
+
+.button-4 {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: -10px -10px var(--accent-color), 10px 10px var(--accent-color);
+    transition: 0.3s;
+    border: 5px solid var(--main-color);
+}
+
+.button-4:hover {
+    transition: box-shadow 0.3s ease-in, border-width 0.15s ease-in, background-color 0.3s ease-out 0.15s;
+    box-shadow: 0px 0px;
+    border-width: 0px;
+    background-color: var(--attention-color);
 }
 
 .horizontal-line {

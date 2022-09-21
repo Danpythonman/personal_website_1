@@ -4,7 +4,7 @@
         I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
         I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
     </p>
-    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">Learn more about myself and my education</a>
+    <a class="link-button button-1" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">Learn more about myself and my education</a>
 </div>
 <div id="homepage-projects-section" class="section">
     <div>
@@ -18,10 +18,10 @@
         </div>
         <img src="/<?= getenv('BASE_URL_DIRECTORY') ?>/static/images/selection_sort_visualization.gif">
     </div>
-    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/projects' ?>">View my projects</a>
+    <a class="link-button button-2" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/projects' ?>">View my projects</a>
 </div>
 <div id="homepage-resume-section" class="section">
-    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Read my resume</a>
+    <a class="link-button button-3" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Read my resume</a>
     <div>
         <h2 class="subheading">My Professional Experience</h2>
         <p class="paragraph">
@@ -37,5 +37,5 @@
         Feel free to get in touch with me!
         Connect with me on <a class="link" href="https://www.linkedin.com/in/daniel-di-giovanni/">LinkedIn</a>, or send me an message directly on the <a class="link" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">contact page</a>.
     </p>
-    <a class="link-button" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">Contact Me</a>
+    <a class="link-button button-4" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">Contact Me</a>
 </div>
