@@ -552,9 +552,15 @@ body {
     scroll-behavior: smooth;
 }
 
+.project-image-container {
+    min-width: 90%;
+    max-width: 90%;
+    padding: 10px;
+}
+
 .project-image {
     height: 100%;
-    padding: 10px;
+    width: 100%;
 }
 
 .project-image:hover {
@@ -884,7 +890,8 @@ body {
     }
 
     #project-image-gallery {
-        width: 100%;
+        width: 90%;
+        height: 350px;
     }
 
     #project-image-modal-image {
