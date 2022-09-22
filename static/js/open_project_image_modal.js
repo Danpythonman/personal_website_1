@@ -24,7 +24,7 @@ function openModal(eventNode) {
     }
 
     // Show the modal
-    modal.style.display = "block";
+    modal.style.display = "flex";
 }
 
 function closeModal(eventNode) {
