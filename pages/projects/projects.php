@@ -19,7 +19,7 @@
     <?php while ($project = mysqli_fetch_assoc($projects)) { ?>
         <div class="project-card section">
             <a class="project-card-image-link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project">
-                <img class="project-card-image" src="/<?= BASE_URL_DIRECTORY . 'static/images/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
+                <img class="project-card-image" src="/<?= BASE_URL_DIRECTORY . 'static/images/projects/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
             </a>
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
