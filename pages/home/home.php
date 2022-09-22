@@ -16,7 +16,7 @@
                 I'm always trying to learn more and I feel very rewarded seeing the progress of my personal projects.
             </p>
         </div>
-        <img src="/<?= getenv('BASE_URL_DIRECTORY') ?>static/images/selection_sort_visualization.gif">
+        <img src="/<?= getenv('BASE_URL_DIRECTORY') ?>static/images/projects_overview.gif">
     </div>
     <a class="link-button button-2" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'projects' ?>">View my projects</a>
 </div>
