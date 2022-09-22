@@ -17,7 +17,10 @@
     $uri_path_array = explode('/', $uri_path);
 
     // If a base URL directory is defined, remove it from the array.
-    if ($uri_path_array[0] == getenv('BASE_URL_DIRECTORY')) {
+    // Note that if the base URL directory is defined, it ends with a slash.
+    // We must get all the characters before the slash (so that we compare
+    // just the name of the directory).
+    if ($uri_path_array[0] == substr(getenv('BASE_URL_DIRECTORY'), 0, strlen(getenv('BASE_URL_DIRECTORY')) - 1)) {
         $uri_path_array = array_slice($uri_path_array, 1);
     }
 

@@ -18,10 +18,10 @@
             </div>
         </div>
         <ul id="footer-navigation-links">
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/projects' ?>">Projects</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/resume' ?>">Resume</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/about' ?>">About Me</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . '/contact' ?>">Contact Me</a></li>
+            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'projects' ?>">Projects</a></li>
+            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'resume' ?>">Resume</a></li>
+            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'about' ?>">About Me</a></li>
+            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'contact' ?>">Contact Me</a></li>
         </ul>
     </div>
     <p>&copy; <?= date('Y') ?> Daniel Di Giovanni</p>
