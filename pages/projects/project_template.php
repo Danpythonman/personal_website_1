@@ -37,7 +37,7 @@
             while ($project_image = mysqli_fetch_assoc($result)) {
         ?>
             <div class="project-image-container">
-                <img class="project-image" onclick="openModal(this)" src="/<?= getenv('BASE_URL_DIRECTORY') . 'static/images/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
+                <img class="project-image" onclick="openModal(this)" src="/<?= BASE_URL_DIRECTORY . 'static/images/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
                 <h4 class="project-image-title"><?= $project_image['image_title'] ?></h4>
                 <p class="project-image-description"><?= $project_image['image_description'] ?></p>
             </div>
@@ -88,5 +88,5 @@
     </div>
 </div>
 
-<script src="/<?= getenv('BASE_URL_DIRECTORY') ?>static/js/scroll_project_image_gallery.js"></script>
-<script src="/<?= getenv('BASE_URL_DIRECTORY') ?>static/js/open_project_image_modal.js"></script>
+<script src="/<?= BASE_URL_DIRECTORY ?>static/js/scroll_project_image_gallery.js"></script>
+<script src="/<?= BASE_URL_DIRECTORY ?>static/js/open_project_image_modal.js"></script>

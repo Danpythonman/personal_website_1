@@ -1,7 +1,7 @@
 <div id="footer">
     <div id="footer-links">
         <div>
-            <a id="main-footer-link" href="<?= '/' . getenv('BASE_URL_DIRECTORY') ?>">Daniel Di Giovanni</a>
+            <a id="main-footer-link" href="<?= '/' . BASE_URL_DIRECTORY ?>">Daniel Di Giovanni</a>
             <div id="footer-social-links">
                 <a href="https://github.com/danpythonman" alt="Daniel Di Giovanni's GitHub profile">
                     <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -18,10 +18,10 @@
             </div>
         </div>
         <ul id="footer-navigation-links">
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'projects' ?>">Projects</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'resume' ?>">Resume</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'about' ?>">About Me</a></li>
-            <li class="footer-link"><a href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'contact' ?>">Contact Me</a></li>
+            <li class="footer-link"><a href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">Projects</a></li>
+            <li class="footer-link"><a href="<?= '/' . BASE_URL_DIRECTORY . 'resume' ?>">Resume</a></li>
+            <li class="footer-link"><a href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">About Me</a></li>
+            <li class="footer-link"><a href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a></li>
         </ul>
     </div>
     <p>&copy; <?= date('Y') ?> Daniel Di Giovanni</p>

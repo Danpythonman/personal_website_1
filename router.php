@@ -20,7 +20,7 @@
     // Note that if the base URL directory is defined, it ends with a slash.
     // We must get all the characters before the slash (so that we compare
     // just the name of the directory).
-    if ($uri_path_array[0] == substr(getenv('BASE_URL_DIRECTORY'), 0, strlen(getenv('BASE_URL_DIRECTORY')) - 1)) {
+    if ($uri_path_array[0] == substr(BASE_URL_DIRECTORY, 0, strlen(BASE_URL_DIRECTORY) - 1)) {
         $uri_path_array = array_slice($uri_path_array, 1);
     }
 

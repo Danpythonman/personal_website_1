@@ -3,7 +3,7 @@
     require __DIR__ . '/env.php';
 
     // Connect to MySQL database
-    $db = mysqli_connect(getenv('DB_SERVER'), getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'));
+    $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
     // Make sure database connection was successful
     if (mysqli_connect_errno()) {

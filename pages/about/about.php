@@ -35,7 +35,7 @@
         We started by discussing classes, objects, and reference vs. primitive values.
         From there, we covered more advanced topics, like inheritance, polymorphism, and programming with generics.
         All of these topics were taught as theory, then demonstrated through Java.
-        Without this course, I would lack a full, rigorous understanding of Java that has enabled me to complete more intense projects like <a class="link" href="/<?= getenv('BASE_URL_DIRECTORY') . 'projects/tab2xml' ?>" alt="TAB2XML project" target="_blank">TAB2XML</a>.
+        Without this course, I would lack a full, rigorous understanding of Java that has enabled me to complete more intense projects like <a class="link" href="/<?= BASE_URL_DIRECTORY . 'projects/tab2xml' ?>" alt="TAB2XML project" target="_blank">TAB2XML</a>.
     </p>
     <h3 class="subsubheading">Other</h3>
     <p class="paragraph newline">Here are some other courses I've and concepts I've learned at university:</p>

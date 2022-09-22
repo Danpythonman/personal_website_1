@@ -18,13 +18,13 @@
 
     <?php while ($project = mysqli_fetch_assoc($projects)) { ?>
         <div class="project-card section">
-            <a class="project-card-image-link" href="/<?= getenv('BASE_URL_DIRECTORY') . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project">
-                <img class="project-card-image" src="/<?= getenv('BASE_URL_DIRECTORY') . 'static/images/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
+            <a class="project-card-image-link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project">
+                <img class="project-card-image" src="/<?= BASE_URL_DIRECTORY . 'static/images/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
             </a>
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
                 <p class="paragraph"><?= $project['description'] ?></p>
-                <a class="link" href="/<?= getenv('BASE_URL_DIRECTORY') . 'projects/' . $project['url_endpoint'] ?>" class="project-card-link" alt="<?= $project['title'] ?> project">Read More</a>
+                <a class="link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" class="project-card-link" alt="<?= $project['title'] ?> project">Read More</a>
                 <div class="horizontal-line"></div>
                 <div class="project-card-links">
                 <?php
