@@ -24,6 +24,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background-color: var(--background-color);
@@ -404,8 +408,44 @@ body {
     margin-top: 50px;
 }
 
+#scroll-down-prompt > p {
+    font-family: var(--paragraph-font);
+    font-size: var(--big-link-font-size);
+    text-align: center;
+}
+
+#scroll-down-prompt > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+#scroll-down-prompt > div > div {
+    writing-mode: vertical-lr;
+    text-align: center;
+    font-size: 50px;
+}
+
+#scroll-down-prompt > div > div {
+    padding-bottom: 25px;
+}
+
+#scroll-down-prompt > div > div:last-child {
+    padding-bottom: 0;
+}
+
+#scroll-down-prompt > div > div:nth-child(even) {
+    color: var(--accent-color);
+}
+
+#scroll-down-prompt > div > div:nth-child(odd) {
+    color: var(--main-color);
+}
+
 #homepage-projects-section {
-    margin-top: 150px;
+    padding-top: 150px;
 }
 
 #homepage-projects-section > div > div > h2 {
