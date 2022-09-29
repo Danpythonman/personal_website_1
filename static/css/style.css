@@ -484,7 +484,6 @@ body {
 
 #homepage-contact-section > .link-button {
     margin-top: 50px;
-    width: 400px;
 }
 
 /* * * * * Projects * * * * */
@@ -993,6 +992,10 @@ body {
         width: 50%;
     }
 
+    #homepage-contact-section > .link-button {
+        width: 80%;
+    }
+
     /* * * * * Projects * * * * */
 
     .project-card-image-link {
@@ -1102,6 +1105,10 @@ body {
 
     #homepage-resume-section > .link-button {
         width: 300px;
+    }
+
+    #homepage-contact-section > .link-button {
+        width: 400px;
     }
 
     /* * * * * Projects * * * * */
