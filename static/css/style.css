@@ -7,7 +7,7 @@
     --text-color: #111111;
     --background-color: #F1EFDC;
     --button-hover-color: rgba(255, 255, 255, 0.3);
-    --nav-menu-backdrop-filter: blur(10px) brightness(80%);
+    --nav-menu-backdrop-filter: blur(10px) brightness(90%);
     --heading-font: "Didact Gothic";
     --paragraph-font: "Didact Gothic";
     --title-font-size: 3em;
@@ -288,13 +288,14 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    height: 75px;
     z-index: 2;
     backdrop-filter: var(--nav-menu-backdrop-filter);
 }
 
 #mobile-nav-menu {
     position: fixed;
-    top: 50px;
+    top: 75px;
     left: 0;
     width: 100%;
     z-index: 2;
@@ -337,10 +338,9 @@ body {
     text-decoration: none;
 }
 
-.navitem {
+.navitem-desktop {
     display: flex;
     align-items: stretch;
-    float: left;
 }
 
 .navitem-mobile {
@@ -349,8 +349,8 @@ body {
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     backdrop-filter: var(--nav-menu-backdrop-filter);
     width: 100%;
 }
@@ -364,7 +364,7 @@ body {
     align-items: center;
     text-decoration: none;
     font-family: var(--paragraph-font), sans-serif;
-    font-size: 1.25em;
+    font-size: 1.75em;
 }
 
 .navlink:hover, .navlink-mobile:hover {

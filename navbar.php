@@ -9,16 +9,16 @@
             <div id="bottom-hamburger-menu-bar" class="hamburger-menu-bar"></div>
         </div>
         <ul id="navbar-links-desktop">
-            <li class="navitem">
+            <li class="navitem-desktop">
                 <a class="navlink<?= $uri_path_array[0] == 'about' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'about' ?>">About Me</a>
             </li>
-            <li class="navitem">
+            <li class="navitem-desktop">
                 <a class="navlink<?= $uri_path_array[0] == 'resume' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'resume' ?>">Resume</a>
             </li>
-            <li class="navitem">
+            <li class="navitem-desktop">
                 <a class="navlink<?= $uri_path_array[0] == 'projects' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'projects' ?>">Projects</a>
             </li>
-            <li class="navitem">
+            <li class="navitem-desktop">
                 <a class="navlink<?= $uri_path_array[0] == 'contact' ? ' bold-navlink' : '' ?>" href="<?= '/' . getenv('BASE_URL_DIRECTORY') . 'contact' ?>">Contact Me</a>
             </li>
         </ul>
