@@ -1,6 +1,8 @@
 <?php
     define('BASE_URL_DIRECTORY', 'personal_website/');
 
+    define('DISPLAY_ERRORS', 'FALSE');
+
     define('DB_SERVER', 'hostname');
     define('DB_USER', 'database_username');
     define('DB_PASSWORD', 'database_user_password');

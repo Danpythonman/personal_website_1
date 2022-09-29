@@ -2,6 +2,20 @@
     // Load environment variables
     require __DIR__ . '/env.php';
 
+    // Report all errors
+    error_reporting(E_ALL);
+
+    // Ignore repeated errors
+    ini_set('ignore_repeated_errors', TRUE);
+
+    // Display errors in PHP output.
+    // Should be true for development, and false for production.
+    ini_set('display_errors', DISPLAY_ERRORS);
+
+    // Log errors in file
+    ini_set('log_errors', TRUE);
+    ini_set('error_log', 'log/error.log');
+
     // Connect to MySQL database
     $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
