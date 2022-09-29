@@ -64,7 +64,6 @@ body {
 
 .paragraph {
     font-family: var(--paragraph-font), sans-serif;
-    text-align: justify;
     font-size: var(--paragraph-font-size);
     line-height: var(--paragraph-line-height);
     margin: auto;
