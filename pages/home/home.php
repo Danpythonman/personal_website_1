@@ -4,7 +4,18 @@
         I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
         I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
     </p>
-    <a class="link-button button-1" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">Learn more about myself and my education</a>
+    <a class="link-button button-1" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">Click here to learn more about myself and my education</a>
+    <div id="scroll-down-prompt">
+        <p>OR</p>
+        <p>
+            <a href="#homepage-projects-section" class="link paragraph">Scroll on to read more</a>
+        </p>
+        <div>
+            <div>&#10095;</div>
+            <div>&#10095;</div>
+            <div>&#10095;</div>
+        </div>
+    </div>
 </div>
 <div id="homepage-projects-section" class="section">
     <div>
