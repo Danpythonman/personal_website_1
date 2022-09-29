@@ -805,8 +805,71 @@ body {
 
 /* * * * * Contact * * * * */
 
+#contact-page-header > h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 150px;
+    font-family: var(--heading-font);
+    font-size: var(--title-font-size);
+}
+
+#contact-page-header > p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 #contact-info {
     margin-top: 125px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form > label {
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+}
+
+#contact-form > input, #contact-form > textarea {
+    padding: 15px;
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    margin-bottom: 15px;
+    border-radius: 0;
+    border-width: 1px;
+}
+
+#contact-form > button {
+    padding: 15px;
+    border-width: 0;
+    /* background-size: 200% 200%; */
+    background-image: linear-gradient(
+        135deg,
+        var(--main-color) 0%,
+        var(--main-color) 25%,
+        var(--accent-color) 25%,
+        var(--accent-color) 50%,
+        var(--main-color) 50%,
+        var(--main-color) 75%,
+        var(--accent-color) 75%,
+        var(--accent-color) 100%
+    );
+    font-family: var(--paragraph-font);
+    font-size: var(--big-link-font-size);
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+}
+
+#contact-form > button:hover, #contact-form > button:active {
+    background-image: none;
+    background-color: var(--attention-color);
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
 }
 
 .contact-icon {
@@ -816,6 +879,7 @@ body {
     margin-bottom: 50px;
     fill: var(--text-color);
     width: 40px;
+    transition: 0.3s;
 }
 
 .contact-link-text {
@@ -825,10 +889,21 @@ body {
 }
 
 .contact-link {
-    text-decoration: none;
+    text-decoration: underline 3px var(--main-color);
     color: var(--text-color);
     font-weight: bold;
     font-size: var(--paragraph-font-size);
+    transition: 0.3s;
+}
+
+.contact-info-section:hover .contact-icon, .contact-info-section:active .contact-icon {
+    fill: var(--accent-color);
+    transition: 0.3s;
+}
+
+.contact-info-section:hover .contact-link, .contact-info-section:active .contact-link {
+    text-decoration-color: var(--accent-color);
+    transition: 0.3s;
 }
 
 /*
@@ -1096,6 +1171,6 @@ body {
     }
 
     .contact-info-section {
-        width: 300px;
+        width: 400px;
     }
 }
