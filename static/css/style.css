@@ -1,9 +1,9 @@
 /* * * * * Variable declarations * * * * */
 
 :root {
-    --main-color: #D36B00;
+    --main-color: #ff8000;
     --accent-color: #8EC7D2;
-    --attention-color: #59114d;
+    --attention-color: #81186f;
     --text-color: #111111;
     --background-color: #F1EFDC;
     --button-hover-color: rgba(255, 255, 255, 0.3);
