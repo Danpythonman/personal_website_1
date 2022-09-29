@@ -243,12 +243,17 @@ body {
 }
 
 #footer-social-links > a > svg {
-    width: 2em;
+    width: 30px;
     margin-top: 15px;
 }
 
 #footer-social-links > a > svg:first-child {
     margin-right: 15px;
+}
+
+#footer-social-links > a > svg:hover, #footer-social-links > a > svg:active {
+    fill: #aaa;
+    transition: 0.2s;
 }
 
 #footer-navigation-links {
