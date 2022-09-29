@@ -407,15 +407,12 @@ body {
     text-align: center;
 }
 
-#welcome-section > .link-button {
-    width: 350px;
-    margin-top: 50px;
-}
-
 #scroll-down-prompt > p {
     font-family: var(--paragraph-font);
     font-size: var(--big-link-font-size);
     text-align: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 #scroll-down-prompt > div {
