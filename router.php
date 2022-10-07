@@ -30,16 +30,45 @@
         $uri_path_array[] = '';
     }
 
-    $page_info['error_404'] = false;
-
-    // Router
+    /*
+     * This is the router.
+     *
+     * We check the first element of the URL path array. This is the area of
+     * the website that the request is part of (home, projects, resume, about,
+     * contact).
+     *
+     * For most areas, that is the only option, and if the array has
+     * more elements, then it is a 404 error.
+     *
+     * For example, "about" is the only page in the about area of the website.
+     * If the URL is "about/more", this URL does not exist. So we need to make
+     * sure that the array only has one element.
+     *
+     * For other areas, like projects, there can be two elements.
+     *
+     * For example, "projects" takes you to the projects overview page, and
+     * "projects/tab2xml" takes you to the TAB2XML project page. In this case,
+     * the URL path array can either have one or two elements.
+     *
+     * For the case of projects, if the request is to a specific project page,
+     * then we must also first make sure that the project page exists, or else
+     * it is a 404 error.
+     *
+     * For example, "projects/tab2xml" exists, but "projects/xml2tab" does not.
+     *
+     * For 404 errors, we throw a CustomException with 404 as the code.
+     *
+     * If the page was found, we populate the variable $page_info, which is an
+     * associative array. Then, page.php is able to take this variable and
+     * properly make the page.
+     */
     switch ($uri_path_array[0]) {
         case '':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Daniel Di Giovanni';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/home/home.php';
             } else {
-                $page_info['error_404'] = true;
+                throw new CustomException("", 404);
             }
             break;
         case 'about':
@@ -47,7 +76,7 @@
                 $page_info['title'] = 'About Me | Daniel Di Giovanni';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/about/about.php';
             } else {
-                $page_info['error_404'] = true;
+                throw new CustomException("", 404);
             }
             break;
         case 'resume':
@@ -55,7 +84,7 @@
                 $page_info['title'] = 'Resume | Daniel Di Giovanni';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/resume/resume.php';
             } else {
-                $page_info['error_404'] = true;
+                throw new CustomException("", 404);
             }
             break;
         case 'projects':
@@ -68,25 +97,29 @@
                 $result = mysqli_query($db, $query);
 
                 if (!$result) {
-                    exit('Database query failed');
+                    throw new CustomException("There was an error with the database. This one's on our end.", 500);
                 }
 
-                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                $projects = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
                 mysqli_free_result($result);
 
-                $page_info['error_404'] = true;
+                $page_found = false;
 
-                foreach ($rows as $row) {
-                    if ($uri_path_array[1] == $row['url_endpoint']) {
-                        $page_info['error_404'] = false;
+                foreach ($projects as $project) {
+                    if ($uri_path_array[1] == $project['url_endpoint']) {
+                        $page_found = true;
 
-                        $page_info['title'] = $row['title'] . ' | Daniel Di Giovanni';
+                        $page_info['title'] = $project['title'] . ' | Daniel Di Giovanni';
                         $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/project_template.php';
                     }
                 }
+
+                if (!$page_found) {
+                    throw new CustomException("", 404);
+                }
             } else {
-                $page_info['error_404'] = true;
+                throw new CustomException("", 404);
             }
             break;
         case 'contact':
@@ -94,16 +127,10 @@
                 $page_info['title'] = 'Contact Me | Daniel Di Giovanni';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/contact/contact.php';
             } else {
-                $page_info['error_404'] = true;
+                throw new CustomException("", 404);
             }
             break;
         default:
-            $page_info['error_404'] = true;
-    }
-
-    if ($page_info['error_404']) {
-        http_response_code(404);
-        $page_info['path_to_php_file'] = __DIR__ . '/pages/errors/error404.php';
-        $page_info['title'] = 'Error 404';
+            throw new CustomException("", 404);
     }
 ?>

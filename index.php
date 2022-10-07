@@ -16,6 +16,12 @@
     ini_set('log_errors', TRUE);
     ini_set('error_log', 'log/error.log');
 
+    // Import the exception handler and the CustomException class
+    require __DIR__ . '/exception_handler.php';
+
+    // Set the exception handler to the function imported in exception_handler.php
+    set_exception_handler('exception_handler');
+
     // Connect to MySQL database
     $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -25,7 +31,9 @@
         $message .= mysqli_connect_error();
         $message .= ' (' . mysqli_connect_errno() . ')';
 
-        exit($message);
+        error_log($message);
+
+        throw new CustomException('There was an error connecting to the database. This one\'s on our end.', 500);
     }
 
     /**
@@ -65,8 +73,14 @@
     // Router
     require __DIR__ . '/router.php';
 
+    // Start output buffer
+    ob_start();
+
     // Create page
     require __DIR__ . '/page.php';
+
+    // Flush output buffer (send output to client)
+    ob_end_flush();
 
     // Close MySQL database connection
     if (isset($db)) {
