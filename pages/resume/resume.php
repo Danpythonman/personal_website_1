@@ -10,7 +10,7 @@
     $resume_sections = mysqli_query($db, $query);
 
     if (!$resume_sections) {
-        exit('Database query failed');
+        throw new CustomException("There was an error with the database. This one's on our end.", 500);
     }
 ?>
 <h2 class="heading">My Professional History</h2>
@@ -33,7 +33,7 @@
                     $accomplishments = mysqli_query($db, $query);
 
                     if (!$accomplishments) {
-                        exit('Database query failed');
+                        throw new CustomException("There was an error with the database. This one's on our end.", 500);
                     }
 
                     while ($accomplishment = mysqli_fetch_assoc($accomplishments)) {

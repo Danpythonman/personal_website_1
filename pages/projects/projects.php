@@ -12,7 +12,7 @@
         $projects = mysqli_query($db, $query);
 
         if (!$projects) {
-            exit('Database query failed');
+            throw new CustomException("There was an error with the database. This one's on our end.", 500);
         }
     ?>
 
@@ -33,7 +33,7 @@
                     $project_links = mysqli_query($db, $query);
 
                     if (!$project_links) {
-                        exit('Database query failed');
+                        throw new CustomException("There was an error with the database. This one's on our end.", 500);
                     }
 
                     while ($project_link = mysqli_fetch_assoc($project_links)) {

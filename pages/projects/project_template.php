@@ -4,7 +4,7 @@
     $result = mysqli_query($db, $query);
 
     if (!$result) {
-        exit('Database query failed');
+        throw new CustomException("There was an error with the database. This one's on our end.", 500);
     }
 
     $project = mysqli_fetch_assoc($result);
@@ -31,7 +31,7 @@
             $result = mysqli_query($db, $query);
 
             if (!$result) {
-                exit('Database query failed');
+                throw new CustomException("There was an error with the database. This one's on our end.", 500);
             }
 
             while ($project_image = mysqli_fetch_assoc($result)) {
@@ -56,7 +56,7 @@
     $result = mysqli_query($db, $query);
 
     if (!$result) {
-        exit('Database query failed');
+        throw new CustomException("There was an error with the database. This one's on our end.", 500);
     }
 
     while ($project_page_section = mysqli_fetch_assoc($result)) {

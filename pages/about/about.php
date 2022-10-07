@@ -58,7 +58,7 @@
             $result = mysqli_query($db, $query);
 
             if (!$result) {
-                exit('Database query failed');
+                throw new CustomException("There was an error with the database. This one's on our end.", 500);
             }
 
             $book = mysqli_fetch_assoc($result);
