@@ -415,33 +415,44 @@ body {
     margin-bottom: 30px;
 }
 
-#scroll-down-prompt > div {
+#scroll-down-prompt > a {
+    display: block;
+    margin: auto;
+    width: 30%;
+    text-decoration: none;
+}
+
+#scroll-down-prompt > a > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 100%;
     margin: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-#scroll-down-prompt > div > div {
+#scroll-down-prompt > a > div > div {
     writing-mode: vertical-lr;
     text-align: center;
     font-size: 50px;
 }
 
-#scroll-down-prompt > div > div {
+#scroll-down-prompt > a > div > div {
     padding-bottom: 25px;
 }
 
-#scroll-down-prompt > div > div:last-child {
+#scroll-down-prompt > a > div > div:last-child {
     padding-bottom: 0;
 }
 
-#scroll-down-prompt > div > div:nth-child(even) {
+#arrow-1, #arrow-3 {
     color: var(--accent-color);
 }
 
-#scroll-down-prompt > div > div:nth-child(odd) {
+#arrow-2 {
     color: var(--main-color);
 }
 

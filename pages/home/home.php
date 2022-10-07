@@ -6,13 +6,15 @@
     </p>
     <div id="scroll-down-prompt">
         <p>
-            <a href="#homepage-projects-section" class="link paragraph">Scroll on to read more</a>
+            <a id="scroll-link" href="#homepage-projects-section" class="link paragraph">Scroll on to read more</a>
         </p>
-        <div>
-            <div>&#10095;</div>
-            <div>&#10095;</div>
-            <div>&#10095;</div>
-        </div>
+        <a href="#homepage-projects-section">
+            <div href="#homepage-projects-section">
+                <div id="arrow-1">&#10095;</div>
+                <div id="arrow-2">&#10095;</div>
+                <div id="arrow-3">&#10095;</div>
+            </div>
+        </a>
     </div>
 </div>
 <div id="homepage-projects-section" class="section">
@@ -48,3 +50,4 @@
     </p>
     <a class="link-button button-4" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a>
 </div>
+<script src="/<?= BASE_URL_DIRECTORY ?>static/js/homepage_scroll_prompt.js"></script>
