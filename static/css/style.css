@@ -294,6 +294,7 @@ body {
     width: 100%;
     height: 75px;
     z-index: 2;
+    -webkit-backdrop-filter: var(--nav-menu-backdrop-filter);
     backdrop-filter: var(--nav-menu-backdrop-filter);
 }
 
@@ -355,6 +356,7 @@ body {
     border-bottom-color: white;
     padding-top: 25px;
     padding-bottom: 25px;
+    -webkit-backdrop-filter: var(--nav-menu-backdrop-filter);
     backdrop-filter: var(--nav-menu-backdrop-filter);
     width: 100%;
 }
