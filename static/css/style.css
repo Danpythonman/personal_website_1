@@ -938,6 +938,15 @@ body {
     border-radius: 5px;
 }
 
+#error-page-header > p > code > a {
+    color: var(--text-color);
+    text-decoration-thickness: 2px;
+}
+
+#error-page-header > p > code > a:hover {
+    text-decoration-thickness: 3px;
+}
+
 /*
  * Screen width guide
  *
