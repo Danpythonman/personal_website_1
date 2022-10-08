@@ -7,11 +7,6 @@
         $uri_path = substr($uri_path, 1);
     }
 
-    // If the URI path ends with a slash, then remove that slash from the path
-    if ($uri_path[strlen($uri_path) - 1] == '/') {
-        $uri_path = substr($uri_path, 0, strlen($uri_path) - 1);
-    }
-
     // Separate the URI path by the slashes to turn it into an array of strings.
     // Each array element is a part of the path.
     $uri_path_array = explode('/', $uri_path);
