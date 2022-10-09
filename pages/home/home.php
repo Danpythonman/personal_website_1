@@ -30,7 +30,9 @@
                 I'm always trying to learn more and I feel very rewarded seeing the progress of my personal projects.
             </p>
         </div>
-        <img src="/<?= BASE_URL_DIRECTORY ?>static/images/projects_overview.gif">
+        <a href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>" alt="View my projects">
+            <img class="image-link" src="/<?= BASE_URL_DIRECTORY ?>static/images/projects_overview.gif" alt="Three of my projects in action. Sorting Algorithm Visualizer, TAB2XML, and Inspirational Website 2.0">
+        </a>
     </div>
     <a class="link-button button-2" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">View my projects</a>
 </div>
