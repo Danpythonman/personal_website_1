@@ -10,13 +10,13 @@
         </div>
         <ul id="navbar-links-desktop">
             <li class="navitem-desktop">
-                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'about') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">About Me</a>
+                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'projects') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">Projects</a>
             </li>
             <li class="navitem-desktop">
                 <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'resume') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'resume' ?>">Resume</a>
             </li>
             <li class="navitem-desktop">
-                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'projects') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">Projects</a>
+                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'about') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">About Me</a>
             </li>
             <li class="navitem-desktop">
                 <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'contact') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a>
@@ -26,13 +26,13 @@
     <div id="mobile-nav-menu">
         <ul id="navbar-links-mobile">
             <li class="navitem-mobile">
-                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'about') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">About Me</a>
+                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'projects') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">Projects</a>
             </li>
             <li class="navitem-mobile">
                 <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'resume') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'resume' ?>">Resume</a>
             </li>
             <li class="navitem-mobile">
-                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'projects') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">Projects</a>
+                <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'about') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'about' ?>">About Me</a>
             </li>
             <li class="navitem-mobile">
                 <a class="navlink<?= (isset($uri_path_array) && $uri_path_array[0] == 'contact') ? ' bold-navlink' : '' ?>" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a>
