@@ -90,7 +90,7 @@
             $books = mysqli_query($db, $query);
 
             if (!$books) {
-                exit('Database query failed');
+                throw new CustomException("There was an error with the database. This one's on our end.", 500);
             }
 
             while ($book = mysqli_fetch_assoc($books)) {
