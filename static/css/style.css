@@ -825,17 +825,7 @@ body {
 
 #currently-reading {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     margin-bottom: 25px;
-}
-
-#currently-reading > div {
-    margin-left: 15px;
-}
-
-#currently-reading > div > a > h3 {
-    margin-top: 0;
 }
 
 #favorite-books {
@@ -1126,6 +1116,23 @@ body {
         height: 1000px;
     }
 
+    /* * * * * About * * * * */
+
+    #currently-reading {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #currently-reading h3 {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    #currently-reading > div {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
     /* * * * * Contact * * * * */
 
     #contact-info {
@@ -1247,6 +1254,21 @@ body {
     #resume-pdf {
         width: 75%;
         height: 1000px;
+    }
+
+    /* * * * * About * * * * */
+
+    #currently-reading {
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    #currently-reading > div {
+        margin-left: 15px;
+    }
+    
+    #currently-reading > div > a > h3 {
+        margin-top: 0;
     }
 
     /* * * * * Contact * * * * */
