@@ -1,12 +1,15 @@
-<div id="welcome-section" class="section">
-    <h1>Welcome!</h1>
-    <p>
-        I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
-        I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
-    </p>
+<div id="welcome-section">
+    <div class="section">
+        <h1>Welcome!</h1>
+        <img src="/<?= BASE_URL_DIRECTORY ?>static/images/me.jpg">
+        <p>
+            I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
+            I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
+        </p>
+    </div>
     <div id="scroll-down-prompt">
         <p>
-            <a id="scroll-link" href="#homepage-projects-section" class="link paragraph">Scroll on to read more</a>
+            <a id="scroll-link" href="#homepage-projects-section" class="paragraph">Scroll On To Read More</a>
         </p>
         <a href="#homepage-projects-section">
             <div href="#homepage-projects-section">

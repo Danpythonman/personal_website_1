@@ -13,35 +13,41 @@ document.addEventListener("scroll", () => {
     const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color');
     const attentionColor = getComputedStyle(document.documentElement).getPropertyValue('--attention-color');
 
-    if (distance > 150) {
+    if (distance > 400) {
         scrollLink.style.textDecorationColor = "";
         firstArrow.style.color = accentColor;
         secondArrow.style.color = mainColor;
         thirdArrow.style.color = accentColor;
-    } else if (distance <= 150 && distance > 100) {
+        secondArrow.style.textShadow = "";
+    } else if (distance <= 400 && distance > 300) {
         scrollLink.style.textDecorationColor = attentionColor;
         firstArrow.style.color = accentColor;
         secondArrow.style.color = mainColor;
         thirdArrow.style.color = accentColor;
-    } else if (distance <= 100 && distance > 50) {
+        secondArrow.style.textShadow = "";
+    } else if (distance <= 300 && distance > 200) {
         scrollLink.style.textDecorationColor = attentionColor;
         firstArrow.style.color = attentionColor;
         secondArrow.style.color = mainColor;
         thirdArrow.style.color = accentColor;
-    } else if (distance <= 50 && distance > 0) {
+        secondArrow.style.textShadow = "";
+    } else if (distance <= 200 && distance > 100) {
         scrollLink.style.textDecorationColor = attentionColor;
         firstArrow.style.color = attentionColor;
         secondArrow.style.color = attentionColor;
         thirdArrow.style.color = accentColor;
-    } else if (distance <= 0 && distance > -50) {
+        secondArrow.style.textShadow = "none";
+    } else if (distance <= 100 && distance > 0) {
         scrollLink.style.textDecorationColor = attentionColor;
         firstArrow.style.color = attentionColor;
         secondArrow.style.color = attentionColor;
         thirdArrow.style.color = attentionColor;
+        secondArrow.style.textShadow = "none";
     } else {
         scrollLink.style.textDecorationColor = attentionColor;
         firstArrow.style.color = attentionColor;
         secondArrow.style.color = attentionColor;
         thirdArrow.style.color = attentionColor;
+        secondArrow.style.textShadow = "none";
     }
 });
