@@ -351,13 +351,16 @@ body {
 .navitem-mobile {
     display: flex;
     justify-content: center;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: white;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: white;
     -webkit-backdrop-filter: var(--nav-menu-backdrop-filter);
     backdrop-filter: var(--nav-menu-backdrop-filter);
+}
+
+.navitem-mobile > .navlink {
+    padding-top: 25px;
+    padding-bottom: 25px;
     width: 100%;
 }
 
