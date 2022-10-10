@@ -3,6 +3,7 @@
     <head>
         <title><?= $page_info['title'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="/<?= BASE_URL_DIRECTORY ?>static/icons/favicon.ico">
         <link rel="stylesheet" type="text/css" href="/<?= BASE_URL_DIRECTORY ?>static/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Fjalla+One|Didact+Gothic">
     </head>
