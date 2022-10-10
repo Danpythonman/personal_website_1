@@ -824,6 +824,7 @@ body {
 #resume-pdf {
     display: block;
     margin: auto;
+    margin-top: 50px;
 }
 
 /* * * * * About * * * * */
