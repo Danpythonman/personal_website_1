@@ -408,7 +408,6 @@ body {
 #welcome-section img {
     display: block;
     margin: auto;
-    width: 25%;
     border-radius: 50%;
 }
 
@@ -426,7 +425,6 @@ body {
 }
 
 #scroll-down-prompt {
-    width: 30%;
     margin: auto;
 }
 
@@ -1040,6 +1038,14 @@ body {
 
     /* * * * * Home Page * * * * */
 
+    #welcome-section img {
+        width: 200px;
+    }
+
+    #scroll-down-prompt {
+        width: 100%;
+    }
+
     #homepage-projects-section > div > a > img {
         width: 90%;
         display: block;
@@ -1164,6 +1170,14 @@ body {
     }
 
     /* * * * * Home Page * * * * */
+
+    #welcome-section img {
+        width: 200px;
+    }
+
+    #scroll-down-prompt {
+        width: 400px;
+    }
 
     #homepage-projects-section > div {
         display: flex;
