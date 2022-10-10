@@ -46,6 +46,7 @@
         </p>
     </div>
 </div>
+<div id="homepage-horizontal-line"></div>
 <div id="homepage-contact-section" class="section">
     <h2 class="subheading">Let's Get in Touch</h2>
     <p class="paragraph">
