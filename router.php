@@ -1,6 +1,6 @@
 <?php
-    // Get the URI path from the server superglobal
-    $uri_path = $_SERVER['REQUEST_URI'];
+    // Get the URI path from the server superglobal (without query strings)
+    $uri_path = strtok($_SERVER['REQUEST_URI'], '?');
 
     // If the URI path begins with a slash, then remove that slash from the path
     if ($uri_path[0] == '/') {
