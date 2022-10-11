@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <?php require __DIR__ . '/tag.php'; ?>
         <title><?= $page_info['title'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="/<?= BASE_URL_DIRECTORY ?>static/icons/favicon.ico">
