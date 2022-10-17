@@ -746,6 +746,11 @@ body {
     transition-duration: 0.5s;
 }
 
+.youtube-embed iframe {
+    display: block;
+    margin: auto;
+}
+
 /* * * * * Resume * * * * */
 
 #resume-html {

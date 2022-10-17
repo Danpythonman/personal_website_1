@@ -66,6 +66,8 @@
             echo '<h2 class="subheading">' . $project_page_section['section_content'] . '</h2>' . PHP_EOL;
         } else if ($project_page_section['section_type'] == 'paragraph') {
             echo '<p class="paragraph newline">' . $project_page_section['section_content'] . '</p>' . PHP_EOL;
+        } else if ($project_page_section['section_type'] == 'youtube') {
+            echo '<div class="youtube-embed">' . $project_page_section['section_content'] . '</div>';
         }
 
         echo '</div>' . PHP_EOL;
