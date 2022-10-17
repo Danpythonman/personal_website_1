@@ -68,6 +68,8 @@
             echo '<p class="paragraph newline">' . $project_page_section['section_content'] . '</p>' . PHP_EOL;
         } else if ($project_page_section['section_type'] == 'youtube') {
             echo '<div class="youtube-embed">' . $project_page_section['section_content'] . '</div>';
+        } else if ($project_page_section['section_type'] == 'pdf') {
+            echo '<iframe class="pdf-embed" src="/' . BASE_URL_DIRECTORY . 'static/documents/' . $project_page_section['section_content'] . '"></iframe>';
         }
 
         echo '</div>' . PHP_EOL;
