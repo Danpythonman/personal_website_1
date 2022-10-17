@@ -18,37 +18,44 @@
         <p class="paragraph"><?= $project['description'] ?></p>
     </div>
 </div>
-<div class="section">
-    <h2 class="subheading">Image Gallery</h2>
-    <p class="paragraph">Click on an image to read more about it.</p>
-</div>
-<div id="project-image-gallery">
-    <div class="project-image-gallery-arrow-button" id="project-image-gallery-previous-arrow-button">&#10094;</div>
-    <div id="project-images">
-        <?php
-            $query = 'SELECT * FROM project_images WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY image_number';
 
-            $result = mysqli_query($db, $query);
+<?php
+    $query = 'SELECT * FROM project_images WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY image_number';
 
-            if (!$result) {
-                throw new CustomException("There was an error with the database. This one's on our end.", 500);
-            }
+    $result = mysqli_query($db, $query);
 
-            while ($project_image = mysqli_fetch_assoc($result)) {
-        ?>
-            <div class="project-image-container">
-                <img class="project-image" onclick="openModal(this)" src="/<?= BASE_URL_DIRECTORY . 'static/images/projects/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
-                <h4 class="project-image-title"><?= $project_image['image_title'] ?></h4>
-                <p class="project-image-description"><?= $project_image['image_description'] ?></p>
+    if (!$result) {
+        throw new CustomException("There was an error with the database. This one's on our end.", 500);
+    }
+
+    if (mysqli_num_rows($result) > 0) {
+?>
+        <div class="section">
+            <h2 class="subheading">Image Gallery</h2>
+            <p class="paragraph">Click on an image to read more about it.</p>
+        </div>
+        <div id="project-image-gallery">
+            <div class="project-image-gallery-arrow-button" id="project-image-gallery-previous-arrow-button">&#10094;</div>
+            <div id="project-images">
+                <?php
+                    while ($project_image = mysqli_fetch_assoc($result)) {
+                ?>
+                        <div class="project-image-container">
+                            <img class="project-image" onclick="openModal(this)" src="/<?= BASE_URL_DIRECTORY . 'static/images/projects/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
+                            <h4 class="project-image-title"><?= $project_image['image_title'] ?></h4>
+                            <p class="project-image-description"><?= $project_image['image_description'] ?></p>
+                        </div>
+                <?php
+                    }
+                ?>
             </div>
-        <?php
-            }
+            <div class="project-image-gallery-arrow-button" id="project-image-gallery-next-arrow-button">&#10095;</div>
+        </div>
+<?php
+    }
 
-            mysqli_free_result($result);
-        ?>
-    </div>
-    <div class="project-image-gallery-arrow-button" id="project-image-gallery-next-arrow-button">&#10095;</div>
-</div>
+    mysqli_free_result($result);
+?>
 
 <?php
     $query = 'SELECT * FROM project_page_sections WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY section_number';
