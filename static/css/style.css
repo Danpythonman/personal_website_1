@@ -241,17 +241,20 @@ body {
     display: flex;
 }
 
-#footer-social-links > a > svg {
+#footer-social-links > a > img {
     width: 30px;
     margin-top: 15px;
+    opacity: 100%;
+    transition: 0.2s;
 }
 
-#footer-social-links > a > svg:first-child {
+#footer-social-links > a > img:first-child {
     margin-right: 15px;
 }
 
-#footer-social-links > a > svg:hover, #footer-social-links > a > svg:active {
+#footer-social-links > a > img:hover, #footer-social-links > a > img:active {
     fill: #aaa;
+    opacity: 75%;
     transition: 0.2s;
 }
 
