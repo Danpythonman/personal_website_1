@@ -5,6 +5,7 @@ CREATE TABLE projects (
     title VARCHAR(50),
     description TEXT,
     display_image VARCHAR(50),
+    number INT,
     PRIMARY KEY (url_endpoint)
 );
 

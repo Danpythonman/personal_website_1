@@ -7,7 +7,7 @@
 <div id="project-gallery">
 
     <?php
-        $query = 'SELECT * FROM projects';
+        $query = 'SELECT * FROM projects ORDER BY number';
 
         $projects = mysqli_query($db, $query);
 
