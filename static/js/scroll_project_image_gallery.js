@@ -50,3 +50,30 @@ document.getElementById("project-image-gallery-next-arrow-button").addEventListe
         nextButton.style.display = "flex";
     }
 });
+
+// Detect if the beginning or end of the scroll was reached.
+// This makes sure the previous and next buttons display correctly when user scrolls
+// without using the the buttons.
+document.getElementById("project-images").addEventListener("scroll", () => {
+    const imageGallery = document.getElementById("project-images");
+    const prevButton = document.getElementById("project-image-gallery-previous-arrow-button");
+    const nextButton = document.getElementById("project-image-gallery-next-arrow-button");
+
+    // Calculate the maximum amount that can be scrolled
+    const maximumScrollAmount = imageGallery.scrollWidth - imageGallery.offsetWidth;
+
+    // Start with both the previous and next buttons being displayed
+    prevButton.style.display = "flex";
+    nextButton.style.display = "flex";
+
+    // 1 pixel room for error
+    if (imageGallery.scrollLeft <= 1) {
+        // If the beginning of the scroll is reached, then set the previous button's display to none
+        imageGallery.scrollLeft = 0;
+        prevButton.style.display = "none";
+    } else if (imageGallery.scrollLeft >= maximumScrollAmount - 1) {
+        // If the end of the scroll is reached, then set the next button's display to none
+        imageGallery.scrollLeft = maximumScrollAmount;
+        nextButton.style.display = "none";
+    }
+});
