@@ -1,6 +1,14 @@
 <?php
     define('BASE_URL_DIRECTORY', 'personal_website/');
 
+    define('ENVIRONMENT', 'DEVELOPMENT');
+
+    if (ENVIRONMENT == 'DEVELOPMENT') {
+        define('CDN_URL', '/' . BASE_URL_DIRECTORY . 'static/');
+    } else {
+        define('CDN_URL', 'https://cdn.domainname.com/');
+    }
+
     define('DISPLAY_ERRORS', 'FALSE');
 
     define('DB_SERVER', 'hostname');
