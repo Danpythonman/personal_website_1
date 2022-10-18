@@ -4,10 +4,10 @@
             <a id="main-footer-link" href="<?= '/' . BASE_URL_DIRECTORY ?>">Daniel Di Giovanni</a>
             <div id="footer-social-links">
                 <a href="https://github.com/danpythonman" alt="Daniel Di Giovanni's GitHub profile" target="_blank">
-                    <img src="/<?= BASE_URL_DIRECTORY ?>static/icons/github.svg" alt="GitHub icon">
+                    <img src="<?= CDN_URL ?>icons/github.svg" alt="GitHub icon">
                 </a>
                 <a href="https://www.linkedin.com/in/daniel-di-giovanni/" alt="Daniel Di Giovanni's LinkedIn profile" target="_blank">
-                    <img src="/<?= BASE_URL_DIRECTORY ?>static/icons/linkedin.svg" alt="LinkedIn icon">
+                    <img src="<?= CDN_URL ?>icons/linkedin.svg" alt="LinkedIn icon">
                 </a>
             </div>
         </div>

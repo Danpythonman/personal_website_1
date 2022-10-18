@@ -19,7 +19,7 @@
     <?php while ($project = mysqli_fetch_assoc($projects)) { ?>
         <div class="project-card section">
             <a class="project-card-image-link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project">
-                <img class="project-card-image" src="/<?= BASE_URL_DIRECTORY . 'static/images/projects/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
+                <img class="project-card-image" src="<?= CDN_URL . 'images/projects/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
             </a>
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>
@@ -41,7 +41,7 @@
                     ?>
                         <div>
                             <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
-                                <img class="github-icon" src="/<?= BASE_URL_DIRECTORY ?>static/icons/github.svg" alt="GitHub icon">
+                                <img class="github-icon" src="<?= CDN_URL ?>icons/github.svg" alt="GitHub icon">
                             </a>
                             <a alt="test" class="link paragraph" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank"><?= $project_link['link_text'] ?></a>
                         </div>
@@ -51,7 +51,7 @@
                         <div>
                             <a class="link paragraph" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank"><?= $project_link['link_text'] ?></a>
                             <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
-                                <img class="open-link-icon" src="/<?= BASE_URL_DIRECTORY ?>static/icons/open_link.svg" alt="Open link icon">
+                                <img class="open-link-icon" src="<?= CDN_URL ?>icons/open_link.svg" alt="Open link icon">
                             </a>
                         </div>
                     <?php

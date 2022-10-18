@@ -1,7 +1,7 @@
 <div id="welcome-section">
     <div class="section">
         <h1>Welcome!</h1>
-        <img src="/<?= BASE_URL_DIRECTORY ?>static/images/me.jpg">
+        <img src="<?= CDN_URL ?>images/me.jpg">
         <p>
             I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
             I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
@@ -31,7 +31,7 @@
             </p>
         </div>
         <a href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>" alt="View my projects">
-            <img class="image-link" src="/<?= BASE_URL_DIRECTORY ?>static/images/projects_overview.gif" alt="Three of my projects in action. Sorting Algorithm Visualizer, TAB2XML, and Inspirational Website 2.0">
+            <img class="image-link" src="<?= CDN_URL ?>images/projects_overview.gif" alt="Three of my projects in action. Sorting Algorithm Visualizer, TAB2XML, and Inspirational Website 2.0">
         </a>
     </div>
     <a class="link-button button-2" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">View my projects</a>

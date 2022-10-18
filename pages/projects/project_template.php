@@ -41,7 +41,7 @@
                     while ($project_image = mysqli_fetch_assoc($result)) {
                 ?>
                         <div class="project-image-container">
-                            <img class="project-image" onclick="openModal(this)" src="/<?= BASE_URL_DIRECTORY . 'static/images/projects/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
+                            <img class="project-image" onclick="openModal(this)" src="<?= CDN_URL . 'images/projects/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
                             <h4 class="project-image-title"><?= $project_image['image_title'] ?></h4>
                             <p class="project-image-description"><?= $project_image['image_description'] ?></p>
                         </div>
@@ -76,7 +76,7 @@
         } else if ($project_page_section['section_type'] == 'youtube') {
             echo '<div class="youtube-embed">' . $project_page_section['section_content'] . '</div>';
         } else if ($project_page_section['section_type'] == 'pdf') {
-            echo '<iframe class="pdf-embed" src="/' . BASE_URL_DIRECTORY . 'static/documents/' . $project_page_section['section_content'] . '"></iframe>';
+            echo '<iframe class="pdf-embed" src="' . CDN_URL . 'documents/' . $project_page_section['section_content'] . '"></iframe>';
         }
 
         echo '</div>' . PHP_EOL;
