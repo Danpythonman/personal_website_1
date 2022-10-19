@@ -18,7 +18,9 @@
     function exception_handler(Throwable $exception) {
         // Clear the output buffer (since there was an error, we do not want to
         // display the output that was generated)
-        ob_clean();
+        if (ob_get_contents()) {
+            ob_clean();
+        }
 
         // If the exception was a custom exception, then its error code will be
         // the HTTP status code that it corresponds to.
@@ -46,6 +48,8 @@
         require __DIR__ . '/page.php';
 
         // Send the output buffer (and stop output buffering)
-        ob_end_flush();
+        if (ob_get_contents()) {
+            ob_end_flush();
+        }
     }
 ?>

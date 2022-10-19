@@ -80,7 +80,9 @@
     require __DIR__ . '/page.php';
 
     // Flush output buffer (send output to client)
-    ob_end_flush();
+    if (ob_get_contents()) {
+        ob_end_flush();
+    }
 
     // Close MySQL database connection
     if (isset($db)) {
