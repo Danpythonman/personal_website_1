@@ -60,7 +60,8 @@
     switch ($uri_path_array[0]) {
         case '':
             if (count($uri_path_array) === 1) {
-                $page_info['title'] = 'Daniel Di Giovanni';
+                $page_info['title'] = 'Daniel Di Giovanni - Software Developer';
+                $page_info['meta_description'] = 'I\'m Daniel Di Giovanni, a programming professional, student, and hobbyist. Here you can find my resume, check out my projects, and get in touch with me.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/home/home.php';
             } else {
                 throw new CustomException("", 404);
@@ -69,6 +70,7 @@
         case 'about':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'About Me | Daniel Di Giovanni';
+                $page_info['meta_description'] = 'More about me, beyond software development. Learn about my education and my hobby of reading.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/about/about.php';
             } else {
                 throw new CustomException("", 404);
@@ -76,7 +78,8 @@
             break;
         case 'resume':
             if (count($uri_path_array) === 1) {
-                $page_info['title'] = 'Resume | Daniel Di Giovanni';
+                $page_info['title'] = 'My Resume | Daniel Di Giovanni';
+                $page_info['meta_description'] = 'An outline of my professional experience. Learn more about my work history and download my resume.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/resume/resume.php';
             } else {
                 throw new CustomException("", 404);
@@ -84,10 +87,11 @@
             break;
         case 'projects':
             if (count($uri_path_array) === 1) {
-                $page_info['title'] = 'Projects | Daniel Di Giovanni';
+                $page_info['title'] = 'My Projects | Daniel Di Giovanni';
+                $page_info['meta_description'] = 'The work that I\'m passionate about. Explore the major programming projects I\'ve completed over the years.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/projects.php';
             } else if (count($uri_path_array) === 2) {
-                $query = 'SELECT title, url_endpoint FROM projects';
+                $query = 'SELECT title, url_endpoint, meta_description FROM projects';
 
                 $result = mysqli_query($db, $query);
 
@@ -106,6 +110,7 @@
                         $page_found = true;
 
                         $page_info['title'] = $project['title'] . ' | Daniel Di Giovanni';
+                        $page_info['meta_description'] = $project['meta_description'];
                         $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/project_template.php';
                     }
                 }
@@ -120,6 +125,7 @@
         case 'contact':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'Contact Me | Daniel Di Giovanni';
+                $page_info['meta_description'] = 'Feel free to get in touch with me! Send me an email or find my LinkedIn and GitHub here.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/contact/contact.php';
             } else {
                 throw new CustomException("", 404);
