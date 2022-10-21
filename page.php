@@ -4,7 +4,7 @@
         <?php require __DIR__ . '/tag.php'; ?>
         <title><?= $page_info['title'] ?></title>
         <?php
-            if ($page_info['meta_description']) {
+            if (array_key_exists('meta_description', $page_info)) {
         ?>
                 <meta name="description" content="<?= $page_info['meta_description'] ?>">
         <?php
