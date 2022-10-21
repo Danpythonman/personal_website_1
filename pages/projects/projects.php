@@ -19,7 +19,22 @@
     <?php while ($project = mysqli_fetch_assoc($projects)) { ?>
         <div class="project-card section">
             <a class="project-card-image-link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project">
-                <img class="project-card-image" src="<?= CDN_URL . 'images/projects/' . $project['display_image'] ?>" alt="<?= $project['title'] ?> project">
+                <?php
+                    if ($project['display_media_type'] == 'image') {
+                ?>
+                        <img class="project-card-image" src="<?= CDN_URL . 'images/projects/' . $project['display_media'] ?>" alt="<?= $project['title'] ?> project">
+                <?php
+                    }
+
+                    else if ($project['display_media_type'] == 'video') {
+                ?>
+                        <video class="project-card-image" muted autoplay loop>
+                            <source src="<?= CDN_URL ?>videos/low_res/<?= $project['display_media'] ?>.webm" type="video/webm">
+                            <source src="<?= CDN_URL ?>videos/low_res/<?= $project['display_media'] ?>.mp4" type="video/mp4">
+                        </video>
+                <?php
+                    }
+                ?>
             </a>
             <div class="project-card-text">
                 <h2 class="project-card-title"><?= $project['title'] ?></h2>

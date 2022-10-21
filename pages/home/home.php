@@ -31,7 +31,10 @@
             </p>
         </div>
         <a href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>" alt="View my projects">
-            <img class="image-link" src="<?= CDN_URL ?>images/projects_overview.gif" alt="Three of my projects in action. Sorting Algorithm Visualizer, TAB2XML, and Inspirational Website 2.0">
+            <video class="image-link" muted autoplay loop>
+                <source src="<?= CDN_URL ?>videos/projects_overview.webm" type="video/webm">
+                <source src="<?= CDN_URL ?>videos/projects_overview.mp4" type="video/mp4">
+            </video>
         </a>
     </div>
     <a class="link-button button-2" href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>">View my projects</a>

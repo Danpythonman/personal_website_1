@@ -20,7 +20,7 @@
 </div>
 
 <?php
-    $query = 'SELECT * FROM project_images WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY image_number';
+    $query = 'SELECT * FROM project_media WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY media_number';
 
     $result = mysqli_query($db, $query);
 
@@ -38,12 +38,25 @@
             <div class="project-image-gallery-arrow-button" id="project-image-gallery-previous-arrow-button">&#10094;</div>
             <div id="project-images">
                 <?php
-                    while ($project_image = mysqli_fetch_assoc($result)) {
+                    while ($project_media = mysqli_fetch_assoc($result)) {
                 ?>
                         <div class="project-image-container">
-                            <img class="project-image" onclick="openModal(this)" src="<?= CDN_URL . 'images/projects/' . $project_image['image_filename'] ?>" alt="<?= $project_image['image_alt_text'] ?>">
-                            <h4 class="project-image-title"><?= $project_image['image_title'] ?></h4>
-                            <p class="project-image-description"><?= $project_image['image_description'] ?></p>
+                            <?php
+                                if ($project_media['media_type'] == 'image') {
+                            ?>
+                                    <img class="project-image" onclick="openModal(this)" src="<?= CDN_URL . 'images/projects/' . $project_media['media_filename'] ?>" alt="<?= $project_media['media_alt_text'] ?>">
+                            <?php
+                                } else if ($project_media['media_type'] == 'video') {
+                            ?>
+                                    <video class="project-image" onclick="openModal(this)" muted autoplay loop>
+                                        <source src="<?= CDN_URL ?>videos/<?= $project_media['media_filename'] ?>.webm" type="video/webm">
+                                        <source src="<?= CDN_URL ?>videos/<?= $project_media['media_filename'] ?>.mp4" type="video/mp4">
+                                    </video>
+                            <?php
+                                }
+                            ?>
+                            <h4 class="project-image-title"><?= $project_media['media_title'] ?></h4>
+                            <p class="project-image-description"><?= $project_media['media_description'] ?></p>
                         </div>
                 <?php
                     }
@@ -89,7 +102,9 @@
         <div id="project-image-modal-close-button" onclick="closeModal(this)">&times;</div>
     </div>
     <div id="project-image-modal-content" onclick="event.stopPropagation(); closeModal(this)">
-        <img id="project-image-modal-image" onclick="event.stopPropagation(); closeModal(this)">
+        <div id="project-image-modal-media" onclick="event.stopPropagation(); closeModal(this)">
+            <!-- <img id="project-image-modal-image" onclick="event.stopPropagation(); closeModal(this)"> -->
+        </div>
         <div id="project-image-modal-text" onclick="event.stopPropagation(); closeModal(this)">
             <h4 id="project-image-modal-title" onclick="event.stopPropagation(); closeModal(this)"></h4>
             <p id="project-image-modal-description" onclick="event.stopPropagation(); closeModal(this)"></p>
