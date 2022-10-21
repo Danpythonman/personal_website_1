@@ -114,5 +114,5 @@
     </div>
 </div>
 
-<script src="/<?= BASE_URL_DIRECTORY ?>static/js/scroll_project_image_gallery.js"></script>
-<script src="/<?= BASE_URL_DIRECTORY ?>static/js/open_project_image_modal.js"></script>
+<script src="<?= CDN_URL ?>js/scroll_project_image_gallery.js"></script>
+<script src="<?= CDN_URL ?>js/open_project_image_modal.js"></script>
