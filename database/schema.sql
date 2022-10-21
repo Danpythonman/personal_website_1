@@ -5,7 +5,8 @@ CREATE TABLE projects (
     title VARCHAR(50),
     description TEXT,
     meta_description TEXT,
-    display_image VARCHAR(50),
+    display_media VARCHAR(50),
+    display_media_type ENUM('image', 'video'),
     number INT,
     PRIMARY KEY (url_endpoint)
 );
@@ -36,16 +37,17 @@ CREATE TABLE project_links (
     FOREIGN KEY (project_url_endpoint) REFERENCES projects(url_endpoint)
 );
 
-DROP TABLE IF EXISTS project_images;
+DROP TABLE IF EXISTS project_media;
 
-CREATE TABLE project_images (
+CREATE TABLE project_media (
     id INTEGER NOT NULL AUTO_INCREMENT,
     project_url_endpoint VARCHAR(50),
-    image_filename VARCHAR(50),
-    image_number INTEGER,
-    image_title VARCHAR(50),
-    image_description TEXT,
-    image_alt_text VARCHAR(250),
+    media_type ENUM('image', 'video'),
+    media_filename VARCHAR(50),
+    media_number INTEGER,
+    media_title VARCHAR(50),
+    media_description TEXT,
+    media_alt_text VARCHAR(250),
     PRIMARY KEY (id),
     FOREIGN KEY (project_url_endpoint) REFERENCES projects(url_endpoint)
 );
