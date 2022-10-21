@@ -1112,7 +1112,7 @@ body {
         padding-bottom: 25px;
     }
 
-    .project-card-image-link > img {
+    .project-card-image-link > img, .project-card-image-link > video {
         width: 100%;
     }
 
