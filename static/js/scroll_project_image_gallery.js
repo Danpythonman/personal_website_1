@@ -66,12 +66,11 @@ document.getElementById("project-images").addEventListener("scroll", () => {
     prevButton.style.display = "flex";
     nextButton.style.display = "flex";
 
-    // 1 pixel room for error
-    if (imageGallery.scrollLeft <= 1) {
+    if (imageGallery.scrollLeft <= 0) {
         // If the beginning of the scroll is reached, then set the previous button's display to none
         imageGallery.scrollLeft = 0;
         prevButton.style.display = "none";
-    } else if (imageGallery.scrollLeft >= maximumScrollAmount - 1) {
+    } else if (imageGallery.scrollLeft >= maximumScrollAmount - 1 /* 1 pixel room for error */) {
         // If the end of the scroll is reached, then set the next button's display to none
         imageGallery.scrollLeft = maximumScrollAmount;
         nextButton.style.display = "none";
