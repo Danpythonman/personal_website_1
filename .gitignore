@@ -1,5 +1,6 @@
 .vscode/*
 env.php
 static/images/projects/*
+static/videos/*
 log/*
 tag.php
