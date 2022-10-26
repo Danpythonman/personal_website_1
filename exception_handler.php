@@ -26,6 +26,7 @@
         // the HTTP status code that it corresponds to.
         if (get_class($exception) == 'CustomException') {
             $page_info = [
+                'error' => true,
                 'title' => 'Error ' . $exception->getCode(),
                 'path_to_php_file' => __DIR__ . '/pages/errors/error' . $exception->getCode() . '.php',
                 'message' => $exception->getMessage()
@@ -36,6 +37,7 @@
             // If the exception was not a custom exception, then it was thrown
             // by PHP or MySQL, so we can just say it is an HTTP status 500 error.
             $page_info = [
+                'error' => true,
                 'title' => 'Error 500',
                 'path_to_php_file' => __DIR__ . '/pages/errors/error500.php',
                 'message' => 'There was an error within the server. This one\'s on our end.'
