@@ -282,6 +282,18 @@ body {
     text-decoration: underline;
 }
 
+.footer-link-separator {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--dark-gray-color);
+}
+
+.footer-link img {
+    height: 15px;
+}
+
 #footer > p {
     font-family: var(--paragraph-font);
     max-width: 992px;
