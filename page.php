@@ -7,6 +7,7 @@
             if (array_key_exists('meta_description', $page_info)) {
         ?>
                 <meta name="description" content="<?= $page_info['meta_description'] ?>">
+                <meta property="og:image" content="<?= CDN_URL ?>images/open_graph_image.png">
         <?php
             }
 
