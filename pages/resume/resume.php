@@ -57,4 +57,4 @@
         You can also download my resume PDF by <a class="link" href="/<?= BASE_URL_DIRECTORY ?>static/documents/daniel_di_giovanni_resume_2022-09-11.pdf" download>clicking here</a>.
     </p>
 </div>
-<iframe id="resume-pdf" src="<?= CDN_URL ?>documents/daniel_di_giovanni_resume_2022-10-18.pdf"></iframe>
+<iframe id="resume-pdf" src="<?= CDN_URL ?>documents/daniel_di_giovanni_resume_2023-08-29.pdf"></iframe>
