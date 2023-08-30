@@ -54,7 +54,7 @@
     <h2 class="heading">My Resume</h2>
     <p class="paragraph">
         If the resume is not loading, please try refreshing the page.
-        You can also download my resume PDF by <a class="link" href="/<?= BASE_URL_DIRECTORY ?>static/documents/daniel_di_giovanni_resume_2023-08-29.pdf" download>clicking here</a>.
+        You can also download my resume PDF by <a class="link" href="<?= CDN_URL ?>documents/daniel_di_giovanni_resume_2023-08-29.pdf" download>clicking here</a>.
     </p>
 </div>
 <iframe id="resume-pdf" src="<?= CDN_URL ?>documents/daniel_di_giovanni_resume_2023-08-29.pdf"></iframe>
