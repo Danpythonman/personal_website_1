@@ -16,6 +16,37 @@
     <div class="section">
         <h1 class="page-title"><?= $project['title'] ?></h1>
         <p class="paragraph"><?= $project['description'] ?></p>
+        <div class="project-header-links">
+            <?php
+                $query = 'SELECT * FROM project_links WHERE project_url_endpoint=\'' . $project['url_endpoint'] . '\' ORDER BY link_number';
+
+                $project_links = mysqli_query($db, $query);
+
+                if (!$project_links) {
+                    throw new CustomException("There was an error with the database. This one's on our end.", 500);
+                }
+
+                while ($project_link = mysqli_fetch_assoc($project_links)) {
+                    if ($project_link['is_source_code']) {
+            ?>
+                <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                    <p class="paragraph"><?= $project_link['link_text'] ?></p>
+                    <img class="github-icon" src="<?= CDN_URL ?>icons/github.svg" alt="GitHub icon">
+                </a>
+            <?php
+                    } else {
+            ?>
+                <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                    <p class="paragraph"><?= $project_link['link_text'] ?></p>
+                    <img class="open-link-icon" src="<?= CDN_URL ?>icons/open_link.svg" alt="Open link icon">
+                </a>
+            <?php
+                    }
+                }
+
+                mysqli_free_result($project_links);
+            ?>
+        </div>
     </div>
 </div>
 

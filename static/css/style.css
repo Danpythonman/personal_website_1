@@ -191,9 +191,51 @@ body {
 
 .page-header {
     width: 100%;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding: 100px 0 50px 0;
     background-color: var(--main-color);
+}
+
+.page-header .project-header-links {
+    display: flex;
+    overflow-x: auto;
+    padding: 25px 0;
+}
+
+.page-header .project-header-links > a {
+    display: flex;
+    margin: 0 20px 0 0;
+    padding: 5px 10px;
+    border: 2px solid var(--text-color);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.page-header .project-header-links > a > p {
+    margin: 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.page-header .project-header-links .github-icon,
+.page-header .project-header-links .open-link-icon {
+    width: 2em;
+    padding-left: 10px;
+    transition: filter 0.2s;
+}
+
+.page-header .project-header-links > a:hover {
+    background-color: var(--accent-color);
+    border-color: white;
+}
+
+.page-header .project-header-links > a:hover > p {
+    color: white;
+}
+
+.page-header .project-header-links a:hover .github-icon,
+.page-header .project-header-links a:hover .open-link-icon {
+    filter: invert(100%);
 }
 
 .page-title {
