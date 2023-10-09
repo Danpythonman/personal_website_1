@@ -178,8 +178,7 @@ body {
 
 .horizontal-line {
     width: 100%;
-    padding-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: var(--light-gray-color);
@@ -615,7 +614,20 @@ body {
     margin-bottom: 0;
     font-family: var(--heading-font), sans-serif;
     font-size: var(--subheading-font-size);
-    color: var(--accent-color);
+    font-weight: bolder;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: 0.4s;
+    box-shadow:
+        inset 0px 0px 0 var(--accent-color),
+        inset 0 -4px 0 var(--main-color);
+}
+
+.project-card-title:hover {
+    box-shadow:
+        inset 0 1em 0 var(--accent-color),
+        inset 0 -0.5em 0 var(--main-color);
+    color: white;
 }
 
 .project-card-text > .paragraph {

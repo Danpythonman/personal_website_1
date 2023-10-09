@@ -37,9 +37,8 @@
                 ?>
             </a>
             <div class="project-card-text">
-                <h2 class="project-card-title"><?= $project['title'] ?></h2>
+                <a class="project-card-title" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" alt="<?= $project['title'] ?> project"><?= $project['title'] ?></a>
                 <p class="paragraph"><?= $project['description'] ?></p>
-                <a class="link" href="/<?= BASE_URL_DIRECTORY . 'projects/' . $project['url_endpoint'] ?>" class="project-card-link" alt="<?= $project['title'] ?> project">Read More</a>
                 <div class="horizontal-line"></div>
                 <div class="project-card-links">
                     <?php
