@@ -644,27 +644,38 @@ body {
     flex-wrap: wrap;
 }
 
-.project-card-links > div {
-    display: flex;
-    align-items: flex-end;
-    margin-top: 0;
-    margin-bottom: 0;
+.project-card-links > a {
+    display: block;
     margin-right: 20px;
-    cursor: pointer;
 }
 
-.project-card-links > div:last-child {
+.project-card-links > a:last-child {
     margin-right: 0;
 }
 
-.project-card-links > div > a > .github-icon {
+.project-card-links > a > div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.project-card-links .github-icon,
+.project-card-links .open-link-icon {
     width: 2em;
+    transition: 0.4s;
+}
+
+.project-card-links .github-icon {
     padding-right: 10px;
 }
 
-.project-card-links > div > a > .open-link-icon {
-    width: 2em;
+.project-card-links .open-link-icon {
     padding-left: 10px;
+}
+
+.project-card-links > a:hover .github-icon,
+.project-card-links > a:hover .open-link-icon {
+    opacity: 75%;
 }
 
 .project-card-image:hover {
@@ -1170,6 +1181,23 @@ body {
 
     .project-card-links {
         justify-content: center;
+    }
+
+    .project-card-links > a {
+        margin-right: 0;
+    }
+
+    .project-card-links {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .project-card-links .non-code-link {
+        flex-direction: row-reverse;
+    }
+
+    .project-card-links .open-link-icon {
+        padding: 0 10px 0 0;
     }
 
     .project-card-image-link {

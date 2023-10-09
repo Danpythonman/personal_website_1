@@ -53,21 +53,21 @@
                         while ($project_link = mysqli_fetch_assoc($project_links)) {
                             if ($project_link['is_source_code']) {
                     ?>
-                        <div>
-                            <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                        <a class="link" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                            <div class="code-link">
                                 <img class="github-icon" src="<?= CDN_URL ?>icons/github.svg" alt="GitHub icon">
-                            </a>
-                            <a alt="test" class="link paragraph" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank"><?= $project_link['link_text'] ?></a>
-                        </div>
+                                <p class="paragraph"><?= $project_link['link_text'] ?></p>
+                            </div>
+                        </a>
                     <?php
                             } else {
                     ?>
-                        <div>
-                            <a class="link paragraph" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank"><?= $project_link['link_text'] ?></a>
-                            <a href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                        <a class="link" href="<?= $project_link['link_url'] ?>" alt="<?= $project_link['link_alt_text'] ?>" target="_blank">
+                            <div class="non-code-link">
+                                <p class="paragraph"><?= $project_link['link_text'] ?></p>
                                 <img class="open-link-icon" src="<?= CDN_URL ?>icons/open_link.svg" alt="Open link icon">
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     <?php
                             }
                         }
