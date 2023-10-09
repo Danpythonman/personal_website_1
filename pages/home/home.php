@@ -59,4 +59,3 @@
     </p>
     <a class="link-button button-4" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a>
 </div>
-<script src="<?= CDN_URL ?>js/homepage_scroll_prompt.js"></script>

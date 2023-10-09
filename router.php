@@ -63,6 +63,8 @@
                 $page_info['title'] = 'Daniel Di Giovanni - Software Developer';
                 $page_info['meta_description'] = 'I\'m Daniel Di Giovanni, a programming professional, student, and hobbyist. Here you can find my resume, check out my projects, and get in touch with me.';
                 $page_info['path_to_php_file'] = __DIR__ . '/pages/home/home.php';
+
+                $scripts[] = 'homepage_scroll_prompt' . HOMEPAGE_SCROLL_PROMPT_VERSION . '.js';
             } else {
                 throw new CustomException("", 404);
             }
@@ -112,6 +114,9 @@
                         $page_info['title'] = $project['title'] . ' | Daniel Di Giovanni';
                         $page_info['meta_description'] = $project['meta_description'];
                         $page_info['path_to_php_file'] = __DIR__ . '/pages/projects/project_template.php';
+
+                        $scripts[] = 'open_project_image_modal' . OPEN_PROJECT_IMAGE_MODAL_VERSION . '.js';
+                        $scripts[] = 'scroll_project_image_gallery' . SCROLL_PROJECT_IMAGE_GALLERY_VERSION . '.js';
                     }
                 }
 

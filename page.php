@@ -41,7 +41,7 @@
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="<?= CDN_URL ?>icons/favicon.ico">
-        <link rel="stylesheet" type="text/css" href="<?= CDN_URL ?>css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?= CDN_URL ?>css/style<?= STYLE_VERSION ?>.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Fjalla+One|Didact+Gothic">
     </head>
     <body>
@@ -53,6 +53,12 @@
 
         <?php require __DIR__ . '/footer.php'; ?>
 
-        <script src="<?= CDN_URL ?>js/open_menu.js"></script>
+        <?php
+            foreach ($scripts as $script_file_name) {
+        ?>
+            <script src="<?= CDN_URL ?>js/<?= $script_file_name ?>"></script>
+        <?php
+            }
+        ?>
     </body>
 </html>

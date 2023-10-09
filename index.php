@@ -70,6 +70,20 @@
      */
     $page_info = [];
 
+    /**
+     * Contains the scripts needed for the page being served. This way, all the
+     * scripts can be defined dynamically at the bottom of the page.
+     *
+     * Elements of this array will are the file name of the script (without the
+     * folder name, with the extension).
+     *
+     * This variable will be given a value by router.php and used by page.php.
+     */
+    $scripts = [];
+
+    // Every page needs the open menu script
+    $scripts[] = 'open_menu' . OPEN_MENU_VERSION . '.js';
+
     // Router
     require __DIR__ . '/router.php';
 

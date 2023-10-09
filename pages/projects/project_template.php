@@ -144,6 +144,3 @@
     <div class="project-image-modal-spacer" onclick="event.stopPropagation(); closeModal(this)">
     </div>
 </div>
-
-<script src="<?= CDN_URL ?>js/scroll_project_image_gallery.js"></script>
-<script src="<?= CDN_URL ?>js/open_project_image_modal.js"></script>

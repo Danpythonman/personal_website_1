@@ -17,4 +17,11 @@
     define('DB_NAME', 'database_name');
 
     define('WEB3FORMS_ACCESS_KEY', '7f0126ae-14d3-4f4b-b5fd-0cd356a53558');
+
+    define('STYLE_VERSION', '_v1');
+
+    define('OPEN_MENU_VERSION', '_v1');
+    define('HOMEPAGE_SCROLL_PROMPT_VERSION', '_v1');
+    define('OPEN_PROJECT_IMAGE_MODAL_VERSION', '_v1');
+    define('SCROLL_PROJECT_IMAGE_GALLERY_VERSION', '_v1');
 ?>
