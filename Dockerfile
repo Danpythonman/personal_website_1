@@ -8,7 +8,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod rewrite
 
 # Copy custom Apache configuration file
-COPY apache-vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY apache/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 
 # Copy your application code to the container
 COPY . /var/www/html
