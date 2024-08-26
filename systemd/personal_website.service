@@ -5,7 +5,7 @@ After=docker.service
 
 [Service]
 WorkingDirectory=/path/to/personal_website
-ExecStart=/path/to/docker compose up -d --build
+ExecStart=/path/to/docker compose up --build
 ExecStop=/path/to/docker compose down
 Restart=always
 

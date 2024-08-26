@@ -51,6 +51,11 @@ is a template and needs some editing before being deployed.
   Change `/path/to/docker` to the location of the Docker executable.
   To find this location, the command `which docker` can be used.
 
+  Also, note that the `-d` option is not used in the `docker compose` command.
+  This is so that Docker does not start the container in the background, which
+  would make systemd think that the process finished and would try to restart
+  the container.
+
 Where to Put the Systemd Unit File
 ----------------------------------
 
