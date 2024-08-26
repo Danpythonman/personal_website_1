@@ -1,0 +1,13 @@
+[Unit]
+Description=Personal Website Docker Compose Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+WorkingDirectory=/path/to/personal_website
+ExecStart=/path/to/docker compose up -d --build
+ExecStop=/path/to/docker compose down
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
