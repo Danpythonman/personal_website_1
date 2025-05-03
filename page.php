@@ -54,10 +54,12 @@
         <?php require __DIR__ . '/footer.php'; ?>
 
         <?php
-            foreach ($scripts as $script_file_name) {
+            if (isset($scripts)) {
+                foreach ($scripts as $script_file_name) {
         ?>
             <script src="<?= CDN_URL ?>js/<?= $script_file_name ?>"></script>
         <?php
+                }
             }
         ?>
     </body>
