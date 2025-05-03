@@ -22,8 +22,18 @@
     // Set the exception handler to the function imported in exception_handler.php
     set_exception_handler('exception_handler');
 
-    // Connect to MySQL database
-    $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    try {
+        // Connect to MySQL database
+        $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
+    } catch (mysqli_sql_exception $e) {
+        $message = 'Database connection failed: ' . $e->getMessage();
+
+        error_log($message);
+
+        throw new CustomException('There was an error connecting to the database. This one\'s on our end.', 500);
+    }
 
     // Make sure database connection was successful
     if (mysqli_connect_errno()) {
@@ -33,7 +43,7 @@
 
         error_log($message);
 
-        throw new CustomException('There was an error connecting to the database. This one\'s on our end.', 500);
+        throw new CustomException('There was an error connecting to the database (Error Number ' . mysqli_connect_errno() . '). This one\'s on our end.', 500);
     }
 
     /**
