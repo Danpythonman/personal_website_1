@@ -1,0 +1,144 @@
+# My Personal Website
+
+This repository contains the source code for my personal website, which showcases my projects, resume, and contact information. The website is built using PHP, MySQL, and Docker, and is styled with custom CSS and JavaScript.
+
+## Prerequisites
+
+To run this project you need all of the following:
+
+- **Docker** and **Docker Compose** installed.
+- **PHP** and **Apache** installed (if not using Docker for running the server).
+- **MariaDB** (or MySQL) installed (if not using Docker for the database).
+- **Systemd** (if deploying).
+
+## Setup (for Local Development or Production Deployment)
+
+1. Clone the repository:
+
+   ```bash
+    git clone https://github.com/Danpythonman/personal_website_1.git
+    cd personal_website
+   ```
+
+2. Copy the example environment file and configure it:
+
+   ```bash
+   cp env.example.php env.php
+   ```
+
+   This is where database credentials and other constants used throughout the project are configured.
+
+3. Copy the tag file and configure it:
+
+   ```bash
+   cp tag.example.php tag.php
+   ```
+
+   For local development and testing, feel free to make the file empty. The file needs only to exist for the pages to work correctly.
+
+4. Ensure the database is running.
+
+   - **If using MariaDB without Docker:**
+
+     Information about MariaDB can be found at [mariadb.org](https://mariadb.org/).
+
+     In short, to install and configure MariaDB, first install the MariaDB server. In Debian, this can be done with the command:
+
+     ```bash
+     sudo apt install mariadb-server
+     ```
+
+     Then run the safe install script.
+
+     ```bash
+     sudo mysql_secure_installation
+     ```
+
+     From there you can access the database (as root user) by running:
+
+     ```bash
+     sudo mariadb
+     ```
+
+     But you'll probably want to make (and use) a non-root user for better security. Make sure the user has the only the privileges they need.
+
+     ```sql
+     CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword';
+     GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%';
+     FLUSH PRIVILEGES;
+     ```
+
+     > Note that `%` means **any host**, so if you're only going to be connecting via localhost, you can change it to `localhost`.
+
+     If you're connecting to MariaDB from anywhere other than localhost (including from inside a Docker container), you must change the bind address in `/etc/mysql/mariadb.conf.d/50-server.cnf`. To allow access from any host, set it to `0.0.0.0`. (However, for better security it can be set to the IP address that will be connecting to the database, if you know it.)
+
+   - **If using MariaDB in Docker:**
+
+     The database can be run in a Docker container by pulling and running the official MariaDB image.
+
+     ```bash
+     docker pull mariadb && \
+     docker run --name my-mariadb \
+        -e MARIADB_ROOT_PASSWORD=my-secret-pw \
+        -e MARIADB_DATABASE=mydb \
+        -e MARIADB_USER=myuser \
+        -e MARIADB_PASSWORD=mypassword \
+        -p 3306:3306 \
+        -d mariadb
+     ```
+
+5. Import the database schema.
+
+   - **If using MariaDB without Docker:**
+
+     ```bash
+     mariadb -u myuser -D mydb -p < database/schema.sql
+     ```
+
+   - **If using MariaDB with Docker:**
+
+     ```bash
+     docker exec -i <db-container-name> mariadb -u <db-user> -p<db-password> <db-name> < database/schema.sql
+     ```
+
+     > Note that the above command uses the database user's password in plaintext, **so only use this for testing/development**.
+     >
+     > A more secure way would be to copy the SQL file into the Docker container and run the file from inside the container.
+     >
+     > 1. ```bash
+     >    docker cp database/schema.sql <db-container-name>:/schema.sql
+     >    ```
+     > 2. ```bash
+     >    sudo docker exec -it <db-container-name> bash
+     >    ```
+     > 3. ```bash
+     >    mariadb -u myuser -D mydb -p < schema.sql
+     >    ```
+
+6. Populate the database. There is currently no instructions for this step. Only I have the data.
+
+7. Run the server.
+
+   - **If running without Docker:**
+
+   - **If running with Docker:**
+
+     Use Docker Compose to run the PHP Apache server.
+
+     ```bash
+     docker compose up -d --build
+     ```
+
+8. (Optional) If deploying to production, you can manage the service with Systemd. Follow the instructions in [systemd/README.md](./systemd/README.md).
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+## Contact
+
+If you have any questions or feedback, feel free to reach out via the Contact Page or connect with me on LinkedIn at [linkedin.com/in/daniel-di-giovanni/](https://www.linkedin.com/in/daniel-di-giovanni/) or send me an email at [dannyjdigio@gmail.com](mailto:dannyjdigio@gmail.com).
