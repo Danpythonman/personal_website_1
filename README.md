@@ -121,6 +121,57 @@ To run this project you need all of the following:
 
    - **If running without Docker:**
 
+     1. First, make sure you have PHP and Apache installed.
+
+        ```bash
+        sudo apt install apache2 php libapache2-mod-php php-mysql
+        ```
+
+     2. Remove the default files in the `/var/www/html` directory (assuming nothing else is in the directory).
+
+        ```bash
+        sudo rm /var/www/html/*
+        ```
+
+     3. Copy the project files to the `/var/www/html` directory.
+
+        ```bash
+        sudo cp /path/to/project/* /var/www/html/
+        ```
+
+        Alternatively you can clone the repository directly from GitHub into `/var/www/html/`. Just make sure you setup the repository correctly (see steps 1-3 above).
+
+     4. Set the correct permissions for the `/var/www/html/` directory.
+
+        ```bash
+        sudo chown -R www-data:www-data /var/www/html
+        sudo chmod -R 755 /var/www/html
+        ```
+
+     5. Copy the Apache virtual host file to `/etc/apache2/sites-available/`
+
+        ```bash
+        sudo cp /path/to/project/apache/apache-vhost.conf /etc/apache2/sites-available/personal-website.conf
+        ```
+
+     6. Enable the website and reload Apache.
+
+        ```bash
+        sudo a2ensite personal-website.conf
+        sudo a2enmod rewrite
+        sudo systemctl reload apache2
+        ```
+
+        The website should be running at [localhost:80](http://localhost:80).
+
+     7. (Optional) Edit `/etc/hosts` to create a mapping between personal-website.local and localhost.
+
+        ```bash
+        echo "127.0.0.1 personal-website.local" | sudo tee -a /etc/hosts
+        ```
+
+        The website should be running at [personal-website.local/](http://personal-website.local/).
+
    - **If running with Docker:**
 
      Use Docker Compose to run the PHP Apache server.
@@ -128,6 +179,8 @@ To run this project you need all of the following:
      ```bash
      docker compose up -d --build
      ```
+
+     The website should be running at [localhost:8080](http://localhost:8080).
 
 8. (Optional) If deploying to production, you can manage the service with Systemd. Follow the instructions in [systemd/README.md](./systemd/README.md).
 
