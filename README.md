@@ -105,15 +105,11 @@ To run this project you need all of the following:
      >
      > A more secure way would be to copy the SQL file into the Docker container and run the file from inside the container.
      >
-     > 1. ```bash
-     >    docker cp database/schema.sql <db-container-name>:/schema.sql
-     >    ```
-     > 2. ```bash
-     >    sudo docker exec -it <db-container-name> bash
-     >    ```
-     > 3. ```bash
-     >    mariadb -u myuser -D mydb -p < schema.sql
-     >    ```
+     > ```bash
+     > docker cp database/schema.sql <db-container-name>:/schema.sql
+     > sudo docker exec -it <db-container-name> bash
+     > mariadb -u myuser -D mydb -p < schema.sql
+     > ```
 
 6. Populate the database. There is currently no instructions for this step. Only I have the data.
 
