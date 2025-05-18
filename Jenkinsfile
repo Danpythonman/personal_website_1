@@ -3,9 +3,6 @@ pipeline {
 
     environment {
         DB_CONTAINER = 'my-mariadb-jenkins'
-        PHP_CONTAINER = 'php-site'
-        IMAGE_NAME = 'php-site-img'
-        COMPOSE_CMD = 'docker compose'
     }
 
     stages {
@@ -50,7 +47,10 @@ pipeline {
 
         stage('Start PHP Server') {
             steps {
-                sh "$COMPOSE_CMD up -d --build"
+                sh '''
+                    docker compose down
+                    docker compose up -d --build
+                '''
                 sleep time: 5, unit: 'SECONDS'
             }
         }
