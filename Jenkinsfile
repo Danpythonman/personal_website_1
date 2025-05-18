@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DB_CONTAINER = 'my-mariadb'
+        DB_CONTAINER = 'my-mariadb-jenkins'
         PHP_CONTAINER = 'php-site'
         IMAGE_NAME = 'php-site-img'
         COMPOSE_CMD = 'docker compose'
