@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DB_CONTAINER = 'my-mariadb-jenkins'
+        IMAGE_NAME = 'personal-website-image'
+        BASE_CONTAINER_NAME = 'personal-website'
     }
 
     stages {
@@ -21,6 +23,23 @@ pipeline {
             }
         }
 
+        stage('Build Image') {
+            steps {
+                script {
+                    def shortGitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                    env.IMAGE_TAG = "jenkins-${shortGitCommit}"
+                }
+
+                echo "Tagging image with $IMAGE_TAG"
+
+                sh '''
+                    docker build -t $IMAGE_NAME:$IMAGE_TAG .
+                '''
+
+                sleep time: 5, unit: 'SECONDS'
+            }
+        }
+
         stage('Start Database') {
             steps {
                 sh '''
@@ -32,6 +51,7 @@ pipeline {
                         -e MARIADB_PASSWORD=mypassword \
                         -p 3306:3306 -d mariadb
                 '''
+
                 sleep time: 10, unit: 'SECONDS'
             }
         }
@@ -47,10 +67,16 @@ pipeline {
 
         stage('Start PHP Server') {
             steps {
+                script {
+                    env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
+                }
+
+                echo "Using container name $CONTAINER_NAME"
+
                 sh '''
-                    docker compose down
-                    docker compose up -d --build
+                    docker run -d --name $CONTAINER_NAME -p 8080:80 $IMAGE_NAME:$IMAGE_TAG
                 '''
+
                 sleep time: 5, unit: 'SECONDS'
             }
         }
