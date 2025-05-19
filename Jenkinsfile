@@ -28,9 +28,10 @@ pipeline {
                 script {
                     def shortGitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
                     env.IMAGE_TAG = "jenkins-${shortGitCommit}"
+                    env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
                 }
 
-                echo "Tagging image with $IMAGE_TAG"
+                echo "Using image $IMAGE_NAME:$IMAGE_TAG and container name $CONTAINER_NAME"
 
                 sh '''
                     docker build -t $IMAGE_NAME:$IMAGE_TAG .
@@ -65,13 +66,18 @@ pipeline {
             }
         }
 
-        stage('Start PHP Server') {
+        stage('Start PHP Server in Docker Container') {
             steps {
-                script {
-                    env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
-                }
+                echo "Ensuring $CONTAINER_NAME does not conflict with other containers"
 
-                echo "Using container name $CONTAINER_NAME"
+                sh '''
+                    mkdir -p logs
+                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+
+                echo "Running container $CONTAINER_NAME"
 
                 sh '''
                     docker run -d --name $CONTAINER_NAME -p 8080:80 $IMAGE_NAME:$IMAGE_TAG
@@ -90,11 +96,7 @@ pipeline {
 
     post {
         always {
-            sh '''
-                docker stop $DB_CONTAINER || true
-                docker rm $DB_CONTAINER || true
-                docker compose down || true
-            '''
+            archiveArtifacts artifacts: 'logs/*.log', allowEmptyArchive: true
         }
     }
 }
