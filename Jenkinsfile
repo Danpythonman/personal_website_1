@@ -31,7 +31,7 @@ pipeline {
                     env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
                 }
 
-                echo "Using image $IMAGE_NAME:$IMAGE_TAG and container name $CONTAINER_NAME"
+                echo 'Using image $IMAGE_NAME:$IMAGE_TAG and container name $CONTAINER_NAME'
 
                 sh '''
                     docker build -t $IMAGE_NAME:$IMAGE_TAG .
@@ -43,15 +43,23 @@ pipeline {
 
         stage('Start Database') {
             steps {
-                sh '''
-                    docker pull mariadb
-                    docker run --name $DB_CONTAINER \
-                        -e MARIADB_ROOT_PASSWORD=my-secret-pw \
-                        -e MARIADB_DATABASE=mydb \
-                        -e MARIADB_USER=myuser \
-                        -e MARIADB_PASSWORD=mypassword \
-                        -p 3306:3306 -d mariadb
-                '''
+                withCredentials([
+                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
+                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
+                    string(credentialsId: 'DB_PORT', variable: 'DB_PORT')
+                ]) {
+                    sh '''
+                        docker pull mariadb
+                        docker run --name $DB_CONTAINER \
+                            -e MARIADB_ROOT_PASSWORD=$DB_PASSWORD \
+                            -e MARIADB_DATABASE=$DB_NAME \
+                            -e MARIADB_USER=$DB_USER \
+                            -e MARIADB_PASSWORD=$DB_PASSWORD \
+                            -p $DB_PORT:3306 -d mariadb
+                    '''
+                }
 
                 sleep time: 10, unit: 'SECONDS'
             }
@@ -59,10 +67,16 @@ pipeline {
 
         stage('Initialize Database Schema') {
             steps {
-                sh '''
-                    docker cp database/schema.sql $DB_CONTAINER:/schema.sql
-                    docker exec -i $DB_CONTAINER mariadb -umyuser -pmypassword mydb < database/schema.sql
-                '''
+                withCredentials([
+                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'DB_NAME', variable: 'DB_NAME')
+                ]) {
+                    sh '''
+                        docker cp database/schema.sql $DB_CONTAINER:/schema.sql
+                        docker exec -i $DB_CONTAINER mariadb -u$DB_USER -p$DB_PASSWORD $DB_NAME < database/schema.sql
+                    '''
+                }
             }
         }
 
@@ -70,18 +84,53 @@ pipeline {
             steps {
                 echo "Ensuring $CONTAINER_NAME does not conflict with other containers"
 
-                sh '''
-                    mkdir -p logs
-                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
-                    docker stop $CONTAINER_NAME || true
-                    docker rm $CONTAINER_NAME || true
-                '''
+                withCredentials([
+                    string(credentialsId: 'BASE_URL_DIRECTORY', variable: 'BASE_URL_DIRECTORY'),
+                    string(credentialsId: 'ENVIRONMENT', variable: 'ENVIRONMENT'),
+                    string(credentialsId: 'DISPLAY_ERRORS', variable: 'DISPLAY_ERRORS'),
+                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
+                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
+                    string(credentialsId: 'DB_PORT', variable: 'DB_PORT'),
+                    string(credentialsId: 'WEB3FORMS_ACCESS_KEY', variable: 'WEB3FORMS_ACCESS_KEY'),
+                    string(credentialsId: 'STYLE_VERSION', variable: 'STYLE_VERSION'),
+                    string(credentialsId: 'OPEN_MENU_VERSION', variable: 'OPEN_MENU_VERSION'),
+                    string(credentialsId: 'HOMEPAGE_SCROLL_PROMPT_VERSION', variable: 'HOMEPAGE_SCROLL_PROMPT_VERSION'),
+                    string(credentialsId: 'OPEN_PROJECT_IMAGE_MODAL_VERSION', variable: 'OPEN_PROJECT_IMAGE_MODAL_VERSION'),
+                    string(credentialsId: 'SCROLL_PROJECT_IMAGE_GALLERY_VERSION', variable: 'SCROLL_PROJECT_IMAGE_GALLERY_VERSION')
+                ]) {
+                    sh '''
+                        mkdir -p logs
+                        docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
+                        docker stop $CONTAINER_NAME || true
+                        docker rm $CONTAINER_NAME || true
+                    '''
 
-                echo "Running container $CONTAINER_NAME"
+                    echo "Running container $CONTAINER_NAME"
 
-                sh '''
-                    docker run -d --name $CONTAINER_NAME -p 8080:80 $IMAGE_NAME:$IMAGE_TAG
-                '''
+                    sh '''
+                        docker run \
+                            -d \
+                            --name $CONTAINER_NAME \
+                            -p 8080:80 \
+                            -e BASE_URL_DIRECTORY=$BASE_URL_DIRECTORY \
+                            -e ENVIRONMENT=$ENVIRONMENT \
+                            -e DISPLAY_ERRORS=$DISPLAY_ERRORS \
+                            -e DB_SERVER=$DB_SERVER \
+                            -e DB_USER=$DB_USER \
+                            -e DB_PASSWORD=$DB_PASSWORD \
+                            -e DB_NAME=$DB_NAME \
+                            -e DB_PORT=$DB_PORT \
+                            -e WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY \
+                            -e STYLE_VERSION=$STYLE_VERSION \
+                            -e OPEN_MENU_VERSION=$OPEN_MENU_VERSION \
+                            -e HOMEPAGE_SCROLL_PROMPT_VERSION=$HOMEPAGE_SCROLL_PROMPT_VERSION \
+                            -e OPEN_PROJECT_IMAGE_MODAL_VERSION=$OPEN_PROJECT_IMAGE_MODAL_VERSION \
+                            -e SCROLL_PROJECT_IMAGE_GALLERY_VERSION=$SCROLL_PROJECT_IMAGE_GALLERY_VERSION \
+                            $IMAGE_NAME:$IMAGE_TAG
+                    '''
+                }
 
                 sleep time: 5, unit: 'SECONDS'
             }
