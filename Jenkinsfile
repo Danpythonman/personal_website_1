@@ -24,14 +24,33 @@ pipeline {
             }
         }
 
-        stage('Prepare Docker Environment') {
+        stage('Check Existing Images') {
             steps {
                 script {
                     def shortGitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+
                     env.IMAGE_TAG = "jenkins-${shortGitCommit}"
                     env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
-                }
 
+                    def imageAlreadyExists = sh(script: "docker images -q $IMAGE_NAME:$IMAGE_TAG", returnStdout: true).trim()
+
+                    if (imageAlreadyExists) {
+                        env.IMAGE_ALREADY_EXISTS = true
+                    } else {
+                        env.IMAGE_ALREADY_EXISTS = false
+                    }
+                }
+            }
+        }
+
+        stage('Prepare Docker Environment') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
+            steps {
                 echo "Saving logs from containers $DB_CONTAINER and $CONTAINER_NAME"
 
                 sh '''
@@ -56,6 +75,12 @@ pipeline {
         }
 
         stage('Build Image') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
             steps {
                 echo "Building image $IMAGE_NAME:$IMAGE_TAG"
 
@@ -68,6 +93,12 @@ pipeline {
         }
 
         stage('Start Database') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
             steps {
                 withCredentials([
                     string(credentialsId: 'DB_USER', variable: 'DB_USER'),
@@ -95,6 +126,12 @@ pipeline {
         }
 
         stage('Initialize Database Schema') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
             steps {
                 withCredentials([
                     string(credentialsId: 'DB_USER', variable: 'DB_USER'),
@@ -110,6 +147,12 @@ pipeline {
         }
 
         stage('Start PHP Server in Docker Container') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
             steps {
                 echo "Running container $CONTAINER_NAME"
 
@@ -159,6 +202,12 @@ pipeline {
         }
 
         stage('Health Check') {
+            when{
+                expression {
+                    env.IMAGE_ALREADY_EXISTS == false
+                }
+            }
+
             steps {
                 sh '''
                     curl -f http://localhost:8080 || (echo 'Health check failed!' && exit 1)
