@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DB_CONTAINER = 'my-mariadb-jenkins'
+        DB_CONTAINER = 'mariadb-jenkins'
         IMAGE_NAME = 'personal-website-image'
         BASE_CONTAINER_NAME = 'personal-website'
     }
@@ -51,6 +51,10 @@ pipeline {
                     string(credentialsId: 'DB_PORT', variable: 'DB_PORT')
                 ]) {
                     sh '''
+                        mkdir -p logs
+                        docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log || true
+                        docker stop $DB_CONTAINER || true
+                        docker rm $DB_CONTAINER || true
                         docker pull mariadb
                         docker run --name $DB_CONTAINER \
                             -e MARIADB_ROOT_PASSWORD=$DB_PASSWORD \
