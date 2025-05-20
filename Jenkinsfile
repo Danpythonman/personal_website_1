@@ -70,7 +70,6 @@ pipeline {
         stage('Start Database') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
                     string(credentialsId: 'DB_USER', variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
                     string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
@@ -119,7 +118,6 @@ pipeline {
                     string(credentialsId: 'ENVIRONMENT', variable: 'ENVIRONMENT'),
                     string(credentialsId: 'CDN_URL', variable: 'CDN_URL'),
                     string(credentialsId: 'DISPLAY_ERRORS', variable: 'DISPLAY_ERRORS'),
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
                     string(credentialsId: 'DB_USER', variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
                     string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
@@ -141,7 +139,7 @@ pipeline {
                             -e ENVIRONMENT=$ENVIRONMENT \
                             -e CDN_URL=$CDN_URL \
                             -e DISPLAY_ERRORS=$DISPLAY_ERRORS \
-                            -e DB_SERVER=$DB_SERVER \
+                            -e DB_SERVER=$DB_CONTAINER \
                             -e DB_USER=$DB_USER \
                             -e DB_PASSWORD=$DB_PASSWORD \
                             -e DB_NAME=$DB_NAME \
