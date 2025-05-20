@@ -121,6 +121,7 @@ pipeline {
                             -p 8080:80 \
                             -e BASE_URL_DIRECTORY=$BASE_URL_DIRECTORY \
                             -e ENVIRONMENT=$ENVIRONMENT \
+                            -e CDN_URL=$CDN_URL \
                             -e DISPLAY_ERRORS=$DISPLAY_ERRORS \
                             -e DB_SERVER=$DB_SERVER \
                             -e DB_USER=$DB_USER \
