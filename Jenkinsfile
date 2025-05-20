@@ -52,9 +52,7 @@ pipeline {
 
                 withCredentials([file(credentialsId: 'GTAG', variable: 'GTAG')]) {
                     sh '''
-                        cp $GTAG tag.php
-                        chown www-data:www-data tag.php
-                        chmod 644 tag.php
+                        cat $GTAG > tag.php
                     '''
                 }
             }
