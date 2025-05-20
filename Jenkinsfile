@@ -15,15 +15,6 @@ pipeline {
             }
         }
 
-        stage('Prepare Files') {
-            steps {
-                sh '''
-                    cp env.example.php env.php
-                    cp tag.example.php tag.php
-                '''
-            }
-        }
-
         stage('Check Existing Images') {
             steps {
                 script {
@@ -35,18 +26,34 @@ pipeline {
                     def imageAlreadyExists = sh(script: "docker images -q $IMAGE_NAME:$IMAGE_TAG", returnStdout: true).trim()
 
                     if (imageAlreadyExists) {
-                        env.IMAGE_ALREADY_EXISTS = true
+                        env.IMAGE_ALREADY_EXISTS = 'true'
                     } else {
-                        env.IMAGE_ALREADY_EXISTS = false
+                        env.IMAGE_ALREADY_EXISTS = 'false'
                     }
                 }
             }
         }
 
-        stage('Prepare Docker Environment') {
-            when{
+        stage('Prepare Files') {
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
+                }
+            }
+
+            steps {
+
+                sh '''
+                    cp env.example.php env.php
+                    cp tag.example.php tag.php
+                '''
+            }
+        }
+
+        stage('Prepare Docker Environment') {
+            when {
+                expression {
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
@@ -75,9 +82,9 @@ pipeline {
         }
 
         stage('Build Image') {
-            when{
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
@@ -93,9 +100,9 @@ pipeline {
         }
 
         stage('Start Database') {
-            when{
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
@@ -126,9 +133,9 @@ pipeline {
         }
 
         stage('Initialize Database Schema') {
-            when{
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
@@ -147,9 +154,9 @@ pipeline {
         }
 
         stage('Start PHP Server in Docker Container') {
-            when{
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
@@ -202,9 +209,9 @@ pipeline {
         }
 
         stage('Health Check') {
-            when{
+            when {
                 expression {
-                    env.IMAGE_ALREADY_EXISTS == false
+                    env.IMAGE_ALREADY_EXISTS != 'true'
                 }
             }
 
