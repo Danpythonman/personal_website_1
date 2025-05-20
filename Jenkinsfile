@@ -36,8 +36,8 @@ pipeline {
 
                 sh '''
                     mkdir -p logs
-                    docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log || true
-                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
+                    docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log 2>&1 || true
+                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log 2>&1 || true
                 '''
 
                 echo 'Stopping and removing containers $DB_CONTAINER and $CONTAINER_NAME'
