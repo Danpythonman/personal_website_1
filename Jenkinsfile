@@ -5,6 +5,7 @@ pipeline {
         DB_CONTAINER = 'mariadb-jenkins'
         IMAGE_NAME = 'personal-website-image'
         BASE_CONTAINER_NAME = 'personal-website'
+        NETWORK_NAME = 'personal-website-network-jenkins'
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
             }
         }
 
-        stage('Build Image') {
+        stage('Prepare Docker Environment') {
             steps {
                 script {
                     def shortGitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
@@ -31,7 +32,32 @@ pipeline {
                     env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
                 }
 
-                echo 'Using image $IMAGE_NAME:$IMAGE_TAG and container name $CONTAINER_NAME'
+                echo 'Saving logs from containers $DB_CONTAINER and $CONTAINER_NAME'
+
+                sh '''
+                    mkdir -p logs
+                    docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log || true
+                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
+                '''
+
+                echo 'Stopping and removing containers $DB_CONTAINER and $CONTAINER_NAME'
+
+                sh '''
+                    docker stop $DB_CONTAINER || true
+                    docker rm $DB_CONTAINER || true
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+
+                echo 'Creating Docker network $NETWORK_NAME'
+
+                sh 'docker network create $NETWORK_NAME || true'
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                echo 'Building image $IMAGE_NAME:$IMAGE_TAG'
 
                 sh '''
                     docker build -t $IMAGE_NAME:$IMAGE_TAG .
@@ -51,17 +77,17 @@ pipeline {
                     string(credentialsId: 'DB_PORT', variable: 'DB_PORT')
                 ]) {
                     sh '''
-                        mkdir -p logs
-                        docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log || true
-                        docker stop $DB_CONTAINER || true
-                        docker rm $DB_CONTAINER || true
                         docker pull mariadb
-                        docker run --name $DB_CONTAINER \
+                        docker run \
+                            -d \
+                            --name $DB_CONTAINER \
+                            --network $NETWORK_NAME \
                             -e MARIADB_ROOT_PASSWORD=$DB_PASSWORD \
                             -e MARIADB_DATABASE=$DB_NAME \
                             -e MARIADB_USER=$DB_USER \
                             -e MARIADB_PASSWORD=$DB_PASSWORD \
-                            -p $DB_PORT:3306 -d mariadb
+                            -p $DB_PORT:3306 \
+                            mariadb
                     '''
                 }
 
@@ -86,7 +112,7 @@ pipeline {
 
         stage('Start PHP Server in Docker Container') {
             steps {
-                echo "Ensuring $CONTAINER_NAME does not conflict with other containers"
+                echo "Running container $CONTAINER_NAME"
 
                 withCredentials([
                     string(credentialsId: 'BASE_URL_DIRECTORY', variable: 'BASE_URL_DIRECTORY'),
@@ -106,18 +132,10 @@ pipeline {
                     string(credentialsId: 'SCROLL_PROJECT_IMAGE_GALLERY_VERSION', variable: 'SCROLL_PROJECT_IMAGE_GALLERY_VERSION')
                 ]) {
                     sh '''
-                        mkdir -p logs
-                        docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log || true
-                        docker stop $CONTAINER_NAME || true
-                        docker rm $CONTAINER_NAME || true
-                    '''
-
-                    echo "Running container $CONTAINER_NAME"
-
-                    sh '''
                         docker run \
                             -d \
                             --name $CONTAINER_NAME \
+                            --network $NETWORK_NAME \
                             -p 8080:80 \
                             -e BASE_URL_DIRECTORY=$BASE_URL_DIRECTORY \
                             -e ENVIRONMENT=$ENVIRONMENT \
