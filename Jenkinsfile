@@ -98,5 +98,12 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'logs/*.log', allowEmptyArchive: true
         }
+
+        failure {
+            sh '''
+                docker stop $DB_CONTAINER || true
+                docker stop $CONTAINER_NAME || true
+            '''
+        }
     }
 }
