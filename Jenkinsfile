@@ -42,11 +42,19 @@ pipeline {
             }
 
             steps {
+                echo 'Preparing env.example.php'
 
                 sh '''
                     cp env.example.php env.php
-                    cp tag.example.php tag.php
                 '''
+
+                echo 'Preparing tag.php'
+
+                withCredentials([file(credentialsId: 'GTAG', variable: 'GTAG')]) {
+                    sh '''
+                        cp $GTAG tag.php
+                    '''
+                }
             }
         }
 
