@@ -4,9 +4,9 @@
     define('ENVIRONMENT', getenv('ENVIRONMENT') ?: 'DEVELOPMENT');
 
     if (ENVIRONMENT == 'DEVELOPMENT') {
-        define('CDN_URL', '/' . BASE_URL_DIRECTORY . 'static/');
+        define('CDN_URL', getenv('CDN_URL') ?: '/' . BASE_URL_DIRECTORY . 'static/');
     } else {
-        define('CDN_URL', 'https://cdn.domainname.com/');
+        define('CDN_URL', getenv('CDN_URL') ?: 'https://cdn.domainname.com/');
     }
 
     define('DISPLAY_ERRORS', getenv('ENVIRONMENT') ?: 'FALSE');
