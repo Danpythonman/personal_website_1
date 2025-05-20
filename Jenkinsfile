@@ -32,7 +32,7 @@ pipeline {
                     env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
                 }
 
-                echo 'Saving logs from containers $DB_CONTAINER and $CONTAINER_NAME'
+                echo "Saving logs from containers $DB_CONTAINER and $CONTAINER_NAME"
 
                 sh '''
                     mkdir -p logs
@@ -40,7 +40,7 @@ pipeline {
                     docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log 2>&1 || true
                 '''
 
-                echo 'Stopping and removing containers $DB_CONTAINER and $CONTAINER_NAME'
+                echo "Stopping and removing containers $DB_CONTAINER and $CONTAINER_NAME"
 
                 sh '''
                     docker stop $DB_CONTAINER || true
@@ -49,7 +49,7 @@ pipeline {
                     docker rm $CONTAINER_NAME || true
                 '''
 
-                echo 'Creating Docker network $NETWORK_NAME'
+                echo "Creating Docker network $NETWORK_NAME"
 
                 sh 'docker network create $NETWORK_NAME || true'
             }
@@ -57,7 +57,7 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                echo 'Building image $IMAGE_NAME:$IMAGE_TAG'
+                echo "Building image $IMAGE_NAME:$IMAGE_TAG"
 
                 sh '''
                     docker build -t $IMAGE_NAME:$IMAGE_TAG .
@@ -160,7 +160,9 @@ pipeline {
 
         stage('Health Check') {
             steps {
-                sh "curl -f http://localhost:8080 || (echo 'Health check failed!' && exit 1)"
+                sh '''
+                    curl -f http://localhost:8080 || (echo 'Health check failed!' && exit 1)
+                '''
             }
         }
     }
