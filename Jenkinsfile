@@ -51,9 +51,10 @@ pipeline {
                 echo 'Preparing tag.php'
 
                 withCredentials([file(credentialsId: 'GTAG', variable: 'GTAG')]) {
-                    sh '''
-                        cat $GTAG > tag.php
-                    '''
+                    script {
+                        def gtagContent = readFile(file: GTAG)
+                        writeFile(file: 'tag.php', text: gtagContent)
+                    }
                 }
             }
         }
