@@ -172,7 +172,7 @@ pipeline {
                 script {
                     try {
                         sh '''
-                            curl -f http://localhost:$PORT_TO_USE --max-time 5"
+                            curl -f http://localhost:$PORT_TO_USE --max-time 5
                         '''
                         echo 'Health check passed'
                     } catch (err) {
