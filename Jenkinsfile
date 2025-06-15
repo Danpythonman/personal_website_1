@@ -21,13 +21,17 @@ pipeline {
         stage('Confirm Nginx is Running') {
             steps {
                 script {
-                    def configExists = sh(
-                        script: '[ -f "$NGINX_SITE_CONFIG_PATH" ] && echo yes || echo no',
-                        returnStdout: true
-                    ).trim()
+                    withCredentials([
+                        string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
+                    ]) {
+                        def configExists = sh(
+                            script: '[ -f "$NGINX_SITE_CONFIG_PATH" ] && echo yes || echo no',
+                            returnStdout: true
+                        ).trim()
 
-                    if (configExists != 'yes') {
-                        error 'Nginx config file not found at: $NGINX_SITE_CONFIG_PATH'
+                        if (configExists != 'yes') {
+                            error "Nginx config file not found at: $NGINX_SITE_CONFIG_PATH"
+                        }
                     }
 
                     def nginxRunning = sh(
@@ -174,10 +178,14 @@ pipeline {
         stage('Reroute reverse proxy') {
             steps {
                 script {
-                    sh '''
-                        sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
-                        nginx -t && nginx -s reload
-                    '''
+                    withCredentials([
+                        string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
+                    ]) {
+                        sh '''
+                            sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
+                            nginx -t && nginx -s reload
+                        '''
+                    }
                 }
             }
         }
