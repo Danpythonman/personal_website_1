@@ -3,9 +3,12 @@ pipeline {
 
     environment {
         DB_CONTAINER = 'mariadb-jenkins'
-        IMAGE_NAME = 'personal-website-image'
+        BASE_IMAGE_NAME = 'personal-website-image'
         BASE_CONTAINER_NAME = 'personal-website'
         NETWORK_NAME = 'personal-website-network-jenkins'
+        ACTIVE_CONTAINER_FILENAME = '/var/personal_website/active_container.txt'
+        BLUE_PORT = 9001
+        GREEN_PORT = 9002
     }
 
     stages {
@@ -15,32 +18,72 @@ pipeline {
             }
         }
 
-        stage('Check Existing Images') {
+        stage('Confirm Nginx is Running') {
             steps {
                 script {
-                    def shortGitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                    def configExists = sh(
+                        script: '[ -f "$NGINX_SITE_CONFIG_PATH" ] && echo yes || echo no',
+                        returnStdout: true
+                    ).trim()
 
-                    env.IMAGE_TAG = "jenkins-${shortGitCommit}"
-                    env.CONTAINER_NAME = "$BASE_CONTAINER_NAME-$IMAGE_TAG"
+                    if (configExists != 'yes') {
+                        error 'Nginx config file not found at: $NGINX_SITE_CONFIG_PATH'
+                    }
 
-                    def imageAlreadyExists = sh(script: "docker images -q $IMAGE_NAME:$IMAGE_TAG", returnStdout: true).trim()
+                    def nginxRunning = sh(
+                        script: "pgrep -x nginx > /dev/null && echo yes || echo no",
+                        returnStdout: true
+                    ).trim()
 
-                    if (imageAlreadyExists) {
-                        env.IMAGE_ALREADY_EXISTS = 'true'
-                    } else {
-                        env.IMAGE_ALREADY_EXISTS = 'false'
+                    if (nginxRunning != 'yes') {
+                        error 'Nginx is not running on the host system'
+                    }
+
+                    echo 'Nginx is running and the config file is present.'
+                }
+            }
+        }
+
+        stage('Check if we are blue or green') {
+            steps {
+                script {
+                    def bluePortOutput = sh(script: "ss -tuln | grep :${env.BLUE_PORT} || true", returnStdout: true).trim()
+                    def greenPortOutput = sh(script: "ss -tuln | grep :${env.GREEN_PORT} || true", returnStdout: true).trim()
+
+                    if (bluePortOutput && greenPortOutput) {
+                        error 'Both blue and green ports are in used, cannot deploy'
+                    } else if (bluePortOutput) {
+                        echo 'Blue port is in use, we are green'
+                        env.COLOR = 'green'
+                        env.OTHER_COLOR = 'blue'
+                        env.PORT_TO_USE = env.GREEN_PORT
+                    } else if (greenPortOutput) {
+                        echo 'Green port is in use, we are blue'
+                        env.COLOR = 'blue'
+                        env.OTHER_COLOR = 'green'
+                        env.PORT_TO_USE = env.BLUE_PORT
+                    } else  {
+                        echo 'Neither blue or green ports are in use, defaulting to blue'
+                        env.COLOR = 'blue'
+                        env.OTHER_COLOR = 'green'
+                        env.PORT_TO_USE = env.BLUE_PORT
                     }
                 }
             }
         }
 
-        stage('Prepare Files') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
+        stage('Generate Image and Container Names') {
+            steps {
+                script {
+                    env.IMAGE_NAME = "${env.BASE_IMAGE_NAME}:${env.BUILD_NUMBER}"
+                    env.CONTAINER_NAME = "${env.BASE_CONTAINER_NAME}-${env.BUILD_NUMBER}-${env.COLOR}"
+
+                    echo "Using image name $IMAGE_NAME and container name $CONTAINER_NAME"
                 }
             }
+        }
 
+        stage('Prepare Files') {
             steps {
                 echo 'Preparing env.example.php'
 
@@ -59,116 +102,19 @@ pipeline {
             }
         }
 
-        stage('Prepare Docker Environment') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
-            steps {
-                echo "Saving logs from containers $DB_CONTAINER and $CONTAINER_NAME"
-
-                sh '''
-                    mkdir -p logs
-                    docker logs $DB_CONTAINER > logs/$DB_CONTAINER.log 2>&1 || true
-                    docker logs $CONTAINER_NAME > logs/$CONTAINER_NAME.log 2>&1 || true
-                '''
-
-                echo "Stopping and removing containers $DB_CONTAINER and $CONTAINER_NAME"
-
-                sh '''
-                    docker stop $DB_CONTAINER || true
-                    docker rm $DB_CONTAINER || true
-                    docker stop $CONTAINER_NAME || true
-                    docker rm $CONTAINER_NAME || true
-                '''
-
-                echo "Creating Docker network $NETWORK_NAME"
-
-                sh 'docker network create $NETWORK_NAME || true'
-            }
-        }
-
         stage('Build Image') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
             steps {
-                echo "Building image $IMAGE_NAME:$IMAGE_TAG"
+                echo "Building image $IMAGE_NAME"
 
                 sh '''
-                    docker build -t $IMAGE_NAME:$IMAGE_TAG .
+                    docker build -t $IMAGE_NAME .
                 '''
 
                 sleep time: 5, unit: 'SECONDS'
             }
         }
 
-        stage('Start Database') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
-            steps {
-                withCredentials([
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
-                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
-                    string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
-                    string(credentialsId: 'DB_PORT', variable: 'DB_PORT')
-                ]) {
-                    sh '''
-                        docker pull mariadb
-                        docker run \
-                            -d \
-                            --name $DB_CONTAINER \
-                            --network $NETWORK_NAME \
-                            -e MARIADB_ROOT_PASSWORD=$DB_PASSWORD \
-                            -e MARIADB_DATABASE=$DB_NAME \
-                            -e MARIADB_USER=$DB_USER \
-                            -e MARIADB_PASSWORD=$DB_PASSWORD \
-                            -p $DB_PORT:3306 \
-                            mariadb
-                    '''
-                }
-
-                sleep time: 10, unit: 'SECONDS'
-            }
-        }
-
-        stage('Initialize Database Schema') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
-            steps {
-                withCredentials([
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
-                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
-                    string(credentialsId: 'DB_NAME', variable: 'DB_NAME')
-                ]) {
-                    sh '''
-                        docker cp database/schema.sql $DB_CONTAINER:/schema.sql
-                        docker exec -i $DB_CONTAINER mariadb -u$DB_USER -p$DB_PASSWORD $DB_NAME < database/schema.sql
-                    '''
-                }
-            }
-        }
-
         stage('Start PHP Server in Docker Container') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
             steps {
                 echo "Running container $CONTAINER_NAME"
 
@@ -193,7 +139,7 @@ pipeline {
                             -d \
                             --name $CONTAINER_NAME \
                             --network $NETWORK_NAME \
-                            -p 8080:80 \
+                            -p $PORT_TO_USE:80 \
                             -e BASE_URL_DIRECTORY=$BASE_URL_DIRECTORY \
                             -e ENVIRONMENT=$ENVIRONMENT \
                             -e CDN_URL=$CDN_URL \
@@ -209,7 +155,7 @@ pipeline {
                             -e HOMEPAGE_SCROLL_PROMPT_VERSION=$HOMEPAGE_SCROLL_PROMPT_VERSION \
                             -e OPEN_PROJECT_IMAGE_MODAL_VERSION=$OPEN_PROJECT_IMAGE_MODAL_VERSION \
                             -e SCROLL_PROJECT_IMAGE_GALLERY_VERSION=$SCROLL_PROJECT_IMAGE_GALLERY_VERSION \
-                            $IMAGE_NAME:$IMAGE_TAG
+                            $IMAGE_NAME
                     '''
                 }
 
@@ -218,30 +164,41 @@ pipeline {
         }
 
         stage('Health Check') {
-            when {
-                expression {
-                    env.IMAGE_ALREADY_EXISTS != 'true'
-                }
-            }
-
             steps {
                 sh '''
-                    curl -f http://localhost:8080 || (echo 'Health check failed!' && exit 1)
+                    curl -f http://localhost:$PORT_TO_USE || (echo 'Health check failed!' && exit 1)
                 '''
             }
         }
-    }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'logs/*.log', allowEmptyArchive: true
+        stage('Reroute reverse proxy') {
+            steps {
+                script {
+                    sh '''
+                        sed -i "s/server 127\.0\.0\.1:[0-9]\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
+                        nginx -t && nginx -s reload
+                    '''
+                }
+            }
         }
 
-        failure {
-            sh '''
-                docker stop $DB_CONTAINER || true
-                docker stop $CONTAINER_NAME || true
-            '''
+        stage('Stop other container') {
+            steps {
+                script {
+                    def exists = sh(script: '[ -f "$ACTIVE_CONTAINER_FILENAME" ] && echo yes || echo no', returnStdout: true).trim()
+                    if (exists == 'yes') {
+                        env.CONTAINER_TO_DESTROY = sh(script: 'cat "$ACTIVE_CONTAINER_FILENAME"', returnStdout: true).trim()
+
+                        sh '''
+                            docker stop $CONTAINER_TO_DESTROY || true
+                        '''
+                    }
+
+                    sh '''
+                        echo $CONTAINER_TO_DESTROY > "$ACTIVE_CONTAINER_FILENAME"
+                    '''
+                }
+            }
         }
     }
 }
