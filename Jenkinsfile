@@ -221,14 +221,20 @@ pipeline {
         stage('Reroute reverse proxy') {
             steps {
                 script {
-                    withCredentials([
-                        string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
-                    ]) {
-                        sh '''
-                            sudo sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
-                            sudo nginx -t
-                            sudo nginx -s reload
-                        '''
+                    try {
+                        withCredentials([
+                            string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
+                        ]) {
+                            sh '''
+                                sudo sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
+                                sudo nginx -t
+                                sudo nginx -s reload
+                            '''
+                        }
+                    } catch (err) {
+                        echo "Rerouting reverse proxy failed, stopping container: ${env.CONTAINER_NAME}"
+                        sh 'docker stop $CONTAINER_NAME || true'
+                        error 'Rerouting reverse proxy failed'
                     }
                 }
             }
@@ -240,18 +246,15 @@ pipeline {
                     sh '''
                         old_container_id=$( \
                             docker ps -q \
-                                --filter "label=com.danieldigiovanni.personal_website.app=personal-website" \
-                                --filter "label=com.danieldigiovanni.personal_website.role=active" \
+                                --filter "label=com.danieldigiovanni.personal_website.app=personal-website"
                         )
 
                         if [ -n "$old_container_id" ]; then
                             echo "Stopping old container: $old_container_id"
                             docker stop $old_container_id
-                            docker update --label com.danieldigiovanni.personal_website.role=inactive "$old_container_id"
                         else
                             echo 'No existing container to stop'
                         fi
-                        docker update --label com.danieldigiovanni.personal_website.role=active "$CONTAINER_NAME"
                     '''
                 }
             }
