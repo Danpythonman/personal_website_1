@@ -47,6 +47,26 @@ pipeline {
             }
         }
 
+        stage('Confirm Jenkins Has Necessary Permissions') {
+            steps {
+                script {
+                    withCredentials([
+                        string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
+                    ]) {
+                        def testFile = "${NGINX_SITE_CONFIG_PATH}.jenkins_write_test"
+
+                        try {
+                            sh """
+                                touch "${testFile}" && rm "${testFile}"
+                            """
+                        } catch (err) {
+                            error "Jenkins does not have write permissions to write to $NGINX_SITE_CONFIG_PATH"
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Check if we are blue or green') {
             steps {
                 script {
