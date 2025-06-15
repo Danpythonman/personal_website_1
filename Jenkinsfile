@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Confirm Nginx is Running') {
+        stage('Confirm Nginx is running') {
             steps {
                 script {
                     withCredentials([
@@ -47,7 +47,7 @@ pipeline {
             }
         }
 
-        stage('Confirm Jenkins Has Necessary Permissions') {
+        stage('Confirm Jenkins has necessary permissions') {
             steps {
                 script {
                     withCredentials([
@@ -107,7 +107,7 @@ pipeline {
             }
         }
 
-        stage('Generate Image and Container Names') {
+        stage('Generate image and container names') {
             steps {
                 script {
                     env.IMAGE_NAME = "${env.BASE_IMAGE_NAME}:${env.BUILD_NUMBER}"
@@ -118,7 +118,7 @@ pipeline {
             }
         }
 
-        stage('Prepare Files') {
+        stage('Prepare files') {
             steps {
                 echo 'Preparing env.example.php'
 
@@ -137,7 +137,7 @@ pipeline {
             }
         }
 
-        stage('Build Image') {
+        stage('Build image') {
             steps {
                 echo "Building image $IMAGE_NAME"
 
@@ -149,7 +149,7 @@ pipeline {
             }
         }
 
-        stage('Start PHP Server in Docker Container') {
+        stage('Start PHP server in Docker container') {
             steps {
                 echo "Running container $CONTAINER_NAME"
 
@@ -191,6 +191,7 @@ pipeline {
                             -e HOMEPAGE_SCROLL_PROMPT_VERSION=$HOMEPAGE_SCROLL_PROMPT_VERSION \
                             -e OPEN_PROJECT_IMAGE_MODAL_VERSION=$OPEN_PROJECT_IMAGE_MODAL_VERSION \
                             -e SCROLL_PROJECT_IMAGE_GALLERY_VERSION=$SCROLL_PROJECT_IMAGE_GALLERY_VERSION \
+                            --label com.danieldigiovanni.personal_website.app=personal-website \
                             --restart=unless-stopped \
                             $IMAGE_NAME
                     '''
@@ -200,7 +201,7 @@ pipeline {
             }
         }
 
-        stage('Health Check') {
+        stage('Health check') {
             steps {
                 script {
                     try {
@@ -233,20 +234,24 @@ pipeline {
             }
         }
 
-        stage('Stop other container') {
+        stage('Stop other container and set new container as active') {
             steps {
                 script {
-                    def exists = sh(script: '[ -f "$ACTIVE_CONTAINER_FILENAME" ] && echo yes || echo no', returnStdout: true).trim()
-                    if (exists == 'yes') {
-                        env.CONTAINER_TO_DESTROY = sh(script: 'cat "$ACTIVE_CONTAINER_FILENAME"', returnStdout: true).trim()
-
-                        sh '''
-                            docker stop $CONTAINER_TO_DESTROY || true
-                        '''
-                    }
-
                     sh '''
-                        echo $CONTAINER_TO_DESTROY > "$ACTIVE_CONTAINER_FILENAME"
+                        old_container_id=$( \
+                            docker ps -q \
+                                --filter "label=com.danieldigiovanni.personal_website.app=personal-website" \
+                                --filter "label=com.danieldigiovanni.personal_website.role=active" \
+                        )
+
+                        if [ -n "$old_container_id" ]; then
+                            echo "Stopping old container: $old_container_id"
+                            docker stop $old_container_id
+                            docker update --label com.danieldigiovanni.personal_website.role=inactive "$old_container_id"
+                        else
+                            echo 'No existing container to stop'
+                        fi
+                        docker update --label com.danieldigiovanni.personal_website.role=active "$CONTAINER_NAME"
                     '''
                 }
             }
