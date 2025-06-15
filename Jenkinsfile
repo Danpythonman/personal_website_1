@@ -169,9 +169,18 @@ pipeline {
 
         stage('Health Check') {
             steps {
-                sh '''
-                    curl -f http://localhost:$PORT_TO_USE || (echo 'Health check failed!' && exit 1)
-                '''
+                script {
+                    try {
+                        sh '''
+                            curl -f http://localhost:$PORT_TO_USE --max-time 5"
+                        '''
+                        echo 'Health check passed'
+                    } catch (err) {
+                        echo "Health check failed, stopping container: ${env.CONTAINER_NAME}"
+                        sh 'docker stop $CONTAINER_NAME || true'
+                        error 'Health check failed'
+                    }
+                }
             }
         }
 
