@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        DB_CONTAINER = 'mariadb-jenkins'
         BASE_IMAGE_NAME = 'personal-website-image'
         BASE_CONTAINER_NAME = 'personal-website'
         NETWORK_NAME = 'personal-website-network-jenkins'
@@ -148,7 +147,7 @@ pipeline {
                             -e ENVIRONMENT=$ENVIRONMENT \
                             -e CDN_URL=$CDN_URL \
                             -e DISPLAY_ERRORS=$DISPLAY_ERRORS \
-                            -e DB_SERVER=$DB_CONTAINER \
+                            -e DB_SERVER=$DB_SERVER \
                             -e DB_USER=$DB_USER \
                             -e DB_PASSWORD=$DB_PASSWORD \
                             -e DB_NAME=$DB_NAME \
