@@ -175,7 +175,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        sed -i "s/server 127\.0\.0\.1:[0-9]\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
+                        sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
                         nginx -t && nginx -s reload
                     '''
                 }
