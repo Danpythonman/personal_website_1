@@ -126,6 +126,7 @@ pipeline {
                     string(credentialsId: 'ENVIRONMENT', variable: 'ENVIRONMENT'),
                     string(credentialsId: 'CDN_URL', variable: 'CDN_URL'),
                     string(credentialsId: 'DISPLAY_ERRORS', variable: 'DISPLAY_ERRORS'),
+                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
                     string(credentialsId: 'DB_USER', variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
                     string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
