@@ -53,15 +53,27 @@ pipeline {
                     withCredentials([
                         string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
                     ]) {
-                        def testFile = "${NGINX_SITE_CONFIG_PATH}.jenkins_write_test"
-
                         try {
-                            sh """
-                                touch "${testFile}" && rm "${testFile}"
-                            """
+                            // This command replaces nothing (the pattern
+                            // '__permission_test__' should not exist in the
+                            // config file), so it just opens the file for
+                            // writing to make sure it has the permission to do
+                            // so later.
+                            sh '''
+                                sudo sed -i 's/__permission_test__/__permission_test__/' "$NGINX_SITE_CONFIG_PATH"
+                            '''
                         } catch (err) {
-                            error "Jenkins does not have write permissions to write to $NGINX_SITE_CONFIG_PATH"
+                            error 'Jenkins does not have write permissions to write to the Nginx config path'
                         }
+                    }
+
+                    try {
+                        sh '''
+                            sudo nginx -t
+                            sudo nginx -s reload
+                        '''
+                    } catch (err) {
+                        error 'Jenkins does not have permissions to reload Nginx'
                     }
                 }
             }
@@ -212,8 +224,9 @@ pipeline {
                         string(credentialsId: 'NGINX_SITE_CONFIG_PATH', variable: 'NGINX_SITE_CONFIG_PATH')
                     ]) {
                         sh '''
-                            sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
-                            nginx -t && nginx -s reload
+                            sudo sed -i "s/server 127\\.0\\.0\\.1:[0-9]\\+/server 127.0.0.1:$PORT_TO_USE/" $NGINX_SITE_CONFIG_PATH
+                            sudo nginx -t
+                            sudo nginx -s reload
                         '''
                     }
                 }
