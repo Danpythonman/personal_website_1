@@ -244,10 +244,15 @@ pipeline {
             steps {
                 script {
                     sh '''
+                        new_container_id=$( \
+                            docker ps -q --filter "name=^$CONTAINER_NAME$" \
+                            | head -n 1 \
+                        )
+
                         old_container_id=$( \
                             docker ps -q \
                                 --filter "label=com.danieldigiovanni.personal_website.app=personal-website" \
-                            | grep -v "$CONTAINER_NAME" \
+                            | grep -v "$new_container_id" \
                             | head -n 1 \
                         )
 
