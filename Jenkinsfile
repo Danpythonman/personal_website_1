@@ -246,7 +246,9 @@ pipeline {
                     sh '''
                         old_container_id=$( \
                             docker ps -q \
-                                --filter "label=com.danieldigiovanni.personal_website.app=personal-website"
+                                --filter "label=com.danieldigiovanni.personal_website.app=personal-website" \
+                            | grep -v "$CONTAINER_NAME" \
+                            | head -n 1 \
                         )
 
                         if [ -n "$old_container_id" ]; then
