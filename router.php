@@ -69,15 +69,6 @@
                 throw new CustomException("", 404);
             }
             break;
-        case 'about':
-            if (count($uri_path_array) === 1) {
-                $page_info['title'] = 'About Me | Daniel Di Giovanni';
-                $page_info['meta_description'] = 'More about me, beyond software development. Learn about my education and my hobby of reading.';
-                $page_info['path_to_php_file'] = __DIR__ . '/pages/about/about.php';
-            } else {
-                throw new CustomException("", 404);
-            }
-            break;
         case 'resume':
             if (count($uri_path_array) === 1) {
                 $page_info['title'] = 'My Resume | Daniel Di Giovanni';
