@@ -3,8 +3,10 @@
         <h1>Welcome!</h1>
         <img src="<?= CDN_URL ?>images/me.jpg">
         <p>
-            I'm <b>Daniel Di Giovanni</b>, a programming professional, student, and hobbyist.
-            I'm in my third year of studying software engineering at York University, but I've been programming for about five years in total.
+            I'm <b>Daniel Di Giovanni</b>, a software engineer and master's student in
+            computer science at York University with a focus on AI. I work
+            across research and implementation and I like turning ideas into
+            reliable, usable tools!
         </p>
     </div>
     <div id="scroll-down-prompt">
@@ -25,9 +27,10 @@
         <div>
             <h2 class="subheading">My Projects</h2>
             <p class="paragraph">
-                I mentioned that I've been programming for about five years.
-                Most of that has been my own personal projects that I made for fun or for learning.
-                I'm always trying to learn more and I feel very rewarded seeing the progress of my personal projects.
+                Most of my programming experience has been my own personal
+                projects that I made for fun or for learning. I'm always trying
+                to learn more and I feel very rewarded seeing the progress of
+                what I build.
             </p>
         </div>
         <a href="<?= '/' . BASE_URL_DIRECTORY . 'projects' ?>" alt="View my projects">
@@ -44,8 +47,9 @@
     <div>
         <h2 class="subheading">My Professional Experience</h2>
         <p class="paragraph">
-            Working as a professional programmer is the newest programming experience for me, and is also what I'm currently looking for.
-            My goal is to gain experience with working in software development teams and to program more substantial systems.
+            I have also worked as a professional software developer. My goal is
+            to gain experience with working in software development teams and to
+            program substantial systems that don't break.
         </p>
     </div>
 </div>
@@ -53,8 +57,7 @@
 <div id="homepage-contact-section" class="section">
     <h2 class="subheading">Let's Get in Touch</h2>
     <p class="paragraph">
-        Have any questions or feedback?
-        Feel free to get in touch with me!
+        I'd love to connect!
         Connect with me on <a class="link" href="https://www.linkedin.com/in/daniel-di-giovanni/">LinkedIn</a>, or send me an message directly on the <a class="link" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">contact page</a>.
     </p>
     <a class="link-button button-4" href="<?= '/' . BASE_URL_DIRECTORY . 'contact' ?>">Contact Me</a>
