@@ -791,11 +791,10 @@ body {
     flex-wrap: wrap;
 }
 
-#project-image-modal-content > img {
-    height: 60%;
-    max-width: 90%;
-    padding-left: 30px;
-    padding-right: 30px;
+#project-image-modal-image {
+    width: 100vh;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #project-image-modal-text {
@@ -1241,10 +1240,6 @@ body {
         height: 350px;
     }
 
-    #project-image-modal-image {
-        width: 100%;
-    }
-
     .pdf-embed {
         width: 90%;
         height: 500px;
@@ -1415,8 +1410,13 @@ body {
         max-width: 992px;
     }
 
+    #project-image-media {
+        overflow: scroll;
+    }
+
     #project-image-modal-image {
-        height: 100%;
+        height: 75vh;
+        width: auto;      /* this keeps the aspect ratio */
     }
 
     .pdf-embed {
@@ -1449,11 +1449,11 @@ body {
         justify-content: space-around;
         align-items: center;
     }
-    
+
     #currently-reading > div {
         margin-left: 15px;
     }
-    
+
     #currently-reading > div > a > h3 {
         margin-top: 0;
     }
