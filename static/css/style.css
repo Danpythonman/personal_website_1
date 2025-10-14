@@ -176,6 +176,16 @@ body {
     background-color: var(--attention-color);
 }
 
+.button-5 {
+    background-color: var(--attention-color);
+    color: white;
+    transition: 0.3s;
+}
+
+.button-5:hover {
+    background-color: var(--accent-color);
+}
+
 .horizontal-line {
     width: 100%;
     margin-bottom: 15px;
