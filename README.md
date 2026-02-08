@@ -70,7 +70,7 @@ To run this project you need all of the following:
 
      > Note that `%` means **any host**, so if you're only going to be connecting via localhost, you can change it to `localhost`.
 
-     If you're connecting to MariaDB from anywhere other than localhost (including from inside a Docker container), you must change the bind address in `/etc/mysql/mariadb.conf.d/50-server.cnf`. To allow access from any host, set it to `0.0.0.0`. (However, for better security it can be set to the IP address that will be connecting to the database, if you know it.)
+     **Important:** If you're connecting to MariaDB from anywhere other than localhost (including from inside a Docker container), you must change the bind address in `/etc/mysql/mariadb.conf.d/50-server.cnf`. To allow access from any host, set it to `0.0.0.0`. (However, for better security it can be set to the IP address that will be connecting to the database, if you know it.)
 
    - **If using MariaDB in Docker:**
 
@@ -87,18 +87,20 @@ To run this project you need all of the following:
         -d mariadb
      ```
 
-5. Import the database schema.
+5. Import the database schema and data.
 
    - **If using MariaDB without Docker:**
 
      ```bash
      mariadb -u myuser -D mydb -p < database/schema.sql
+     mariadb -u myuser -D mydb -p < database/data.sql
      ```
 
    - **If using MariaDB with Docker:**
 
      ```bash
      docker exec -i <db-container-name> mariadb -u <db-user> -p<db-password> <db-name> < database/schema.sql
+     docker exec -i <db-container-name> mariadb -u <db-user> -p<db-password> <db-name> < database/data.sql
      ```
 
      > Note that the above command uses the database user's password in plaintext, **so only use this for testing/development**.
@@ -107,13 +109,13 @@ To run this project you need all of the following:
      >
      > ```bash
      > docker cp database/schema.sql <db-container-name>:/schema.sql
+     > docker cp database/data.sql <db-container-name>:/data.sql
      > sudo docker exec -it <db-container-name> bash
      > mariadb -u myuser -D mydb -p < schema.sql
+     > mariadb -u myuser -D mydb -p < data.sql
      > ```
 
-6. Populate the database. There is currently no instructions for this step. Only I have the data.
-
-7. Run the server.
+6. Run the server.
 
    - **If running without Docker:**
 
@@ -178,7 +180,7 @@ To run this project you need all of the following:
 
      The website should be running at [localhost:8080](http://localhost:8080).
 
-8. (Optional) If deploying to production, you can manage the service with Systemd. Follow the instructions in [systemd/README.md](./systemd/README.md).
+7. (Optional) If deploying to production, you can manage the service with Systemd. Follow the instructions in [systemd/README.md](./systemd/README.md).
 
 ## Contributing
 
